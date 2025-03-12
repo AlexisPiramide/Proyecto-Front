@@ -4,6 +4,8 @@ import Registro from "./Registro";
 import PerfilUsuario from "./PerfilUsuario";
 import "./../../styles/nuevo.css"
 import { useState } from "react";
+
+import { ToastContainer } from 'react-toastify';
 export default function ZonaSesiones() {
 
     const [usuario,setUsuario] = useOutletContext();
@@ -11,7 +13,10 @@ export default function ZonaSesiones() {
 
     return (
         <div className="zona-sesiones">
+            <div>
+                <div className="embellezedor"><img src="./public/cerrar.svg"/><img src="./public/minimizar.svg"/></div>
             {usuario ? <PerfilUsuario /> : (tipo ? <Registro /> : <Login />)}
+            </div>
             <div className="diseño-embellecimiento">
                 <img src="./delivery.jpg" alt="Logo"/>
                 <div className="texto">
@@ -20,6 +25,7 @@ export default function ZonaSesiones() {
                 </div>
              
             </div>
+            <ToastContainer />
         </div>
     )
 

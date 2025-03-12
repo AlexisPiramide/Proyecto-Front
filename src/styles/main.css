@@ -1,6 +1,9 @@
 :root{
-    --primary-color: #ccc5c5;
-    --background-color: #e6cdf1;
+    --primary-color: #FFBF00;
+    --secondary-color: #FACD33;
+    --tertiary-color: #F4DB65;
+    --darker-background-color:#ECF0B1;
+    --background-color: #E9F7CA
     --background-image: url("/public/delivery.jpg");
 }
 

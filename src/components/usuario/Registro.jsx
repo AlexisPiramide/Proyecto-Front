@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+import InputFormulario from "./InputFormulario";
 
 export default function Registro() {
     const [next, setNext] = useState(0);
     const [datosFormulario, setDatosFormulario] = useState({
         nombre: "",
         apellidos: "",
-        email: "",
+        correo: "",
         telefono: "",
         password: "",
         password2: ""
@@ -30,6 +31,7 @@ export default function Registro() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
+            toastId: mensaje,
         });
     };
 
@@ -48,9 +50,9 @@ export default function Registro() {
         }
 
         if (next === 1) {
-            if (!/\S+@\S+\.\S+/.test(datosFormulario.email)) {
-                erroresTemp.email = "Correo no válido.";
-                mostrarError(erroresTemp.email);
+            if (!/\S+@\S+\.\S+/.test(datosFormulario.correo)) {
+                erroresTemp.correo = "Correo no válido.";
+                mostrarError(erroresTemp.correo);
             }
             if (!/^\d{9,15}$/.test(datosFormulario.telefono)) {
                 erroresTemp.telefono = "Número de teléfono inválido.";
@@ -88,45 +90,35 @@ export default function Registro() {
 
     return (
         <form className="registro" onSubmit={handleSubmit}>
+           
             <h2>Registro: </h2>
             
             {next === 0 && (
-                <div className="form-usuario-div">
-                    <label htmlFor="nombre">Nombre:</label>
-                    <input onChange={handleInputChange} type="text" id="nombre" name="nombre" value={datosFormulario.nombre} />
-
-                    <label htmlFor="apellidos">Apellidos:</label>
-                    <input onChange={handleInputChange} type="text" id="apellidos" name="apellidos" value={datosFormulario.apellidos} />
+                <div className="form-</div>usuario-div">
+                    <InputFormulario type="text" name="nombre" value={datosFormulario.nombre} onChange={handleInputChange} />
+                    <InputFormulario type="text" name="apellidos" value={datosFormulario.apellidos} onChange={handleInputChange} />
                 </div>
             )}
 
             {next === 1 && (
                 <div className="form-usuario-data">
-                    <label htmlFor="email">Email:</label>
-                    <input onChange={handleInputChange} type="email" id="email" name="email" value={datosFormulario.email} />
-
-                    <label htmlFor="telefono">Teléfono:</label>
-                    <input onChange={handleInputChange} type="tel" id="telefono" name="telefono" value={datosFormulario.telefono} />
+                    <InputFormulario type="email" name="correo" value={datosFormulario.correo} onChange={handleInputChange} />
+                    <InputFormulario type="text" name="telefono" value={datosFormulario.telefono} onChange={handleInputChange} />
                 </div>
             )}
 
             {next === 2 && (
                 <div className="form-usuario-registro-contraseñas">
-                    <label htmlFor="password">Contraseña:</label>
-                    <input onChange={handleInputChange} type="password" id="password" name="password" value={datosFormulario.password} />
-
-                    <label htmlFor="password2">Repite la contraseña:</label>
-                    <input onChange={handleInputChange} type="password" id="password2" name="password2" value={datosFormulario.password2} />
+                    <InputFormulario type="password" name="password"  value={datosFormulario.password} onChange={handleInputChange} />
+                    <InputFormulario type="password" name="password2"  value={datosFormulario.password2} onChange={handleInputChange} />
                 </div>
             )}
-            <div>
-                {next !== 0 && <button type="button" onClick={() => setNext(next - 1)}>Atrás</button>}
-                {next !== 2 && <button type="button" onClick={handleNext}>Siguiente</button>}
+            <div className="botones">
+                {(next !== 0)?<button type="button" onClick={() => setNext(next - 1)}>Atrás</button>:<button disabled>Atrás</button>}
+                {(next !== 2)?<button type="button" onClick={handleNext}>Siguiente</button>:<button disabled>Siguiente</button>}
             </div>
             {next === 2 && <button type="submit" onClick={handleSubmit}>Registrarse</button>}
            
-
-            <ToastContainer />
         </form>
     );
 }

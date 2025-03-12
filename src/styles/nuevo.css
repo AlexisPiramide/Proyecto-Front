@@ -22,13 +22,15 @@
         flex-direction: column;
         align-items: center;
         width: 50%;
+
         & div {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 3rem;
-            margin-left: 5em;
+            margin: 1em;
+
         }
+
         & img{
             display: flex;
             flex-direction: column;
@@ -36,14 +38,31 @@
             width: 50%;
             height: auto;
         }
+
+        & form {
+            margin-top: 0;
+            width: 50%;
+            height: 400px;
+        }
     }
-    & form {
-        width: 50%;
-        height: 100%;
+    
+    & .embellezedor{
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: rebeccapurple;
+        margin: 0;
+
+        & img{
+            width: 20px;
+            height: 20px;
+        }
     }
+    
+    
 }
 
 form {
+    height: 300px;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -56,6 +75,62 @@ form input {
     margin-bottom: 10px;
     padding: 10px;
     font-size: 16px;
-    width: 100%;
 }
 
+.registro {
+    width: 20%;
+
+    background-color: var(--darker-background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registro > .botones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    
+}
+
+
+.registro > button{
+    margin-bottom: 20px;
+    background-color: red;
+}
+.login > button {
+    margin-bottom: 40px;
+    background-color: red;
+}
+
+.login {
+    width: 20%;
+    height: 500px;
+    background-color: var(--darker-background-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.label-sesiones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.label-sesiones img {
+    margin-bottom: 10px;
+}
+
+.label-sesiones input {
+    font-size: 14px;
+    width: 200px;
+    border: none;
+    background-color: var(--darker-background-color);
+    border-bottom: 1px solid black;
+}
