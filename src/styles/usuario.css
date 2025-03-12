@@ -1,6 +1,6 @@
 .zona-sesiones{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     height: 90vh;
@@ -8,58 +8,72 @@
     width: 100%;
     gap:5%
 }
-.registro, .login {
+
+.zona-sesiones > .formularios{
+    display: flex;
+    justify-content: center;
+}
+
+.zona-sesiones > div.diseño-embellecimiento{
     display: flex;
     flex-direction: column;
+    gap: 5%;
+    justify-content: center;
+}
+
+.diseño-embellecimiento img{
+    height: 150px;
+    width: auto;
+}
+
+
+.registro {
+    width: 20%;
+    height: 50%;
+    
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 15px;
-    padding: 20px;
-    width: 60%;
-    max-width: 500px;
-    background: white;
-    border-radius: 12px;
-    text-align: center;
+    border-radius: 10px;
 
-    /* Borde degradado */
-    border: 4px solid transparent;
-    border-image: linear-gradient(45deg, #ff0000, #ff7300, #ffeb00, #00ff00, #0073ff, #7300ff, #ff00eb);
-    border-image-slice: 1;
-
-    /* Sombra */
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.registro label, .login label {
-    font-weight: bold;
-    margin-top: 5px;
+.form-usuario-div, .form-usuario-data, .form-usuario-registro-contraseñas {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.registro input, .login input {
-    width: 100%;
+input {
     padding: 8px;
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-top: 5px;
 }
 
-.registro button, .login button {
-    background: linear-gradient(45deg, #0073ff, #7300ff);
-    color: white;
-    padding: 10px 20px;
+button {
+    margin-top: 15px;
+    padding: 10px;
     border: none;
-    border-radius: 8px;
+    background-color: #007BFF;
+    color: white;
     cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
+    border-radius: 5px;
+    width: 100px;
 }
 
-.registro button:hover, .login button:hover {
-    background: linear-gradient(45deg, #ff0000, #ff7300);
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
-
-
-
+.error {
+    color: red;
+    font-size: 0.8rem;
+}
 
 /* Responsive */
 
