@@ -16,7 +16,7 @@ export default function InputFormulario({ type, name, onChange,value}) {
     }
 
     if(name === "apellidos"){
-        imagen = "nombre";
+
         placeholder = "Apellidos";
     }
     return (

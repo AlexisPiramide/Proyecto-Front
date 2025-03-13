@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router";
 import Login from "./Login";
 import Registro from "./Registro";
 import PerfilUsuario from "./PerfilUsuario";
-import "./../../styles/nuevo.css"
+import "./../../styles/zonausuarios.css"
 import { useState } from "react";
 
 import { ToastContainer } from 'react-toastify';

@@ -11,7 +11,7 @@ export default function Nav({usuario,setUsuario}) {
             <div className="nav-links">
                
                 <Link to="/">Home</Link>
-                <Link to="/">Home</Link>
+                <Link to="/escaner">Home</Link>
                 <Link to="/">Home</Link>
                 <Link to="/">Home</Link>
                 <Link to="/">Home</Link>

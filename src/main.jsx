@@ -4,14 +4,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/App";
 import "./styles/main.css"
 import ZonaSesiones from "./components/usuario/ZonaSesiones";
+import ZonaEscaner from "./components/escaner/ZonaEscaner";
+import Home from "./components/inicio/home";
 
 const router = createBrowserRouter([
   {
 		path: "/",
 		element: <App />,
 		children: [
-		{ path: "", element: <h1>Hola</h1> },
+		{ path: "", element: <Home/> },
 		{ path: "usuario", element: <ZonaSesiones/> },
+		{ path: "escaner", element: <ZonaEscaner/> },
 		],
 	},
 	{
