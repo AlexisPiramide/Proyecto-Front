@@ -3,8 +3,8 @@
     --secondary-color: #FACD33;
     --tertiary-color: #F4DB65;
     --darker-background-color:#ECF0B1;
-    --background-color: #E9F7CA
-    --background-image: url("/public/delivery.jpg");
+    --background-color: #E9F7CA;
+    --resaltar:  #ac099e;
 }
 
 body{

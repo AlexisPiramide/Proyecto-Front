@@ -21,7 +21,7 @@ export default function InputFormulario({ type, name, onChange,value}) {
     }
     return (
             <label class="label-sesiones">
-                <img src={`./public/iconosFormularios/${imagen}-${colormode}.svg`} alt={name}/>
+                <img src={`./iconosFormularios/${imagen}-${colormode}.svg`} alt={name}/>
                 <input type={type} name={name} placeholder={placeholder} value={value} onChange={(e)=>onChange(e)}/>
             </label>
     )

@@ -62,7 +62,7 @@ export default function Login() {
                 <InputFormulario type="correo" name="correo" value={datosFormulario.correo} onChange={handleInputChange} />
                 <InputFormulario type="password" name="password" value={datosFormulario.password} onChange={handleInputChange} />
             </div>
-            <button type="submit">Iniciar Sesión</button>
+            <button type="submit"  className="eightbit-btn" >Iniciar Sesión</button>
         </form>
     );
 }

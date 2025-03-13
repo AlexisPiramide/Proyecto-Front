@@ -6,16 +6,6 @@
     height: 70%;
     min-width: 400px;
     align-items: center;
-}
-
-.zona-sesiones{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 5em;
-    height: 70%;
-    min-width: 400px;
-    align-items: center;
 
     & div {
         display: flex;
@@ -49,7 +39,7 @@
     & .embellezedor{
         display: flex;
         flex-direction: row-reverse;
-        background-color: rebeccapurple;
+        background-color: var(--resaltar);
         margin: 0;
 
         & img{
@@ -62,7 +52,6 @@
 }
 
 form {
-    height: 300px;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
@@ -79,7 +68,6 @@ form input {
 
 .registro {
     width: 20%;
-
     background-color: var(--darker-background-color);
     display: flex;
     flex-direction: column;
@@ -92,17 +80,15 @@ form input {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
-    
 }
 
 
 .registro > button{
     margin-bottom: 20px;
-    background-color: red;
+
 }
 .login > button {
     margin-bottom: 40px;
-    background-color: red;
 }
 
 .login {
@@ -114,8 +100,6 @@ form input {
     justify-content: center;
     align-items: center;
 }
-
-
 
 .label-sesiones {
     display: flex;
@@ -133,4 +117,95 @@ form input {
     border: none;
     background-color: var(--darker-background-color);
     border-bottom: 1px solid black;
+}
+
+.eightbit-btn {
+    background: #92CD41;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none; 
+    color: white;
+    box-shadow: inset (-4px) (-4px) 0px 0px #4AA52E;
+
+    &:hover,
+    &:focus {
+        background: #76c442;
+        box-shadow: inset (-6px) (-6px) 0px 0px #4AA52E;
+    }
+
+    &:active {
+        box-shadow: inset 4px 4px 0px 0px #4AA52E;
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: content-box;
+    }
+
+    &:before {
+        top: -6px;
+        left: 0;
+        border-top: 6px black solid;
+        border-bottom: 6px black solid;
+    }
+
+    &:after {
+        left: -6px;
+        top: 0;
+        border-left: 6px black solid;
+        border-right: 6px black solid;
+    }
+
+}
+
+.eightbit-btn--reset {
+    background: #E76E55;
+    box-shadow: inset (-4px) (-4px) 0px 0px #8C2022;
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+    &:hover,
+    &:focus {
+        background: #CE372B;
+        box-shadow: inset (-6px) (-6px) 0px 0px #8C2022;
+    }
+
+    &:active {
+        box-shadow: inset 4px 4px 0px 0px #8C2022;
+    }
+    img{
+        width: 20px  !important;
+    }
+}
+
+.eightbit-btn--proceed {
+    background:  #F7D51D;
+    box-shadow: inset (4px) (4px) 0px 0px  #E59400;
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+    &:hover,
+    &:focus {
+        background: #CE372B;
+        box-shadow: inset (-6px) (-6px) 0px 0px #8C2022;
+    }
+
+    &:active {
+        box-shadow: inset 4px 4px 0px 0px #8C2022;
+    }
+
+    img{
+        width: 20px  !important;
+    }
 }

@@ -21,7 +21,7 @@ export default function ZonaSesiones() {
                 <img src="./delivery.jpg" alt="Logo"/>
                 <div className="texto">
                     {(tipo) ? <h2>¿Ya tienes cuenta? Inicia Sesion</h2> : <h2>¿No tienes cuenta? Registrate Aqui</h2>}
-                    <button onClick={()=>setTipo(!tipo)}>{tipo?"Cambiar al Login":"Cambiar al registro"}</button>
+                    <button className="eightbit-btn" onClick={()=>setTipo(!tipo)}>{tipo?"Cambiar al Login":"Cambiar al registro"}</button>
                 </div>
              
             </div>
