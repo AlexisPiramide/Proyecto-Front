@@ -12,22 +12,25 @@ export default function ZonaSesiones() {
     const [tipo,setTipo] = useState(false);
 
     return (
-        <div className="zona-sesiones">
-            <div className="div-formulario">
-                <div className="embellezedor"><img src="./public/cerrar.svg"/><img src="./public/minimizar.svg"/></div>
-            {usuario ? <PerfilUsuario /> : (tipo ? <Registro /> : <Login />)}
-            </div>
-            <div className="diseño-embellecimiento">
-                <img src="./delivery.jpg" alt="Logo"/>
-                <div className="texto">
-                    {(tipo) ? <h2>¿Ya tienes cuenta? Inicia Sesion</h2> : <h2>¿No tienes cuenta? Registrate Aqui</h2>}
-                    <button className="eightbit-btn" onClick={()=>setTipo(!tipo)}>{tipo?"Cambiar al Login":"Cambiar al registro"}</button>
+        <>
+        {!usuario ?
+            <div className="zona-sesiones">
+                <div className="div-formulario">
+                    <div className="embellezedor"><img src="./public/cerrar.svg"/><img src="./public/minimizar.svg"/></div>
+                {usuario ? "" : (tipo ? <Registro /> : <Login />)}
                 </div>
-             
-            </div>
-            <ToastContainer />
-        </div>
+                <div className="diseño-embellecimiento">
+                    <img src="./delivery.jpg" alt="Logo"/>
+                    <div className="texto">
+                        {(tipo) ? <h2>¿Ya tienes cuenta? Inicia Sesion</h2> : <h2>¿No tienes cuenta? Registrate Aqui</h2>}
+                        <button className="eightbit-btn" onClick={()=>setTipo(!tipo)}>{tipo?"Cambiar al Login":"Cambiar al registro"}</button>
+                    </div>
+                
+                </div>
+                <ToastContainer />
+            </div>:<PerfilUsuario usuario={usuario} setUsuario={setUsuario}/>
+            }
+        </>
     )
-
 
 }
