@@ -2,14 +2,19 @@
     --primary-color: #FFBF00;
     --secondary-color: #FACD33;
     --tertiary-color: #F4DB65;
-    --darker-background-color:#ECF0B1;
-    --background-color: #E9F7CA;
-    --resaltar:  #ac099e;
+    --darker-background-color:#FFBF00;
+    --background-color: #fff;
+    --resaltar:  #864DB7;
+    --correcto: #0e920e;
+    --correcto-fondo: #d4edda;
+    --incorrecto: #d41c1c;
+    --incorrecto-fondo: #f8d7da;
 }
 
 body{
+    background-color: red;
     width: 100%;
-    height: 100%;
+    height:73.6vh;
     margin: 0;
     padding: 0;
     text-align: center;

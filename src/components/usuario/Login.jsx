@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import InputFormulario from "./InputFormulario";
 import { toast } from 'react-toastify';
-
+import "./../../styles/toast.css"
+import 'react-toastify/dist/ReactToastify.css';
 export default function Login() {
 
     const [datosFormulario, setDatosFormulario] = useState({
@@ -20,7 +21,7 @@ export default function Login() {
         if (mensaje) {
             toast.error(mensaje, {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,

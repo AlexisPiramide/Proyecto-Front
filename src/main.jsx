@@ -6,7 +6,7 @@ import "./styles/main.css"
 import ZonaSesiones from "./components/usuario/ZonaSesiones";
 import ZonaEscaner from "./components/escaner/ZonaEscaner";
 import Home from "./components/inicio/home";
-
+import 'react-toastify/dist/ReactToastify.css'
 const router = createBrowserRouter([
   {
 		path: "/",

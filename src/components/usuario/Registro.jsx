@@ -2,7 +2,8 @@ import { useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import InputFormulario from "./InputFormulario";
-
+import 'react-toastify/dist/ReactToastify.css';
+import "./../../styles/toast.css"
 export default function Registro() {
     const [next, setNext] = useState(0);
     const [datosFormulario, setDatosFormulario] = useState({
@@ -25,7 +26,7 @@ export default function Registro() {
     const mostrarError = (mensaje) => {
         toast.error(mensaje, {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,

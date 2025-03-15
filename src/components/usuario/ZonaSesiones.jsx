@@ -4,7 +4,7 @@ import Registro from "./Registro";
 import PerfilUsuario from "./PerfilUsuario";
 import "./../../styles/zonausuarios.css"
 import { useState } from "react";
-
+import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 export default function ZonaSesiones() {
 
@@ -13,7 +13,7 @@ export default function ZonaSesiones() {
 
     return (
         <div className="zona-sesiones">
-            <div>
+            <div className="div-formulario">
                 <div className="embellezedor"><img src="./public/cerrar.svg"/><img src="./public/minimizar.svg"/></div>
             {usuario ? <PerfilUsuario /> : (tipo ? <Registro /> : <Login />)}
             </div>

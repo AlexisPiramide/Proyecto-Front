@@ -5,6 +5,7 @@ export default function InputFormulario({ type, name, onChange,value}) {
     const [colormode,setColormode] = useState("light");
     let imagen = name
     let placeholder = name
+
     if(name === "password"){
         imagen = "password";
         placeholder = "Contraseña";
@@ -16,9 +17,10 @@ export default function InputFormulario({ type, name, onChange,value}) {
     }
 
     if(name === "apellidos"){
-
         placeholder = "Apellidos";
     }
+
+    placeholder = placeholder.charAt(0).toUpperCase() + placeholder.slice(1);
     return (
             <label class="label-sesiones">
                 <img src={`./iconosFormularios/${imagen}-${colormode}.svg`} alt={name}/>
