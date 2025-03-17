@@ -6,15 +6,13 @@ export default function Nav({usuario,setUsuario}) {
     
     return (
         <nav>
-            <img className="logo-nav"src="./vite.svg" alt="Logo" onClick={() => navigate("/")}/> 
+            <img className="logo-nav"src="./cartas.svg" alt="Logo" onClick={() => navigate("/")}/> 
             
             <div className="nav-links">
                
                 <Link to="/">Home</Link>
-                <Link to="/escaner">Home</Link>
-                <Link to="/">Home</Link>
-                <Link to="/">Home</Link>
-                <Link to="/">Home</Link>
+                <Link to="/escaner">Escaner sin validacion usuario</Link>
+                {usuario && usuario.sucursal && <Link to="/escaner">Escaner con validacion usuario</Link>}
             </div>
 
             <div className="nav-user">

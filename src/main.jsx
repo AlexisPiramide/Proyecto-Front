@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/App";
 import "./styles/main.css"
 import ZonaSesiones from "./components/usuario/ZonaSesiones";
-import ZonaEscaner from "./components/escaner/ZonaEscaner";
+
 import Home from "./components/inicio/home";
 import 'react-toastify/dist/ReactToastify.css'
+import Scanner from "./components/escaner/Scanner";
 const router = createBrowserRouter([
   {
 		path: "/",
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
 		children: [
 		{ path: "", element: <Home/> },
 		{ path: "usuario", element: <ZonaSesiones/> },
-		{ path: "escaner", element: <ZonaEscaner/> },
+		{ path: "escaner", element: <Scanner/> },
 		],
 	},
 	{

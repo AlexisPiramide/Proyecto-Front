@@ -1,0 +1,105 @@
+/* Full page layout */
+.body-scanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 73.6vh;
+}
+
+/* Scanner container */
+.scanner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 400px;
+}
+
+/* Scanner camera section */
+.scanner-camera {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* QR code scanner region */
+#html5qr-code-full-region {
+    border: none !important;
+    background: transparent !important;
+    width: 100% !important;
+}
+
+/* Scanner video */
+.scanner-camera video {
+    width: 100% !important;
+    max-width: 300px;
+    border-radius: 10px;
+    border: 3px solid #007bff;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+}
+
+.scanner-camera video:nth-of-type(2) {
+    display: none;
+}
+
+
+/* Hide unnecessary elements */
+#html5qr-code-full-region__header_message,
+#html5qr-code-full-region__dashboard_section_csr > span,
+#html5qr-code-button-camera-start {
+    display: none !important;
+}
+
+/* Center the 'Stop Scanning' button */
+#html5-qrcode-button-camera-stop {
+    margin-top: 10px;
+    background: #ff4b4b;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#html5-qrcode-button-camera-stop:hover {
+    background: #d43f3f;
+}
+
+/* Scanned results styling */
+.Result-container {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    width: 100%;
+}
+
+.Result-header {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.Result-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Qrcode-result-table thead {
+    background: #007bff;
+    color: white;
+}
+
+.Qrcode-result-table td {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
