@@ -45,7 +45,7 @@
 }
 
 .scanner-camera video:nth-of-type(2) {
-    display: none;
+    display: none !important;
 }
 
 

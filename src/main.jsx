@@ -8,6 +8,7 @@ import ZonaSesiones from "./components/usuario/ZonaSesiones";
 import Home from "./components/inicio/home";
 import 'react-toastify/dist/ReactToastify.css'
 import Scanner from "./components/escaner/Scanner";
+import CrearPaquete from "./components/envios/CrearEnvio";
 const router = createBrowserRouter([
   {
 		path: "/",
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
 		{ path: "", element: <Home/> },
 		{ path: "usuario", element: <ZonaSesiones/> },
 		{ path: "escaner", element: <Scanner/> },
+		{ path: "nuevo", element: <CrearPaquete/>}
 		],
 	},
 	{

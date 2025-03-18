@@ -1,0 +1,108 @@
+.dimensiones{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.dimension {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    width: 20%;
+}
+
+.dimedimensionnsiones:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.dimension h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.dimension img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.dimension p {
+    font-size: 1rem;
+    color: #555;
+    margin: 4px 0;
+}
+
+.dimension.selected {
+    border: 2px solid #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+    transform: scale(1.05);
+}
+
+
+.forms-envio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+    height: 60vh;
+    & form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        max-width: 100%;
+        height: 100%;
+        width: 100%;
+    }
+
+    & label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    & input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    & input:disabled {
+        background-color: #e9ecef;
+        cursor: not-allowed;
+    }
+
+    & .form-destinatario, .form-direcciones, .form-remitente {
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    & .forms-envio {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        justify-content: center;
+        align-items: start;
+        margin-top: 32px;
+    }
+
+    & .forms-envio form {
+        width: 100%;
+    }
+
+}
