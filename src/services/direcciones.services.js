@@ -1,4 +1,21 @@
+async function direccionesUsuario(id) {
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+        
+        headers['Authorization'] = 'Bearer ' + usuario.token;
+        const data = await fetch(URL+`/direcciones/${id}`, {
+            method: 'GET',
+            headers: headers,
+            body: JSON.stringify({'datosCambiar':body})
+        })
 
+        if (!data.ok) {
+            throw new Error("Direcciones no encontradas");
+        }
+        return data.json();
+}
 
 async function obtenerLocalidadProvincia(codigoPostal) {
     try {
@@ -20,4 +37,4 @@ async function obtenerLocalidadProvincia(codigoPostal) {
     }
 }
 
-export {obtenerLocalidadProvincia};
+export {obtenerLocalidadProvincia,direccionesUsuario};

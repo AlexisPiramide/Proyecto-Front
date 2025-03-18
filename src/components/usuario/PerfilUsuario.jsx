@@ -1,11 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router"
+import { direccionesUsuario } from "../../services/direcciones.services";
+import { getPedidosUsuario } from "../../services/pedidos.services";
 
 export default function PerfilUsuario() {
 
     const [usuario,setUsuario] = useOutletContext();
     const [direcciones,setDirecciones] = useState([{nombre:"Casa",direccion:"Calle de la piruleta",ciudad:"Madrid",provincia:"Madrid",codigo_postal:"28000"}]);
     const [pedidos,setPedidos] = useState([{id:1,fecha:"12/12/2021",productos:[{nombre:"Producto 1"},{nombre:"Producto 2"}],total:20}]);
+
+    const fetchPedidos = async () => {
+        const data = await getPedidosUsuario(usuario.id);
+        setPedidos(data);
+    }
+
+    const fetchDirecciones = async () => {
+        const data = await direccionesUsuario(usuario.id);
+        setPedidos(data);
+    }
+
+
+    useEffect(() => {
+        fetchPedidos();
+        fetchDirecciones();
+    }, []);
+
 
     return (
         <div>
