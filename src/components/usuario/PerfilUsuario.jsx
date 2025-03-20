@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router"
-import { direccionesUsuario } from "../../services/direcciones.services";
+import { getDireccionesUsuario } from "../../services/direcciones.services";
 import { getPedidosUsuario } from "../../services/pedidos.services";
 
 export default function PerfilUsuario() {
@@ -15,7 +15,7 @@ export default function PerfilUsuario() {
     }
 
     const fetchDirecciones = async () => {
-        const data = await direccionesUsuario(usuario.id);
+        const data = await getDireccionesUsuario(usuario.id);
         setPedidos(data);
     }
 

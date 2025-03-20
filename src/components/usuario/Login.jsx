@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import InputFormulario from "./InputFormulario";
 import { toast } from 'react-toastify';
 import "./../../styles/toast.css"
 import 'react-toastify/dist/ReactToastify.css';
-export default function Login() {
+import { login } from '../../services/usuarios.services';
+export default function Login({setUsuario}) {
 
     const [datosFormulario, setDatosFormulario] = useState({
         correo: "",
@@ -50,20 +51,24 @@ export default function Login() {
         return esValido;
     };
 
+    const submitLogin = async (e) => {
+        e.preventDefault(); 
+        if (validarPaso()) { 
+            const result = await login(datosFormulario.correo, datosFormulario.password);
+            setUsuario(result);
+            localStorage.setItem("usuario", JSON.stringify(result));
+        } 
+    }
+
     return (
-        <form className="login" onSubmit={(e) => { 
-            e.preventDefault(); 
-            if (validarPaso()) { 
-                console.log("Formulario válido, iniciar sesión...");
-            } 
-        }}>
+        <form className="login" onSubmit={(e) =>submitLogin(e)}>
             <h2>Login: </h2>
 
             <div className="form-usuario-data">
                 <InputFormulario type="correo" name="correo" value={datosFormulario.correo} onChange={handleInputChange} />
                 <InputFormulario type="password" name="password" value={datosFormulario.password} onChange={handleInputChange} />
             </div>
-            <button type="submit"  className="eightbit-btn" >Iniciar Sesión</button>
+            <button type="submit"  className="eightbit-btn" onSubmit={(e) =>submitLogin(e)}>Iniciar Sesión</button>
         </form>
     );
 }

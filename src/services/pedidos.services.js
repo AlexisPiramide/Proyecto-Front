@@ -20,4 +20,17 @@ async function getPedidosUsuario(id) {
 }
 
 
-export {getPedidosUsuario}
+async function postPaquete(datos){
+    const data = await fetch(URL+'/paquetes', {
+        method: 'POST',
+        body: JSON.stringify(datos)
+    })
+
+    if (!data.ok) {
+        throw new Error("Error al crear el paquete");
+    }
+    return data.json();
+
+}
+
+export {getPedidosUsuario,postPaquete}

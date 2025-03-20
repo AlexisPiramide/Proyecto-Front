@@ -1,4 +1,4 @@
-async function direccionesUsuario(id) {
+async function getDireccionesUsuario(id) {
         const usuario = JSON.parse(localStorage.getItem("usuario"));
         const headers = {
             'Content-Type': 'application/json',
@@ -7,8 +7,7 @@ async function direccionesUsuario(id) {
         headers['Authorization'] = 'Bearer ' + usuario.token;
         const data = await fetch(URL+`/direcciones/${id}`, {
             method: 'GET',
-            headers: headers,
-            body: JSON.stringify({'datosCambiar':body})
+            headers: headers
         })
 
         if (!data.ok) {
@@ -37,4 +36,4 @@ async function obtenerLocalidadProvincia(codigoPostal) {
     }
 }
 
-export {obtenerLocalidadProvincia,direccionesUsuario};
+export {obtenerLocalidadProvincia,getDireccionesUsuario};
