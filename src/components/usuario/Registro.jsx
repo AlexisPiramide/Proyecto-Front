@@ -4,7 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import InputFormulario from "./InputFormulario";
 import 'react-toastify/dist/ReactToastify.css';
 import "./../../styles/toast.css"
-export default function Registro() {
+import { registro } from "../../services/usuarios.services";
+export default function Registro({setUsuario}) {
     const [next, setNext] = useState(0);
     const [datosFormulario, setDatosFormulario] = useState({
         nombre: "",
@@ -80,17 +81,18 @@ export default function Registro() {
         if (validarPaso()) setNext(next + 1);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validarPaso()) {
-            console.log("Form submitted successfully");
-        } else {
-            console.log("Form has errors");
-        }
+    const submitRegistro =async (e) => {
+        e.preventDefault(); 
+        if (validarPaso()) { 
+
+            const result = await registro(datosFormulario);
+            setUsuario(result);
+            localStorage.setItem("usuario", JSON.stringify(result));
+        } 
     };
 
     return (
-        <form className="registro" onSubmit={handleSubmit}>
+        <form className="registro">
            
             <h2>Registro: </h2>
             
@@ -118,7 +120,7 @@ export default function Registro() {
                 {(next !== 0)?<button type="button" className="eightbit-btn eightbit-btn--proceed" onClick={() => setNext(next - 1)}><img src="./volver-light.svg" /></button>:<button className="eightbit-btn eightbit-btn--reset" disabled><img src="./volver-light.svg" /></button>}
                 {(next !== 2)?<button type="button" className="eightbit-btn eightbit-btn--proceed" onClick={handleNext}><img src="./segir-light.svg"/></button>:<button className="eightbit-btn eightbit-btn--reset" disabled><img src="./segir-light.svg" /></button>}
             </div>
-            {next === 2 && <button type="submit" className="eightbit-btn" onClick={handleSubmit}>Registrarse</button>}
+            {next === 2 && <button type="submit" className="eightbit-btn" onClick={(e)=>submitRegistro(e)}>Registrarse</button>}
            
         </form>
     );
