@@ -1,7 +1,7 @@
 import React from "react";
 import "./../../styles/impresion.css";
 
-export default function ShippingLabel({paquete}){
+export default function impresion({paquete}){
 
     const {remitente, destinatario, dimensiones, peso,codigo} = paquete;
 
