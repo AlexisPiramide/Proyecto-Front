@@ -1,19 +1,31 @@
+import URL  from "./const.js"
+
 async function getDireccionesUsuario(id) {
-        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        //const usuario = JSON.parse(localStorage.getItem("usuario"));
         const headers = {
             'Content-Type': 'application/json',
         };
         
-        headers['Authorization'] = 'Bearer ' + usuario.token;
-        const data = await fetch(URL+`/direcciones/${id}`, {
-            method: 'GET',
-            headers: headers
-        })
-
-        if (!data.ok) {
-            throw new Error("Direcciones no encontradas");
+        try {
+            const response = await fetch(URL + `direcciones/${id}`, {
+                method: 'GET',
+                headers: headers
+            });
+        
+            if (!response.ok) {
+                throw new Error("Direcciones no encontradas");
+            }
+        
+            const data = await response.json();
+            console.log("Direcciones del usuario:", data);
+            return data;
+        
+        } catch (error) {
+            console.error("Error en getDireccionesUsuario:", error);
+            throw error;
         }
-        return data.json();
+        
+        
 }
 
 async function obtenerLocalidadProvincia(codigoPostal) {

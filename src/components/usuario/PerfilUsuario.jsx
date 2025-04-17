@@ -1,72 +1,108 @@
 import { useEffect, useState } from "react";
-import { useOutletContext } from "react-router"
+import { useOutletContext } from "react-router";
 import { getDireccionesUsuario } from "../../services/direcciones.services";
-import { getPedidosUsuario } from "../../services/pedidos.services";
+import { getPaquetesUsuario } from "../../services/paquetes.services";
+import ModalDirecciones from "./../modales/modalDirecciones";
 
 export default function PerfilUsuario() {
-
-    const [usuario,setUsuario] = useOutletContext();
-    const [direcciones,setDirecciones] = useState([{nombre:"Casa",direccion:"Calle de la piruleta",ciudad:"Madrid",provincia:"Madrid",codigo_postal:"28000"}]);
-    const [pedidos,setPedidos] = useState([{id:1,fecha:"12/12/2021",productos:[{nombre:"Producto 1"},{nombre:"Producto 2"}],total:20}]);
+    const [usuario, setUsuario] = useOutletContext();
+    const [direcciones, setDirecciones] = useState([]);
+    const [pedidos, setPedidos] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedDireccion, setSelectedDireccion] = useState(null);
 
     const fetchPedidos = async () => {
-        const data = await getPedidosUsuario(usuario.id);
+        const data = await getPaquetesUsuario(usuario.usuario.id);
         setPedidos(data);
-    }
+    };
 
     const fetchDirecciones = async () => {
-        const data = await getDireccionesUsuario(usuario.id);
-        setPedidos(data);
-    }
-
+        const data = await getDireccionesUsuario(usuario.usuario.id);
+        setDirecciones(data);
+    };
 
     useEffect(() => {
         fetchPedidos();
         fetchDirecciones();
     }, []);
 
+    const handleAddDireccion = () => {
+        setSelectedDireccion({
+            calle: '',
+            ciudad: '',
+            estado: '',
+            codigoPostal: ''
+        });
+        setModalVisible(true);
+    };
+    
+
+    const handleSaveDireccion = (newDireccion) => {
+        setDirecciones([...direcciones, newDireccion]); 
+        setModalVisible(false);
+    };
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
+    };
 
     return (
-        <div>
-            <h1>Bienvenido de vuelta {usuario.nombre } {usuario.apellidos}</h1>
-            <form>
-
-            </form>
-
-            <div >
-                {
-                    direcciones.map((direccion,index) => {
-                        return (
-                            <div key={index} className="direccion">
-                                <h3>{direccion.nombre}</h3>
-                                <p>{direccion.direccion}</p>
-                                <p>{direccion.ciudad}</p>
-                                <p>{direccion.provincia}</p>
-                                <p>{direccion.codigo_postal}</p>
-                            </div>
-                        )
-                })
-            }
-
-                <button>Añadir dirección</button>
+        <div className="perfil-usuario">
+            <h1>Bienvenido de vuelta {usuario.nombre} {usuario.apellidos}</h1>
+            <div className="uno">
+                <form className="formulario-perfil">
+                    <h2>Modificar datos de usuario</h2>
+                    <label htmlFor="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" defaultValue={usuario.nombre} required />
+                    <label htmlFor="apellidos">Apellidos</label>
+                    <input type="text" id="apellidos" name="apellidos" defaultValue={usuario.apellidos} required />
+                    <label htmlFor="correo">Correo</label>
+                    <input type="email" id="correo" name="correo" defaultValue={usuario.correo} required />
+                    <label htmlFor="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" defaultValue={usuario.telefono} required />
+                    <button type="submit">Modificar</button>
+                </form>
+                <button className="cambiar-contrasena">Cambiar contraseña</button>
             </div>
-            <div className="pedidos">
-                {
-                    pedidos.map((pedido,index) => {
-                        return (
-                            <div key={index} className="pedido">
-                                <h3>Pedido {pedido.id}</h3>
-                                <p>{pedido.fecha}</p>
-                                <p>{pedido.productos.map(producto => producto.nombre).join(", ")}</p>
-                                <p>{pedido.total}€</p>
-                            </div>
-                        )
-                    })
 
-                }
+            <div className="dos">
+                <div className="direcciones">
+                    <div className="actuales">
+                    {
+                        direcciones.map((direccion, index) => (
+                            <button key={index} className="direccion-guarda" onClick={() => {
+                                setSelectedDireccion(direccion);
+                                setModalVisible(true);
+                            }}>{direccion.calle} Nº {direccion.numero} | {direccion.localidad}</button>
+                        ))
+                    }
+                    </div>
+                    <button className="btn-añadir-direccion" onClick={handleAddDireccion}>Añadir dirección</button>
+                </div>
+
+                <div className="pedidos">
+                    <div className="actuales">
+                        {
+                            pedidos.map((pedido, index) => (
+                                <button key={index} className="pedido-guardado" onClick={() => {
+                                    setSelectedPedido(pedido);
+                                    setPedidoModalVisible(true);
+                                }}>
+                                    Pedido {pedido.id} - {pedido.fecha} - {pedido.total}€
+                                </button>
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
-           
 
+            {modalVisible && (
+                <ModalDirecciones
+                    direction={selectedDireccion}
+                    onSave={handleSaveDireccion}
+                    onClose={handleCloseModal}
+                />
+            )}
         </div>
-    )
+    );
 }

@@ -5,7 +5,7 @@ import FormRemitente from "./FormRemitente";
 import { getDimensiones } from "../../services/dimensiones.services";
 import { getDireccionesUsuario } from "../../services/direcciones.services";
 import Dimension from "./Dimension";
-import {postPaquete} from "../../services/pedidos.services";
+import {postPaquete} from "../../services/paquetes.services";
 import './../../styles/envios.css'
 
 export default function CrearPaquete(){

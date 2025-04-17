@@ -1,0 +1,63 @@
+/* Basic Modal Styles */
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	/* backdrop */
+	z-index: 1000;
+}
+
+.modal-content {
+	background-color: white;
+	padding: 2rem;
+	border-radius: 10px;
+	max-width: 500px;
+	width: 100%;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+	margin-top: 0;
+}
+
+.modal-content form>div {
+	margin-bottom: 1rem;
+}
+
+.modal-content input {
+	width: 100%;
+	padding: 0.5rem;
+	margin-top: 0.25rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.modal-actions button {
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.modal-actions button:first-child {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.modal-actions button:last-child {
+	background-color: #f44336;
+	color: white;
+}

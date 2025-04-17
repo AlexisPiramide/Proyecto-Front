@@ -3,6 +3,7 @@ import Login from "./Login";
 import Registro from "./Registro";
 import PerfilUsuario from "./PerfilUsuario";
 import "./../../styles/zonausuarios.css"
+import "./../../styles/extras/eightbit-btn.css"
 import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';

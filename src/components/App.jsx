@@ -4,7 +4,7 @@ import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 export default function App() {
 
-	const [usuario, setUsuario] = useState(null);
+	const [usuario, setUsuario] = useState();
 
 	return (
 		<>
