@@ -9,13 +9,6 @@ body{
 }
 
 
-input{
-    pointer-events: none;
-    background-color: none;
-    border: none;
-}
-
-
 .content{
     display: flex;
     flex-direction: column;

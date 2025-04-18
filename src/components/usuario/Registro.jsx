@@ -2,7 +2,6 @@ import { useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import InputFormulario from "./InputFormulario";
-import 'react-toastify/dist/ReactToastify.css';
 import "./../../styles/toast.css"
 import { registro } from "../../services/usuarios.services";
 export default function Registro({setUsuario}) {

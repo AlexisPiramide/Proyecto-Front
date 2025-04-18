@@ -41,4 +41,24 @@ const registro = async (datosFormulario) => {
         throw new Error('Error al registrar usuario, ¿estas seguro de que el correo no esta en uso?');
     }
 }
-export {login,registro};
+
+const comprobarUsuario = async (id) => {
+    try{
+        const data = await fetch(URL+`usuarios/${id}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if(data.ok){
+            const json = await data.json();
+            return json;
+        }
+    }catch(error){
+        console.error("No existe:", error);
+        return null;
+    }
+   
+}
+
+export {login,registro,comprobarUsuario};
