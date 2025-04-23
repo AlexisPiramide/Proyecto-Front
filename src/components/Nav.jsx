@@ -6,7 +6,7 @@ export default function Nav({usuario,setUsuario}) {
     
     return (
         <nav>
-            <img className="logo-nav"src="./cartas.svg" alt="Logo" onClick={() => navigate("/")}/> 
+            <img className="logo-nav"src="./logo.png" alt="Logo" onClick={() => navigate("/")}/> 
             
             <div className="nav-links">
                
