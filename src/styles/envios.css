@@ -3,54 +3,54 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 32px;
-}
 
-.dimension {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-    width: 20%;
-}
+    & .dimension {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        width: 20%;
+        background-color: var(--background-color);
 
-.dimedimensionnsiones:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
 
-.dimension h2 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
-    color: #333;
-}
+        &.selected {
+            border: 2px solid var(--primary-color);
+            background-color: rgba(0, 61, 168, 0.1);
+            box-shadow: 0 6px 12px rgba(0, 61, 168, 0.2);
+            transform: scale(1.05);
+        }
 
-.dimension img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-bottom: 8px;
-}
+        & h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
 
-.dimension p {
-    font-size: 1rem;
-    color: #555;
-    margin: 4px 0;
-}
+        & img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
 
-.dimension.selected {
-    border: 2px solid #007bff;
-    background-color: rgba(0, 123, 255, 0.1);
-    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
-    transform: scale(1.05);
+        & p {
+            font-size: 1rem;
+            color: #555;
+            margin: 4px 0;
+        }
+    }
 }
-
 
 .forms-envio {
     display: flex;
@@ -71,6 +71,7 @@
         max-width: 100%;
         height: 100%;
         width: 25%;
+        background-color: var(--background-color);
     }
 
     & label {
@@ -84,25 +85,23 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
-    }
 
-    & input:disabled {
-        background-color: #e9ecef;
-        cursor: not-allowed;
+        &:disabled {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
     }
 
     & .form-destinatario,
-    .form-direcciones,
-    .form-remitente {
+    & .form-direcciones,
+    & .form-remitente {
         position: relative;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-
     & .forms-envio form {
         width: 100%;
     }
-
 }
 
 .correo-hover-container {
@@ -110,11 +109,10 @@
     display: flex;
     flex-direction: column;
 
-    .correo-info {
+    & .correo-info {
         font-size: 0.85rem;
-        color: #ff0000;
+        color: var(--incorrecto);
         margin-top: 4px;
-
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease;
@@ -128,15 +126,13 @@
 
     & .usuario-info {
         font-size: 0.85rem;
-        color: #007bff;
+        color: var(--primary-color);
         margin-top: 4px;
-
         opacity: 1;
         visibility: visible;
         transition: opacity 0.3s ease;
         height: auto;
     }
-
 }
 
 .fixed-button {
@@ -145,15 +141,15 @@
     right: 10px;
     z-index: 10;
     padding: 8px 16px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
 
-.fixed-button:hover {
-    background-color: #0056b3;
+    &:hover {
+        background-color: darken(var(--primary-color), 10%);
+    }
 }
 
 .boton-tramitar-contenedor {
@@ -168,16 +164,21 @@
     max-width: 100%;
     height: 100%;
     width: 25%;
+    background-color: var(--background-color);
 
     & .tramitar {
         display: flex;
         justify-content: center;
         padding: 12px 24px;
-        background-color: #007bff;
+        background-color: var(--primary-color);
         color: white;
         border: none;
         border-radius: 8px;
         font-size: 1rem;
         cursor: pointer;
+
+        &:hover {
+            background-color: darken(var(--primary-color), 10%);
+        }
     }
 }

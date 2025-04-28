@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import InputFormulario from "./InputFormulario";
 import { toast } from 'react-toastify';
-import "./../../styles/toast.css"
+import "./../../../styles/toast.css"
 import 'react-toastify/dist/ReactToastify.css';
-import { login } from '../../services/usuarios.services';
+import { login } from '../../../services/usuarios.services';
 export default function Login({setUsuario}) {
 
     const [datosFormulario, setDatosFormulario] = useState({

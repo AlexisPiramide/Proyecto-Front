@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router";
-import Login from "./Login";
-import Registro from "./Registro";
+import Login from "./formularios/Login";
+import Registro from "./formularios/Registro";
 import PerfilUsuario from "./PerfilUsuario";
 import "./../../styles/zonausuarios.css"
 import "./../../styles/extras/eightbit-btn.css"
