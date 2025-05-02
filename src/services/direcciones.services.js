@@ -48,4 +48,30 @@ async function obtenerLocalidadProvincia(codigoPostal) {
     }
 }
 
-export {obtenerLocalidadProvincia,getDireccionesUsuario};
+async function updateDireccion(id, direccion) {
+    const headers = {
+        'Content-Type': 'application/json',
+    };
+    
+    try {
+        const response = await fetch(URL + `direcciones/${id}`, {
+            method: 'PUT',
+            headers: headers,
+            body: JSON.stringify(direccion)
+        });
+    
+        if (!response.ok) {
+            throw new Error("Error al actualizar la dirección");
+        }
+    
+        const data = await response.json();
+        console.log("Dirección actualizada:", data);
+        return data;
+    
+    } catch (error) {
+        console.error("Error en updateDireccion:", error);
+        throw error;
+    }
+}
+
+export {obtenerLocalidadProvincia,getDireccionesUsuario,updateDireccion};

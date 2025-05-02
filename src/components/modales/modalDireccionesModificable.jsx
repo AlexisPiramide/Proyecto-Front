@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import "./../../styles/modales/modal.css"
+
+import {updateDireccion} from '../../services/direcciones.services';
 const ModalDirecciones = ({ direction, onClose }) => {
 
-    const [formData, setFormData] = useState(direction)
+    const [direccionForm, setDireccionForm] = useState(direction)
     const [editable, setEditable] = useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setDireccionForm({ ...formData, [name]: value });
     };
 
+    const postDireccion = async () => {
+        const result = await updateDireccion(direccionForm.id, direccionForm);
+        if (result) {
+            console.log("Dirección actualizada:", result);
+            setDireccionForm(result);
+        } else {
+            console.error("Error al actualizar la dirección");
+        }
+    };
+    
     return (
         <div className="modal">
             <div className="modal-content">
@@ -33,6 +45,7 @@ const ModalDirecciones = ({ direction, onClose }) => {
                 </form>
                 <div className="modal-actions">
                     <button onClick={onClose}>Cerrar</button>
+                    {editable ? <button onClick={() => {setEditable(false); postDireccion()}}>Guardar</button> : <button onClick={() => { setEditable(true); }}>Editar</button>}
                 </div>
             </div>
         </div>
