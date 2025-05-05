@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router";
 import { getDireccionesUsuario } from "../../services/direcciones.services";
 import { getPaquetesUsuario } from "../../services/paquetes.services";
 import ModalDirecciones from "./../modales/modalDirecciones";
+import BotonDireccion from "../objetos/BotonDireccion";
 
 export default function PerfilUsuario() {
     const [usuario, setUsuario] = useOutletContext();
@@ -70,10 +71,7 @@ export default function PerfilUsuario() {
                     <div className="actuales">
                     {
                         direcciones.map((direccion, index) => (
-                            <button key={index} className="direccion-guarda" onClick={() => {
-                                setSelectedDireccion(direccion);
-                                setModalVisible(true);
-                            }}>{direccion.calle} Nº {direccion.numero} | {direccion.localidad}</button>
+                            <BotonDireccion key={index} direccion={direccion} onClick={() => { setSelectedDireccion(direccion); setModalVisible(true);}}/>
                         ))
                     }
                     </div>
@@ -84,10 +82,7 @@ export default function PerfilUsuario() {
                     <div className="actuales">
                         {
                             pedidos.map((pedido, index) => (
-                                <button key={index} className="pedido-guardado" onClick={() => {
-                                    setSelectedPedido(pedido);
-                                    setPedidoModalVisible(true);
-                                }}>
+                                <button key={index} className="pedido-guardado" onClick={() => {setSelectedPedido(pedido); setPedidoModalVisible(true);}}>
                                     Pedido {pedido.id} - {pedido.fecha} - {pedido.total}€
                                 </button>
                             ))
@@ -97,11 +92,7 @@ export default function PerfilUsuario() {
             </div>
 
             {modalVisible && (
-                <ModalDirecciones
-                    direction={selectedDireccion}
-                    onSave={handleSaveDireccion}
-                    onClose={handleCloseModal}
-                />
+                <ModalDirecciones direction={selectedDireccion} onSave={handleSaveDireccion} onClose={handleCloseModal}/>
             )}
         </div>
     );
