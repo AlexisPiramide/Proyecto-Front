@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./../../styles/modales/modal.css"
 
-import {updateDireccion} from '../../services/direcciones.services';
+import { updateDireccion } from '../../services/direcciones.services';
 const ModalDirecciones = ({ direction, onClose }) => {
 
     const [direccionForm, setDireccionForm] = useState(direction)
@@ -20,35 +20,38 @@ const ModalDirecciones = ({ direction, onClose }) => {
             console.error("Error al actualizar la dirección");
         }
     };
-    
-    return (
-        <div className="modal">
-            <div className="modal-content">
-                <h2>Dirección</h2>
-                <form>
-                    <div>
-                        <label>Calle:</label>
-                        <input type="text" name="calle" value={formData.calle || '' + ' ' + formData.numero || ''} onChange={handleChange} disabled={!editable} />
-                    </div>
-                    <div>
-                        <label>Ciudad:</label>
-                        <input type="text" name="ciudad" value={formData.localidad || ''} onChange={handleChange} disabled={!editable} />
-                    </div>
-                    <div>
-                        <label>Provincia:</label>
-                        <input type="text" name="estado" value={formData.provincia || ''} onChange={handleChange} disabled={!editable} />
-                    </div>
-                    <div>
-                        <label>Código Postal:</label>
-                        <input type="text" name="codigoPostal" value={formData.codigoPostal || ''} onChange={handleChange} disabled={!editable} />
-                    </div>
-                </form>
-                <div className="modal-actions">
-                    <button onClick={onClose}>Cerrar</button>
-                    {editable ? <button onClick={() => {setEditable(false); postDireccion()}}>Guardar</button> : <button onClick={() => { setEditable(true); }}>Editar</button>}
+
+    return (<div className="modal">
+        <div className="modal-content">
+            <h2>Dirección</h2>
+            <form>
+                <div className="row-2">
+                    <label htmlFor="calle">Calle:</label>
+                    <input id="calle" type="text" name="calle" value={formData.calle || ''} onChange={handleChange} disabled={!editable} />
                 </div>
+                <div className="row-2">
+                    <label htmlFor="numero">Número:</label>
+                    <input id="numero" type="text" name="numero" value={formData.numero || ''} onChange={handleChange} disabled={!editable} />
+                </div>
+                <div>
+                    <label htmlFor="ciudad">Ciudad:</label>
+                    <input id="ciudad" type="text" name="ciudad" value={formData.ciudad || ''} onChange={handleChange} disabled={!editable} />
+                </div>
+                <div>
+                    <label htmlFor="provincia">Provincia:</label>
+                    <input id="provincia" type="text" name="provincia" value={formData.provincia || ''} onChange={handleChange} disabled={!editable} />
+                </div>
+                <div>
+                    <label htmlFor="codigoPostal">Código Postal:</label>
+                    <input id="codigoPostal" type="text" name="codigoPostal" value={formData.codigoPostal || ''} onChange={handleChange} disabled={!editable} />
+                </div>
+            </form>
+            <div className="modal-actions">
+                <button onClick={onClose}>Cerrar</button>
+                {editable ? (<button onClick={() => { setEditable(false); postDireccion(); }}>Guardar</button>) : (<button onClick={() => setEditable(true)}>Editar</button>)}
             </div>
         </div>
+    </div>
     );
 };
 
