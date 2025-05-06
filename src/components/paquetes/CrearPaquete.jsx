@@ -7,7 +7,7 @@ import Dimension from "./Dimension";
 
 import {postPaquete,calcularPrecio } from "../../services/paquetes.services";
 
-import './../../styles/envios.css'
+import './../../styles/paquetes.css'
 import { ToastContainer } from 'react-toastify';
 
 export default function CrearPaquete(){

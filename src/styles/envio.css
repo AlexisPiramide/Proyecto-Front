@@ -1,0 +1,28 @@
+.envio {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.informacion {
+    flex-shrink: 0; /* Don't allow shrinking */
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 1rem;
+}
+
+.informacion > h2 {
+    grid-column: span 2; /* Span across both columns */
+    margin-bottom: 0.5rem;
+}
+
+.datos-remitente,
+.datos-destinatario {
+    background: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+}
+

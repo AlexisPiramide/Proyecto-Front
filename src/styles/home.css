@@ -33,6 +33,38 @@
     }
 }
 
+.historial {
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-top: 1px solid #ddd;
+
+    & .historial-lista {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+
+        & h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .paquete-item {
+            padding: 10px;
+            border-bottom: 1px dashed #ccc;
+            font-size: 1rem;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}
+
+
 .anuncios {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
