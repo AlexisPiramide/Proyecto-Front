@@ -1,7 +1,6 @@
-
-
-const traking = async (id) => {
-    const response = await fetch(`http://localhost:3000/api/envios/${id}`, {
+import URL from "./const"
+const getTraking = async (id) => {
+    const response = await fetch(URL+id, {
         method: "GET",
         headers: {
         "Content-Type": "application/json",
@@ -12,9 +11,4 @@ const traking = async (id) => {
 
 
 
-
-
-
-
-
-export default traking;
+export default getTraking;

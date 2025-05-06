@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/App";
 import "./styles/main.css"
 import ZonaSesiones from "./components/usuario/ZonaSesiones";
-
-import Home from "./components/inicio/home";
+import PaginaEnvio from "./components/envios/PaginaEnvio";
+import Home from "./components/inicio/Home";
 import 'react-toastify/dist/ReactToastify.css'
 import Scanner from "./components/escaner/Scanner";
 import CrearPaquete from "./components/envios/CrearPaquete";
@@ -17,7 +17,8 @@ const router = createBrowserRouter([
 		{ path: "", element: <Home/> },
 		{ path: "usuario", element: <ZonaSesiones/> },
 		{ path: "escaner", element: <Scanner/> },
-		{ path: "nuevo", element: <CrearPaquete/>}
+		{ path: "nuevo", element: <CrearPaquete/>},
+		{ path : "envio", element: <PaginaEnvio/> }
 		],
 	},
 	{

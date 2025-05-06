@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
 import "./../../styles/tracking.css";
 import { generateRainbowColors } from './../../utils/rainbowColors';
-export default function Tracking({ datos }) {
+
+export default function Tracking({datos}) {
 
     const rainbowColors = useMemo(() => generateRainbowColors(datos.length), [datos.length]);
 
     return (
         <div className="tracking">
-            {datos.map((item, index) => {
+            {datos && datos.map((item, index) => {
                 const isLeft = index % 2 === 0;
                 const color = rainbowColors[index];
 

@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
-
-import "./../../styles/envio.css"
-import traking from "../../services/envios.services";
+import { getTraking } from '../../services/envios.services';
 import Tracking from "./Tracking";
 
-export default function Envio(envio) {
+import "./../../styles/envio.css"
+import {useLocation} from 'react-router-dom';
+
+export default function Envio() {
+    const location = useLocation();
+    const paquete = location.state.paquete; 
 
     const [tracking, setTracking] = useState([]);
-    const remitente = envio.remitente;
+    const remitente = paquete.remitente;
     const direccionremitente = remitente.direccion;
 
     const fetchTracking = async () => {
-        const response = await traking(envio.id);
+        const response = await getTraking(paquete.id);
         setTracking(response);
     }
 
@@ -20,8 +23,8 @@ export default function Envio(envio) {
     }, []);
 
     return (
-        <div className="envio">
-            <h1>Envio - {envio.id}</h1>
+        <div className="paquete">
+            <h1>Paquete - {paquete.id}</h1>
             <div className="informacion">
                 <h2>Informacion Basica</h2>
                 <div className="datos-remitente">
@@ -35,16 +38,14 @@ export default function Envio(envio) {
                 </div>
                 <div className="datos-destinatario">
                     <h3>Datos del destinatario</h3>
-                    <p className="destinatario" id="id">{envio.destinatario.id}</p>
-                    <p className="destinatario" id="destinatario">{envio.destinatario.nombre}</p>
+                    <p className="destinatario" id="id">{paquete.destinatario.id}</p>
+                    <p className="destinatario" id="destinatario">{paquete.destinatario.nombre}</p>
                     <p className="direccion" id="direccion">
-                        {envio.direccion.calle} {envio.direccion.numero}, {envio.direccion.codigoPostal}, {envio.direccion.localidad}, 
-                        {envio.direccion.provincia}, {envio.direccion.pais}
+                        {paquete.direccion.calle} {paquete.direccion.numero}, {paquete.direccion.codigoPostal}, {paquete.direccion.localidad}, 
+                        {paquete.direccion.provincia}, {paquete.direccion.pais}
                     </p>
             </div>
-
             <Tracking datos={tracking} /> 
-           
         </div>
     </div>
     );

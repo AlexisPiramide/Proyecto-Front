@@ -1,13 +1,24 @@
 import { useState } from "react";
-import PrintButton from "../paquetes/PrintButon";
+import {Link, useNavigate} from 'react-router-dom';
+import {getPaquete} from "../../services/paquetes.services";
+
 import "./../../styles/home.css"
 export default function Home() {
-
+    const navigate = useNavigate();
 
     const [buscador, setBuscador] = useState("");
     const [historialPaquetes, setHistorialPaquetes] = useState([]);
-    const handleBuscar = () => {
-        console.log(buscador);
+
+    const handleBuscar = async () => {
+        const paquete = await getPaquete(buscador);
+        if (!paquete) {
+            mostrarError("No se ha encontrado el paquete con ese código.");
+        }else{
+            const nuevoHistorial = [...historialPaquetes, paquete.codigo];
+            setHistorialPaquetes(nuevoHistorial);
+            navigate('/componentB',{state:{paquete:paquete}});
+        }
+     
     };
 
     useEffect(() => {
@@ -16,6 +27,21 @@ export default function Home() {
             setHistorialPaquetes(historial);
         }
     }, []);
+
+    const mostrarError = (mensaje) => {
+        if (mensaje) {
+            toast.error(mensaje, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                toastId: mensaje,
+            });
+        }
+    };
 
     return (
         <div>
@@ -49,7 +75,6 @@ export default function Home() {
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt-ewgNomB7qqJH9Hn5VxQsnOgH_rRb2u9Q&s" alt="Anuncio 2" />
                 </div>
             </div>
-            <PrintButton />
         </div>
     );
 }
