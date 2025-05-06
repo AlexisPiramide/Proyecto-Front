@@ -17,7 +17,8 @@ export default function Home() {
         }else{
             const nuevoHistorial = [...historialPaquetes, paquete.codigo];
             setHistorialPaquetes(nuevoHistorial);
-            navigate('/componentB',{state:{paquete:paquete}});
+            localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
+            navigate('/envio',{state:{paquete:paquete}});
         }
      
     };
