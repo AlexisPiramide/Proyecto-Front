@@ -1,8 +1,9 @@
 import { useState } from "react";
 import {Link, useNavigate} from 'react-router-dom';
 import {getPaquete} from "../../services/paquetes.services";
-
+import { ToastContainer, toast } from 'react-toastify';
 import "./../../styles/home.css"
+import Idea from "../../../idea";
 export default function Home() {
     const navigate = useNavigate();
 
@@ -65,6 +66,7 @@ export default function Home() {
                 )
                 }
             </div>
+            <Idea/>
             <div className="anuncios">
                 <div className="anuncio">
                     <h2 className="titulo-anuncio">Placeholder Anuncio 1</h2>
@@ -75,6 +77,7 @@ export default function Home() {
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt-ewgNomB7qqJH9Hn5VxQsnOgH_rRb2u9Q&s" alt="Anuncio 2" />
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 }
