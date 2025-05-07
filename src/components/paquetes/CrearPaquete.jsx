@@ -3,9 +3,12 @@ import FormDestinatario from "./FormDestinatario";
 import FormDirecciones from "./FormDirecciones";
 import FormRemitente from "./FormRemitente";
 import { getDimensiones } from "../../services/dimensiones.services";
+import { comprobarDatos} from "../../services/usuarios.services";
 import Dimension from "./Dimension";
 import { imprimir } from "./../../utils/imprimirPaquete";
 import { postPaquete, calcularPrecio } from "../../services/paquetes.services";
+
+import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH } from "../../services/const";
 
 import './../../styles/paquetes.css'
 import { ToastContainer } from 'react-toastify';
@@ -34,6 +37,21 @@ export default function CrearPaquete() {
     useEffect(() => {
         obtenerPrecio();
     }, [peso]);
+
+    useEffect(() => {
+        comprobar(destinatario);
+    }, [destinatario]);
+
+    useEffect(() => {
+        comprobar(remitente);
+    }, [remitente]);
+
+    const comprobar = async (usuario) => {
+        if(usuario.nombre && usuario.apellidos && (usuario.telefono || usuario.correo)) {
+            return result = await comprobarDatos(usuario.nombre, usuario.apellidos, usuario.telefono, usuario.correo);
+        }
+    }
+
 
 
     const obtenerPrecio = async () => {
@@ -97,16 +115,16 @@ export default function CrearPaquete() {
             </div>
             <div className="forms-envio">
                 {(dimension && dimension.nombre != null) ? <FormDestinatario setDestinatario={setDestinatario} setDireccionesDestinatario={setDireccionesDestinatario} /> : <form></form>}
-                {(destinatario && (destinatario.nombre?.length > 1 && destinatario.apellidos?.length > 1) || (destinatario && /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/.test(destinatario.id))) ? <FormDirecciones usuario={destinatario} setDireccion={setDireccionDestinatario} direcciones={direccionesDestinatario} /> : <form></form>}
-                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === 5 && direccionDestinatario.numero?.length > 0) ? <FormRemitente setRemitente={setRemitente} setDireccionesRemitente={setDireccionesRemitente} /> : <form></form>}
+                {(destinatario && (destinatario.nombre?.length >= MIN_NAME_LENGTH && destinatario.apellidos?.length >= MIN_NAME_LENGTH) || (destinatario && ID_PATTERN.test(destinatario.id))) ? <FormDirecciones usuario={destinatario} setDireccion={setDireccionDestinatario} direcciones={direccionesDestinatario} /> : <form></form>}
+                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormRemitente setRemitente={setRemitente} setDireccionesRemitente={setDireccionesRemitente} /> : <form></form>}
 
-                {(remitente && (remitente.nombre?.length > 1 && remitente.apellidos?.length > 1) || (remitente && /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/.test(remitente.id))) ? <FormDirecciones usuario={remitente} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
+                {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
                 <form>
                     <label>Peso</label><input type="text" name="peso" onChange={(e) => setPeso(e.target.value)} placeholder="Peso" />
                     <label>Precio</label><input type="text" name="precio" value={precio} disabled placeholder="Precio" />
                 </form>
                 <div className="boton-tramitar-contenedor">
-                    {(remitente && /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/.test(remitente.id)) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
+                    {(remitente && ID_PATTERN.test(remitente.id)) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
                 </div>
             </div>
             <ToastContainer />

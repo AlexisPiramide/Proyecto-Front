@@ -8,14 +8,29 @@
 # Código
     # Conexion Front/Back
     - [ ] Crear conexiones para cada endpoint de la API.
+        - [X] Dimensiones
+        - [X] Usuarios
+            - [ ] Pendiente Registro de trabajadores por admins
+        - [ ] Paquetes
+        - [ ] Envios
+        - [X] Direcciones
     - [ ] Creación componentes
-        # Usuarios (Por definir)
-        # Envios (Por definir)
-        # Trazabilidad(Por definir)
-        # (Más por definir)
+        - [ ] Usuarios.
+            - [X] Formularios Sesion
+            - [\] Perfil Usuario
+        - [ ] Envios.
+            - [X] Barra Busqueda por ID
+            - [ ] Pagina General de Paquete
+                - [X] Extructura Basica
+                - [ ] Visualizacion Tracking
+        - [ ] Paquetes-
+            - [X] Estructura Basica
+            - [\] Formularios
+            - [X] Comporbaciones
+                - [X] Usuario por ID
+                - [X] Usuario por datos
     # Generación Impresión pegatina Paquete
     - [X] Página html diseñada para ser imprimida con los datos del Back (QR o Código de barras, información básica ...)
-    - [ ] Añadir un modal al crear paquete para que si no recuerda el id con correo, telefono o usuario se pueda sacar el id
 
 # Investigación
     - [X] Forma de acceder a la cámara del Teléfono para escanear QR

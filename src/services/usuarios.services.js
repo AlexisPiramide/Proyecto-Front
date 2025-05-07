@@ -58,7 +58,27 @@ const comprobarUsuario = async (id) => {
         console.error("No existe:", error);
         return null;
     }
-   
 }
 
-export {login,registro,comprobarUsuario};
+const comprobarDatos = async (nombre, apellidos, telefono, correo) => {
+    const data = await fetch(URL+"usuarios/existe",{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nombre: nombre,
+            apellidos: apellidos,
+            telefono: telefono,
+            correo: correo
+        })
+    })
+    if(data.ok){
+        const json = await data.json();
+        return json;
+    }else{
+        throw new Error('Error al comprobar datos');
+    }
+}
+
+export {login,registro,comprobarUsuario,comprobarDatos};

@@ -85,11 +85,7 @@ export default function FormRemitente({ setRemitente, setDireccionesRemitente })
                 useId ?
                     <>
                         <label>ID Usuario</label>
-                        <input
-                            value={idUsuario}
-                            onChange={handleInputChange}
-                            placeholder="XXXX-XXXX-XXXX"
-                        />
+                        <input  value={idUsuario}  onChange={handleInputChange} placeholder="XXXX-XXXX-XXXX"/>
                     </>
                     :
                     <>

@@ -84,15 +84,15 @@ export default function FormDestinatario({ setDestinatario, setDireccionesDestin
             <button className="fixed-button" onClick={handleButtonClick}>
                 {(useId) ? "Sin Usuario" : "Usuario Existente"}
             </button>
+
+            <button className="fixed-button-comprobar" onClick={comprobarSiExiste()}>
+                Comprobar Si Existe
+            </button>
             {
                 useId ?
                     <div className="correo-hover-container">
                         <label>ID Usuario</label>
-                        <input
-                            value={idUsuario}
-                            onChange={handleInputChange}
-                            placeholder="XXXX-XXXX-XXXX"
-                        />
+                        <input value={idUsuario} onChange={handleInputChange} placeholder="XXXX-XXXX-XXXX" />
                         <p className="usuario-info">* Si ya tiene una cuenta creada</p>
                     </div> :
                     <>
@@ -103,9 +103,11 @@ export default function FormDestinatario({ setDestinatario, setDireccionesDestin
                         <input type="text" name="apellidos" onChange={handleChange} required />
         
                         <div className="correo-hover-container">
-                            <label>Correo Destinatario*</label>
+                            <label>Correo Destinatario</label>
                             <input type="email" name="correo" onChange={handleChange} />
-                            <p className="correo-info">* Solo si desea notificar al destinatario del envio</p>
+                            <p className="usuario-info"> O </p>
+                            <label>Telefono</label>
+                            <input type="text" name="telefono" onChange={handleChange} required />
                         </div>
                     </>
             }
