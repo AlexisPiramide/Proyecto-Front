@@ -169,7 +169,7 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
                         <label>Apellidos</label>
                         <input type="text" name="apellidos" onChange={manejarCambio} required />
                         <div className="correo-hover-container">
-                            <label>{`Correo ${capitalizar(tipo)}`}</label>
+                            <label>Correo</label>
                             <input type="email" name="correo" onChange={manejarCambio} />
                             <p className="usuario-info"> O </p>
                             <label>Teléfono</label>
@@ -182,7 +182,7 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
                         <input type="text" name="nombre" onChange={manejarCambio} required />
                         <label>Apellidos</label>
                         <input type="text" name="apellidos" onChange={manejarCambio} required />
-                        <label>{`Correo ${capitalizar(tipo)}`}</label>
+                        <label>Correo</label>
                         <input type="email" name="correo" onChange={manejarCambio} required />
                         <label>Teléfono</label>
                         <input type="text" name="telefono" onChange={manejarCambio} required />
@@ -190,8 +190,4 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
             )}
         </form>
     )
-}
-
-function capitalizar(texto) {
-    return texto.charAt(0).toUpperCase() + texto.slice(1)
 }

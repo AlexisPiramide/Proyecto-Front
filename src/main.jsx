@@ -23,7 +23,18 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/admin",
-		element: <h1>hola admin</h1>,
+		element: <App />,
+		children: [
+			{path: "/nuevo", element: <h1>Añadir Empleado</h1>},
+			{path: "/sucursal", element: <h1>Empleados</h1>},
+		],
+	},
+	{
+		path: "/y&$1m9x41/registroExterno/",
+		element: <App />,
+		children: [
+			{path: "", element: <h1>Registro Externo</h1>},
+		],
 	},
 	{
 		path: "*",
