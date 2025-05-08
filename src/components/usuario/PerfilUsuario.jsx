@@ -47,7 +47,6 @@ export default function PerfilUsuario() {
         setModalVisible(true);
     };
     
-
     const handleSaveDireccion = (newDireccion) => {
         setDirecciones([...direcciones, newDireccion]); 
         setModalVisible(false);
@@ -86,11 +85,7 @@ export default function PerfilUsuario() {
             <div className="dos">
                 <div className="direcciones">
                     <div className="actuales">
-                    {
-                        direcciones.map((direccion, index) => (
-                            <BotonDireccion key={index} direccion={direccion} onClick={() => { setSelectedDireccion(direccion); setModalVisible(true);}}/>
-                        ))
-                    }
+                    {direcciones.map((direccion, index) => (<BotonDireccion key={index} direccion={direccion} onClick={() => { setSelectedDireccion(direccion); setModalVisible(true);}}/>))}
                     </div>
                     <button className="btn-añadir-direccion" onClick={handleAddDireccion}>Añadir dirección</button>
                 </div>
@@ -113,9 +108,7 @@ export default function PerfilUsuario() {
                 </div>
             </div>
 
-            {modalVisible && (
-                <ModalDirecciones direction={selectedDireccion} onSave={handleSaveDireccion} onClose={handleCloseModal}/>
-            )}
+            {modalVisible && (<ModalDirecciones direction={selectedDireccion} onSave={handleSaveDireccion} onClose={handleCloseModal}/>)}
         </div>
     );
 }

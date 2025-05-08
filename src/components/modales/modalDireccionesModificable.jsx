@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./../../styles/modales/modal.css"
 
 import { updateDireccion } from '../../services/direcciones.services';
-const ModalDirecciones = ({ direction, onClose }) => {
+const ModalDirecciones = ({ direction, onClose,visualizador}) => {
 
     const [direccionForm, setDireccionForm] = useState(direction)
     const [editable, setEditable] = useState(false);
@@ -48,7 +48,7 @@ const ModalDirecciones = ({ direction, onClose }) => {
             </form>
             <div className="modal-actions">
                 <button onClick={onClose}>Cerrar</button>
-                {editable ? (<button onClick={() => { setEditable(false); postDireccion(); }}>Guardar</button>) : (<button onClick={() => setEditable(true)}>Editar</button>)}
+                {!visualizador && editable ? (<button onClick={() => { setEditable(false); postDireccion(); }}>Guardar</button>) : (<button onClick={() => setEditable(true)}>Editar</button>)}
             </div>
         </div>
     </div>
