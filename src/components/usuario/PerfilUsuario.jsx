@@ -3,13 +3,24 @@ import { useOutletContext } from "react-router";
 import { getDireccionesUsuario } from "../../services/direcciones.services";
 import { getPaquetesUsuario } from "../../services/paquetes.services";
 import ModalDirecciones from "./../modales/modalDirecciones";
+import BotonDireccion from "../objetos/BotonDireccion";
 
 export default function PerfilUsuario() {
+    const navigate = useNavigate();
+
     const [usuario, setUsuario] = useOutletContext();
     const [direcciones, setDirecciones] = useState([]);
     const [pedidos, setPedidos] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedDireccion, setSelectedDireccion] = useState(null);
+
+    const [historialPaquetes, setHistorialPaquetes] = useState([]);
+    useEffect(() => {
+        const historial = JSON.parse(localStorage.getItem("historial"));
+        if (historial) {
+            setHistorialPaquetes(historial);
+        }
+    }, []);
 
     const fetchPedidos = async () => {
         const data = await getPaquetesUsuario(usuario.usuario.id);
@@ -36,7 +47,6 @@ export default function PerfilUsuario() {
         setModalVisible(true);
     };
     
-
     const handleSaveDireccion = (newDireccion) => {
         setDirecciones([...direcciones, newDireccion]); 
         setModalVisible(false);
@@ -45,6 +55,13 @@ export default function PerfilUsuario() {
     const handleCloseModal = () => {
         setModalVisible(false);
     };
+
+    const handleAbrirPedido = async (paquete) => {
+        const nuevoHistorial = [...historialPaquetes, id];
+        setHistorialPaquetes(nuevoHistorial);
+        localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
+        navigate('/envio',{state:{paquete:paquete}});
+    }
 
     return (
         <div className="perfil-usuario">
@@ -68,14 +85,7 @@ export default function PerfilUsuario() {
             <div className="dos">
                 <div className="direcciones">
                     <div className="actuales">
-                    {
-                        direcciones.map((direccion, index) => (
-                            <button key={index} className="direccion-guarda" onClick={() => {
-                                setSelectedDireccion(direccion);
-                                setModalVisible(true);
-                            }}>{direccion.calle} Nº {direccion.numero} | {direccion.localidad}</button>
-                        ))
-                    }
+                    {direcciones.map((direccion, index) => (<BotonDireccion key={index} direccion={direccion} onClick={() => { setSelectedDireccion(direccion); setModalVisible(true);}}/>))}
                     </div>
                     <button className="btn-añadir-direccion" onClick={handleAddDireccion}>Añadir dirección</button>
                 </div>
@@ -84,10 +94,12 @@ export default function PerfilUsuario() {
                     <div className="actuales">
                         {
                             pedidos.map((pedido, index) => (
-                                <button key={index} className="pedido-guardado" onClick={() => {
-                                    setSelectedPedido(pedido);
-                                    setPedidoModalVisible(true);
-                                }}>
+                                <button key={index} className="pedido-guardado" onClick={() => {handleAbrirPedido(pedido)}}>
+                                    if(pedido.remitente.id === usuario.usuario.id){
+                                        <p>Destinatario: {pedido.destinatario.nombre}</p>
+                                    }else{
+                                        <p>Remitente: {pedido.remitente.nombre}</p>
+                                    }
                                     Pedido {pedido.id} - {pedido.fecha} - {pedido.total}€
                                 </button>
                             ))
@@ -96,13 +108,7 @@ export default function PerfilUsuario() {
                 </div>
             </div>
 
-            {modalVisible && (
-                <ModalDirecciones
-                    direction={selectedDireccion}
-                    onSave={handleSaveDireccion}
-                    onClose={handleCloseModal}
-                />
-            )}
+            {modalVisible && (<ModalDirecciones direction={selectedDireccion} onSave={handleSaveDireccion} onClose={handleCloseModal}/>)}
         </div>
     );
 }

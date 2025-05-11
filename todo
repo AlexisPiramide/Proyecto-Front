@@ -1,0 +1,37 @@
+#Codigo TODO FRONT END
+
+# General
+    # Diseño
+    - [X] Seleccionar Paleta Colores.
+    - [X] Diseñar boceto básico html.
+    - [X] Estructuramiento de la aplicación en función del backend (React Router).
+# Código
+    # Conexion Front/Back
+    - [ ] Crear conexiones para cada endpoint de la API.
+        - [X] Dimensiones
+        - [X] Usuarios
+            - [ ] Pendiente Registro de trabajadores por admins
+        - [ ] Paquetes
+        - [ ] Envios
+        - [X] Direcciones
+    - [ ] Creación componentes
+        - [ ] Usuarios.
+            - [X] Formularios Sesion
+            - [\] Perfil Usuario
+        - [ ] Envios.
+            - [X] Barra Busqueda por ID
+            - [ ] Pagina General de Paquete
+                - [X] Extructura Basica
+                - [ ] Visualizacion Tracking
+        - [ ] Paquetes-
+            - [X] Estructura Basica
+            - [\] Formularios
+            - [X] Comporbaciones
+                - [X] Usuario por ID
+                - [X] Usuario por datos
+    # Generación Impresión pegatina Paquete
+    - [X] Página html diseñada para ser imprimida con los datos del Back (QR o Código de barras, información básica ...)
+
+# Investigación
+    - [X] Forma de acceder a la cámara del Teléfono para escanear QR
+    - [ ] Transformar la página web en una APP (En vez de usar el app desde un navegador en el móvil)

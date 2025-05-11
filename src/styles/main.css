@@ -11,6 +11,8 @@
     --correcto-fondo: #d4edda;
     --incorrecto: #d41c1c;
     --incorrecto-fondo: #f8d7da;
+    --warning: #FFC107;
+    --warning-fondo: #fff3cd;
     --font-nav: 'Tomorrow', sans-serif;
 }
 

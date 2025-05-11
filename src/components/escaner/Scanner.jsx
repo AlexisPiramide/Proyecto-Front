@@ -17,12 +17,7 @@ export default function Escaner() {
         <div className="body-scanner">
             <div className="scanner">
                 <section className="scanner-camera">
-                    <Html5QrcodePlugin 
-                        fps={10} 
-                        qrbox={250} 
-                        disableFlip={false} 
-                        qrCodeSuccessCallback={onNewScanResult} 
-                    />
+                    <Html5QrcodePlugin fps={10} qrbox={250} disableFlip={false} qrCodeSuccessCallback={onNewScanResult} />
                 </section>
             </div>
         </div>

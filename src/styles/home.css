@@ -1,54 +1,96 @@
-.buscador-codigo{
+.buscador-codigo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px dashed #000000;
+    border-bottom: 2px dashed black;
+    padding-bottom: 20px;
+
+    & input {
+        width: 40%;
+        padding: 10px;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+    & button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+    }
+
+    & h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
 }
 
-.input-buscador-codigo{
-    width: 40%;
-    padding: 10px;
-    border: 1px dashed  #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+.historial {
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-top: 1px solid #ddd;
+
+    & .historial-lista {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+
+        & h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .paquete-item {
+            padding: 10px;
+            border-bottom: 1px dashed #ccc;
+            font-size: 1rem;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
 }
 
-.button-buscador-codigo{
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
 
 .anuncios {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
-    gap: 20px; /* Espacio entre los anuncios */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     padding: 20px;
-  }
-  
-  .anuncio-1 {
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.anuncio {
     border: 1px solid #ccc;
     padding: 16px;
     background-color: #f9f9f9;
     text-align: center;
     border-radius: 8px;
-  }
-  
-  .titulo-anuncio {
+
+    & img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+}
+
+.titulo-anuncio {
     font-size: 1.2rem;
     margin-bottom: 10px;
-  }
-  
-  .anuncio-1 img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-  
+}
