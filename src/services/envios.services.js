@@ -9,6 +9,4 @@ const getTraking = async (id) => {
     return response.json();
 };
 
-
-
 export default getTraking;

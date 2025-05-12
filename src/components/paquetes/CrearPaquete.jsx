@@ -33,7 +33,6 @@ export default function CrearPaquete() {
         fetchDimensiones()
     }, []);
 
-
     useEffect(() => {
         obtenerPrecio();
     }, [peso]);
@@ -63,7 +62,7 @@ export default function CrearPaquete() {
     const handleSubmit = async () => {
         const datos = {
             dimensiones: dimension?.id,
-            remitente: /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/.test(destinatario.id) ? destinatario.id : { nombre: destinatario.nombre, apellidos: destinatario.apellidos, correo: destinatario.correo, telefono: destinatario.telefono },
+            remitente: ID_PATTERN.test(destinatario.id) ? destinatario.id : { nombre: destinatario.nombre, apellidos: destinatario.apellidos, correo: destinatario.correo, telefono: destinatario.telefono },
             direccion_remitente: {
                 calle: direccionRemitente.calle,
                 numero: direccionRemitente.numero,
@@ -72,7 +71,7 @@ export default function CrearPaquete() {
                 provincia: direccionRemitente.provincia,
                 pais: direccionRemitente.pais
             },
-            destinatario: /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/.test(destinatario.id) ? destinatario.id : { nombre: destinatario.nombre, apellidos: destinatario.apellidos },
+            destinatario: ID_PATTERN.test(destinatario.id) ? destinatario.id : { nombre: destinatario.nombre, apellidos: destinatario.apellidos },
             direccion_destinatario: {
                 calle: direccionDestinatario.calle,
                 numero: direccionDestinatario.numero,

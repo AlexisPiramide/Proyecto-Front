@@ -4,6 +4,7 @@ import { getDireccionesUsuario } from "../../services/direcciones.services";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./../../styles/toast.css";
+import { ID_PATTERN } from "../../services/const.js";
 
 export default function FormRemitente({ setRemitente, setDireccionesRemitente }) {
     const [idUsuario, setIdUsuario] = useState("");
@@ -54,7 +55,7 @@ export default function FormRemitente({ setRemitente, setDireccionesRemitente })
 
         setIdUsuario(formattedValue);
 
-        const isValidFormat = /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/.test(formattedValue);
+        const isValidFormat = ID_PATTERN.test(formattedValue);
 
         if (isValidFormat) {
             const usuarioValido = await comprobarUsuarioExistente(formattedValue);

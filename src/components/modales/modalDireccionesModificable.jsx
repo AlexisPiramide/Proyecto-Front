@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
 import "./../../styles/modales/modal.css"
 
-import { updateDireccion } from '../../services/direcciones.services';
-const ModalDirecciones = ({ direction, onClose,visualizador}) => {
+import { updateDireccion, postDireccion } from '../../services/direcciones.services';
+const ModalDirecciones = ({ direction, onClose,visualizador,post}) => {
 
     const [direccionForm, setDireccionForm] = useState(direction)
-    const [editable, setEditable] = useState(false);
+    const [editable, setEditable] = useState(post);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setDireccionForm({ ...formData, [name]: value });
     };
 
-    const postDireccion = async () => {
+    const postD = async () => {
+        const result = await post(direccionForm);
+        if (result) {
+            console.log("Dirección guardada:", result);
+            postDireccion(result);
+        } else {
+            console.error("Error al guardar la dirección");
+        }
+    }
+
+    const updateD = async () => {
         const result = await updateDireccion(direccionForm.id, direccionForm);
         if (result) {
             console.log("Dirección actualizada:", result);
@@ -48,7 +58,9 @@ const ModalDirecciones = ({ direction, onClose,visualizador}) => {
             </form>
             <div className="modal-actions">
                 <button onClick={onClose}>Cerrar</button>
-                {!visualizador && editable ? (<button onClick={() => { setEditable(false); postDireccion(); }}>Guardar</button>) : (<button onClick={() => setEditable(true)}>Editar</button>)}
+                {!visualizador && editable && !post ? (<button onClick={() => { setEditable(false); updateD(); }}>Guardar</button>) : null}
+                {!visualizador && !editable && !post ? (<button onClick={() => { setEditable(true); }}>Modificar</button>) : null}
+                {!visualizador && post ? (<button onClick={() => { postD(); }}>Guardar</button>):<></>}
             </div>
         </div>
     </div>

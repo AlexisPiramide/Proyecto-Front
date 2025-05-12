@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import { getDireccionesUsuario } from "../../services/direcciones.services";
 import { getPaquetesUsuario } from "../../services/paquetes.services";
-import ModalDirecciones from "./../modales/modalDirecciones";
+import ModalDirecciones from "./../modales/modalDireccionesModificable";
 import BotonDireccion from "../objetos/BotonDireccion";
 
 export default function PerfilUsuario() {
@@ -45,11 +45,6 @@ export default function PerfilUsuario() {
             codigoPostal: ''
         });
         setModalVisible(true);
-    };
-    
-    const handleSaveDireccion = (newDireccion) => {
-        setDirecciones([...direcciones, newDireccion]); 
-        setModalVisible(false);
     };
 
     const handleCloseModal = () => {
@@ -108,7 +103,7 @@ export default function PerfilUsuario() {
                 </div>
             </div>
 
-            {modalVisible && (<ModalDirecciones direction={selectedDireccion} onSave={handleSaveDireccion} onClose={handleCloseModal}/>)}
+            {modalVisible && (<ModalDirecciones direction={selectedDireccion} onClose={handleCloseModal} visualizador={false}/>)}
         </div>
     );
 }
