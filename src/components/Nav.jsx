@@ -11,7 +11,6 @@ export default function Nav({usuario,setUsuario}) {
             <div className="nav-links">
                
                 <Link to="/">Home</Link>
-                <Link to="/escaner">Escaner sin validacion usuario</Link>
                 {usuario && usuario.sucursal && <Link to="/escaner">Escaner con validacion usuario</Link>}
                 <Link to="/nuevo">Nuevo envio</Link>
             </div>

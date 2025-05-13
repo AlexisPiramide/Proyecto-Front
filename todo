@@ -31,7 +31,13 @@
                 - [X] Usuario por datos
     # Generación Impresión pegatina Paquete
     - [X] Página html diseñada para ser imprimida con los datos del Back (QR o Código de barras, información básica ...)
-
+    # Creacion de la PWA (Progressive Web App) 
+    - [ ] Crear PAW para Android
+        - [ ] Crear un icono para la app
+        - [ ] Crear un Web App Manifest
+        - [ ] Configuar PWA
+        - [ ] Asegurarse de que la app se puede descargar por navegador
+    - [ ]  Crear un APK
 # Investigación
     - [X] Forma de acceder a la cámara del Teléfono para escanear QR
-    - [ ] Transformar la página web en una APP (En vez de usar el app desde un navegador en el móvil)
+    - [X] Transformar la página web en una APP (En vez de usar el app desde un navegador en el móvil)

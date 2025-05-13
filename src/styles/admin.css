@@ -1,0 +1,58 @@
+.div-admin {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 80vh; /* optional: full screen height */
+    padding: 20px;
+}
+
+.div-admin > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 45%;
+}
+
+.div-admin > div h2 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.div-admin > div img {
+    width: auto;
+    height: 40%;
+    border-radius: 5%;
+    margin-bottom: 20px;
+}
+
+.zona-crear {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.zona-escaner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+    .div-admin {
+        flex-direction: column;
+    }
+
+    .zona-crear {
+        display: none !important;
+    }
+
+    .zona-escaner {
+        width: 90%;
+    }
+}

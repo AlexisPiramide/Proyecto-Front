@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {getPaquete} from "../../services/paquetes.services";
 import { ToastContainer, toast } from 'react-toastify';
 import "./../../styles/home.css"
-import Idea from "../../../idea";
+import Idea from "../../../pruebas/idea";
 export default function Home() {
     const navigate = useNavigate();
 
