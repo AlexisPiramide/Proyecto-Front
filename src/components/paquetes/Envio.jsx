@@ -1,8 +1,6 @@
 
 export default function Envio({remitente,destinatario,direccion,dimension}){
 
-
-
     return (
         <>
             <h1>Resumen del envio</h1>

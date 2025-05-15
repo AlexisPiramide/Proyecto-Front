@@ -98,4 +98,4 @@ async function updateDireccion(id, direccion) {
     }
 }
 
-export { obtenerLocalidadProvincia, getDireccionesUsuario, updateDireccion };
+export { obtenerLocalidadProvincia,postDireccion, getDireccionesUsuario, updateDireccion };

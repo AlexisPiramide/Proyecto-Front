@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { toast } from 'react-toastify';
+
 import { comprobarUsuario } from "../../services/usuarios.services";
 import { getDireccionesUsuario } from "../../services/direcciones.services";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; 
-import "./../../styles/toast.css"
-import {ID_PATTERN} from "../../services/const.js";
+import { ID_PATTERN } from "../../services/const.js";
+
+import 'react-toastify/dist/ReactToastify.css';
+import "./../../styles/toast.css";
+
 export default function FormDestinatario({ setDestinatario, setDireccionesDestinatario }) {
     const [idUsuario, setIdUsuario] = useState("");
     const [useId, setUseId] = useState(false);
@@ -32,7 +35,6 @@ export default function FormDestinatario({ setDestinatario, setDireccionesDestin
         }
     };
     
-
     const handleInputChange = async (e) => {
         const value = e.target.value;
         const formattedValue = value
@@ -43,8 +45,7 @@ export default function FormDestinatario({ setDestinatario, setDireccionesDestin
 
         setIdUsuario(formattedValue);
 
-        // Comprobamos solo si el ID tiene el formato 'XXXX-XXXX-XXXX'
-        const isValidFormat = ID_PATTERN.test(formattedValue);
+        const isValidFormat = ID_PATTERN.test(formattedValue); // Comprobamos solo si el ID tiene el formato 'XXXX-XXXX-XXXX'
 
         if (isValidFormat) {
             const usuarioValido = await comprobarUsuarioExistente(formattedValue);

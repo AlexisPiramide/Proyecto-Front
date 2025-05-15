@@ -4,6 +4,7 @@ import { getDireccionesUsuario } from "../../services/direcciones.services";
 import { getPaquetesUsuario } from "../../services/paquetes.services";
 import ModalDirecciones from "./../modales/modalDireccionesModificable";
 import BotonDireccion from "../objetos/BotonDireccion";
+import { useNavigate } from "react-router-dom";
 
 export default function PerfilUsuario() {
     const navigate = useNavigate();

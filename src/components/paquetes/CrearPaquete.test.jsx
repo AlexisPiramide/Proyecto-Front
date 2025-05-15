@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import FormDestinatario from "./FormDestinatario";
+import { useOutletContext } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import FormDirecciones from "./FormDirecciones";
-import FormRemitente from "./FormRemitente";
+import FormularioUsuario from "./FormUsuario.test";
+import Dimension from "./Dimension";
+
 import { getDimensiones } from "../../services/dimensiones.services";
 import { comprobarDatos } from "../../services/usuarios.services";
-import Dimension from "./Dimension";
-import { imprimir } from "./../../utils/imprimirPaquete";
 import { postPaquete, calcularPrecio } from "../../services/paquetes.services";
-import { useOutletContext } from "react-router-dom";
 import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH } from "../../services/const";
 
-import './../../styles/paquetes.css'
-import { ToastContainer } from 'react-toastify';
+import { imprimir } from "../../utils/imprimirPaquete";
+
+import "./../../styles/paquetes.css";
 
 export default function CrearPaquete() {
 
@@ -119,9 +121,9 @@ export default function CrearPaquete() {
                 {dimensiones.map(d => (<Dimension key={d.id} dimension={d} setDimension={setDimension} selectedDimension={dimension} />))}
             </div>
             <div className="forms-envio">
-                {(dimension && dimension.nombre != null) ? <FormDestinatario setDestinatario={setDestinatario} setDireccionesDestinatario={setDireccionesDestinatario} /> : <form></form>}
+                {(dimension && dimension.nombre != null) ? <FormularioUsuario setDatosUsuario={setDestinatario} setDirecciones={setDireccionesDestinatario} /> : <form></form>}
                 {(destinatario && (destinatario.nombre?.length >= MIN_NAME_LENGTH && destinatario.apellidos?.length >= MIN_NAME_LENGTH) || (destinatario && ID_PATTERN.test(destinatario.id))) ? <FormDirecciones usuario={destinatario} setDireccion={setDireccionDestinatario} direcciones={direccionesDestinatario} /> : <form></form>}
-                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormRemitente setRemitente={setRemitente} setDireccionesRemitente={setDireccionesRemitente} /> : <form></form>}
+                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormularioUsuario setDatosUsuario={setRemitente} setDirecciones={setDireccionesRemitente} /> : <form></form>}
 
                 {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
                 <form>
