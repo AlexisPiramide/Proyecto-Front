@@ -8,5 +8,4 @@ const getDimensiones = async () => {
     return dimensiones;
 }
 
-
 export {getDimensiones};

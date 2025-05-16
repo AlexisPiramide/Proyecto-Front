@@ -1,7 +1,7 @@
 // imprimirPaquete.js
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Impresion from "./../components/paquetes/Impresion"; // Ensure correct path
+import Impresion from "../components/paquetes/Impresion"; // Ensure correct path
 import "./../styles/impresion.css"; // Ensure path works
 
 export const imprimir = (paquete) => {

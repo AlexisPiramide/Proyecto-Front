@@ -1,4 +1,5 @@
-import { useParams, useEffect, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { isExterno, registroExterno } from "../../services/usuarios.services";
 import "./../../styles/registroExterno.css"
 import { ToastContainer } from 'react-toastify';

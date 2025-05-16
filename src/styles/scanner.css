@@ -1,13 +1,76 @@
 /* Full page layout */
+
 .body-scanner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 73.6vh;
+    position: relative;
+    display: grid;
+    height: 90vh;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
-/* Scanner container */
+button.selected {
+    background-color: #0056b3 !important;
+    color: white !important;
+    border: 2px solid #0056b3 !important;
+}
+
+.body-scanner .botones-entregas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+ 
+    && button{
+        width: 50%;
+        height: 40%;
+        font-size: 16px;
+        font-weight: bold;
+        color: #0056b3;
+        background-color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border: 2px solid #0056b3;
+    }
+
+    && button:hover{
+        background-color: #0056b3;
+        color: white;   
+    }
+}
+
+.body-scanner .boton-transito{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    && button{
+        width: 50%;
+        height: 85%;
+        font-size: 16px;
+        font-weight: bold;
+        color: #0056b3;
+        background-color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border: 2px solid #0056b3;
+    }
+
+    && button:hover{
+        background-color: #0056b3;
+        color: white;   
+    }
+}
+
 .scanner {
+    grid-column: 1 / -1; /* spans all columns */
+    grid-row: 2 / 3; /* middle row */
+    justify-self: center;
+    align-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +79,8 @@
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 400px;
+    width: 50%;
+    height: 100%;
 }
 
 /* Scanner camera section */
@@ -34,25 +98,10 @@
     width: 100% !important;
 }
 
-/* Scanner video */
-.scanner-camera video {
-    width: 100% !important;
-    max-width: 300px;
-    border-radius: 10px;
-    border: 3px solid #007bff;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-}
-
-.scanner-camera video:nth-of-type(2) {
-    display: none !important;
-}
-
-
 /* Hide unnecessary elements */
 #html5qr-code-full-region__header_message,
 #html5qr-code-full-region__dashboard_section_csr > span,
-#html5qr-code-button-camera-start {
+#html5-qrcode-button-camera-start {
     display: none !important;
 }
 
@@ -72,34 +121,86 @@
     background: #d43f3f;
 }
 
-/* Scanned results styling */
-.Result-container {
-    margin-top: 15px;
-    padding: 10px;
-    background: #e9ecef;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #333;
-    width: 100%;
+/* Optional: Toast container */
+.Toastify {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
-.Result-header {
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
-}
 
-.Result-section table {
-    width: 100%;
-    border-collapse: collapse;
-}
+@media (max-width: 768px) {
+    html, body {
+        overflow: hidden;
+        height: 100%;
+    }
 
-.Qrcode-result-table thead {
-    background: #007bff;
-    color: white;
-}
+    .body-scanner{
+        height: 100vh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
 
-.Qrcode-result-table td {
-    padding: 5px;
-    border: 1px solid #ccc;
+    .body-scanner .botones-entregas{
+        padding-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        && button{
+            width: 45%;
+            height: 100px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0056b3;
+            background-color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: 2px solid #0056b3;
+        }
+    }
+
+    .body-scanner .boton-transito{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 20px;
+
+        && button{
+            width: 50%;
+            height: 100px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0056b3;
+            background-color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: 2px solid #0056b3;
+        }
+    }
+
+    .scanner {
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 80%;
+        height: 40%;
+        overflow: hidden;
+    }
 }

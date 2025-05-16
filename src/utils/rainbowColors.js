@@ -25,3 +25,6 @@ function rgb(ratio) {
 
     return { r, g, b };
 }
+
+
+export {generateRainbowColors};

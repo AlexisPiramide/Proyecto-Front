@@ -8,34 +8,34 @@ import PaginaEnvio from "./components/envios/PaginaEnvio";
 import Home from "./components/inicio/Home";
 import 'react-toastify/dist/ReactToastify.css'
 import Scanner from "./components/escaner/Scanner";
-import CrearPaquete from "./components/envios/CrearPaquete";
+import CrearPaquete from "./components/paquetes/CrearPaquete";
 import Admin from "./components/inicio/Admin";
 import RegistroExterno from "./components/usuario/RegistroExterno";
 
 const router = createBrowserRouter([
-  {
+	{
 		path: "/",
 		element: <App />,
 		children: [
-		{ path: "", element: <Home/> },
-		{ path: "usuario", element: <ZonaSesiones/>},
-		{ path: "envio", element: <PaginaEnvio/> }
+			{ path: "", element: <Home /> },
+			{ path: "usuario", element: <ZonaSesiones /> },
+			{ path: "envio", element: <PaginaEnvio /> }
 		],
 	},
 	{
 		path: "/admin",
 		element: <App />,
 		children: [
-			{path: "", element: <Admin/>},
-			{path: "nuevo", element: <CrearPaquete/>},
-			{path: "escaner", element: <Scanner/> },
+			{ path: "", element: <Admin /> },
+			{ path: "nuevo", element: <CrearPaquete /> },
+			{ path: "escaner", element: <Scanner /> },
 		],
 	},
 	{
 		path: "/y&$1m9x41/registroExterno",
 		element: <App />,
 		children: [
-			{path: ":id", element: <RegistroExterno />},
+			{ path: ":id", element: <RegistroExterno /> },
 		],
 	},
 	{

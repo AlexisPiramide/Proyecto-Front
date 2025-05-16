@@ -1,26 +1,42 @@
 import { Link, useNavigate } from "react-router";
 import "../styles/nav.css";
+import { useEffect } from "react";
 
-export default function Nav({usuario,setUsuario}) {
-    
+export default function Nav({ usuario, setUsuario }) {
+
+    const logout = () => {
+        localStorage.removeItem("usuario");
+        setUsuario(null);
+    }
+
+    useEffect(() => {
+        getLocalStorage();
+    }, []);
+
+    const getLocalStorage = () => {
+        const usuariolocal = JSON.parse(localStorage.getItem("usuario"));
+        if (usuariolocal && !usuario) {
+            setUsuario(usuariolocal);
+        }
+    };
+
     const navigate = useNavigate();
 
     return (
         <nav>
-            <img className="logo-nav" src="./logo.png" alt="Logo" onClick={() => navigate("/")}/> 
-            
+            <img className="logo-nav" src="./logo.png" alt="Logo" onClick={() => navigate("/")} />
+
             <div className="nav-links">
-                <Link to="/">Inicio</Link>
-                {usuario && <button onClick={()=>setUsuario(null)}><img src="cerrarSesion.svg"></img></button>}
-                {usuario && usuario.sucursal && <Link to="/admin">Inicio</Link>}
-                {usuario && usuario.sucursal && <Link to="/escaner">Escaner</Link>}
-                {usuario && usuario.sucursal && <Link to="/nuevo">Nuevo envio</Link>}
-                {usuario && !usuario.sucursal && <Link to="/usuario">Inicio</Link>}
+                {usuario?.sucursal ? <Link  to="/admin">Inicio</Link> : <Link to="/">Inicio</Link>}
+                {usuario?.sucursal && <Link className="no_movil" to="/admin/escaner">Escaner</Link>}
+                {usuario?.sucursal && <Link className="no_movil" to="/admin/nuevo">Nuevo envio</Link>}
             </div>
-        
+
             <div className="nav-user">
-                <Link to="/usuario">Usuarios</Link>
+                {usuario && !usuario.sucursal ? <Link to="/usuario">Usuarios</Link> : <h2 className="no_movil">{usuario?.nombre},{usuario?.apellidos}</h2>}
+                {usuario && <button onClick={logout} aria-label="Cerrar sesión"><img src="cerrarSesion.svg" alt="Cerrar sesión" /></button>}
             </div>
+
         </nav>
     );
 }

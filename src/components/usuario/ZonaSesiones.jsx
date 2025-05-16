@@ -12,6 +12,8 @@ export default function ZonaSesiones() {
     const [usuario, setUsuario] = useOutletContext();
     const [tipo, setTipo] = useState(false);
 
+
+
     return (
         <>
             {!usuario ?

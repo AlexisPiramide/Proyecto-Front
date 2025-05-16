@@ -1,5 +1,5 @@
-import { useState } from "react";
-import {Link, useNavigate} from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import {getPaquete} from "../../services/paquetes.services";
 import { ToastContainer, toast } from 'react-toastify';
 import "./../../styles/home.css"
@@ -15,12 +15,24 @@ export default function Home() {
         if (!paquete) {
             mostrarError("No se ha encontrado el paquete con ese código.");
         }else{
-            const nuevoHistorial = [...historialPaquetes, paquete.codigo];
-            setHistorialPaquetes(nuevoHistorial);
-            localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
+            if (!historialPaquetes.includes(paquete.codigo)) {
+                if (historialPaquetes.length < 10) {
+                    const nuevoHistorial = [...historialPaquetes, paquete.codigo];
+                    setHistorialPaquetes(nuevoHistorial);
+                    localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
+                }else{
+                    const nuevoHistorial = historialPaquetes.filter(cod => cod !== historialPaquetes[0]).concat(paquete.codigo);
+                    setHistorialPaquetes(nuevoHistorial);
+                    localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
+                }
+              
+            }else{
+                const nuevoHistorial = historialPaquetes.filter(cod => cod !== paquete.codigo).concat(paquete.codigo);
+                setHistorialPaquetes(nuevoHistorial);
+                localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
+            }
             navigate('/envio',{state:{paquete:paquete}});
         }
-     
     };
 
     useEffect(() => {
@@ -49,25 +61,22 @@ export default function Home() {
         <div>
             <div className="buscador-codigo">
                 <h1 className="titulo-home">Bienvenido a la página de inicio</h1>
-                <input type="text" id="input" onChange={(e) => setBuscador(e.target.value)} placeholder="Buscar paquete¡" />
+                <input type="text" id="input" onChange={(e) => setBuscador(e.target.value)} placeholder="Buscar paquete" />
                 <button type="button" onClick={handleBuscar}>Buscar</button>
             </div>
             <div className="historial">
                 {historialPaquetes.length > 0 ? (
-                    <div className="historial-lista">
-                        <h2>Historial de paquetes</h2>
+                    <>
                         {historialPaquetes.map((paquete, index) => (
-                            <div key={index} className="paquete-item">
-                                <p>{paquete.codigo}</p>
-                            </div>
+                            <button key={index} className="paquete-item" onClick={()=>{console.log(paquete)}}>{paquete}</button>
                         ))}
-                    </div>
+                    </>
                 ) : (
-                    <div className="historial"></div>
+                    <></>
                 )
                 }
             </div>
-            <Idea/>
+            {/*<Idea/>*/}
             <div className="anuncios">
                 <div className="anuncio">
                     <h2 className="titulo-anuncio">Placeholder Anuncio 1</h2>

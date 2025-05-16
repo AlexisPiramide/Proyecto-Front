@@ -22,7 +22,7 @@ export default function InputFormulario({ type, name, onChange,value}) {
 
     placeholder = placeholder.charAt(0).toUpperCase() + placeholder.slice(1);
     return (
-            <label class="label-sesiones">
+            <label className="label-sesiones">
                 <img src={`./iconosFormularios/${imagen}-${colormode}.svg`} alt={name}/>
                 <input type={type} name={name} placeholder={placeholder} value={value} onChange={(e)=>onChange(e)}/>
             </label>

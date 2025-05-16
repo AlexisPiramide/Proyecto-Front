@@ -5,7 +5,7 @@ import FormRemitente from "./FormRemitente";
 import { getDimensiones } from "../../services/dimensiones.services";
 import { comprobarDatos } from "../../services/usuarios.services";
 import Dimension from "./Dimension";
-import { imprimir } from "./../../utils/imprimirPaquete";
+import { imprimir } from "./../../utils/imprimirPaquete.jsx";
 import { postPaquete, calcularPrecio } from "../../services/paquetes.services";
 import { useOutletContext } from "react-router-dom";
 import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH } from "../../services/const";
@@ -124,12 +124,18 @@ export default function CrearPaquete() {
                 {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormRemitente setRemitente={setRemitente} setDireccionesRemitente={setDireccionesRemitente} /> : <form></form>}
 
                 {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
+                
+                {(direccionRemitente && direccionRemitente.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionRemitente.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? 
                 <form>
                     <label>Peso</label><input type="text" name="peso" onChange={(e) => setPeso(e.target.value)} placeholder="Peso" />
                     <label>Precio</label><input type="text" name="precio" value={precio} disabled placeholder="Precio" />
                 </form>
+                :
+                <form></form> 
+                }
+                
                 <div className="boton-tramitar-contenedor">
-                    {(remitente && ID_PATTERN.test(remitente.id)) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
+                    {(remitente && ID_PATTERN.test(remitente.id)) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button className="tramitar" disabled>Tramitar</button>}
                 </div>
             </div>
             <ToastContainer />

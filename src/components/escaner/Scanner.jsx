@@ -7,7 +7,6 @@ import { useOutletContext } from 'react-router-dom';
 
 export default function Escaner() {
     const [tipoTracking, setTipoTracking] = useState();
-    const [esReparto, setEsReparto] = useState();
     const [usuario, setUsuario] = useOutletContext();
     const [scannerInstance, setScannerInstance] = useState(null);
 
@@ -68,17 +67,15 @@ export default function Escaner() {
 
     return (
         <div className="body-scanner">
+            <div className='botones-entregas'>
+                <button className={tipoTracking === 2 ? 'selected' : ''} onClick={() => handleTipoTracking(2)}>No recogido</button>
+                <button className={tipoTracking === 3 ? 'selected' : ''} onClick={() => handleTipoTracking(3)}>Entregado</button>
+            </div>
+            <div className='boton-transito'>
+                <button className={tipoTracking === 1 ? 'selected' : ''} onClick={() => handleTipoTracking(1)}>Transito</button>
+            </div>
+
             <div className="scanner">
-                <button onClick={() => setEsReparto(true)}>Reparto</button>
-
-                {esReparto ? (
-                    <>
-                        <button onClick={() => handleTipoTracking(2)}>No recogido</button>
-                        <button onClick={() => handleTipoTracking(3)}>Entregado</button>
-                    </>
-                ) : null}
-
-                <button onClick={() => { handleTipoTracking(1); setEsReparto(false); }}>Transito</button>
 
                 {tipoTracking ? (
                     <section className="scanner-camera">

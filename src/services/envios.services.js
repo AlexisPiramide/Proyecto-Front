@@ -20,8 +20,7 @@ const postTraking = async (id,usuario, tipo) => {
     return response.json();
 };
 
-export {postTraking};
-export default getTraking;
+export {getTraking, postTraking};
 
 
  
