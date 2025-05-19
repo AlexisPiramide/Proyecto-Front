@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { isExterno, registroExterno } from "../../services/usuarios.services";
-import "./../../styles/registroExterno.css"
+import "./../../styles/registroexterno.css"
 import { ToastContainer } from 'react-toastify';
 export default function RegistroExterno() {
     const navigate = useNavigate();
