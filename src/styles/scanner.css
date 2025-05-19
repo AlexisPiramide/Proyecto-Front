@@ -1,5 +1,18 @@
 /* Full page layout */
 
+.scanner-camera {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  #html5qr-code-full-region {
+    width: 100%;
+    min-height: 300px;
+  }
+  
+
+
 .body-scanner {
     position: relative;
     display: grid;

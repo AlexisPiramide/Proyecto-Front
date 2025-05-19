@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
-import Html5QrcodePlugin from './Html5QrcodePlugin';
-import './../../styles/scanner.css';
-import { postTraking } from '../../services/envios.services';
-import { ToastContainer, toast } from 'react-toastify';
-import { useOutletContext } from 'react-router-dom';
+import { useEffect, useState, useRef } from "react";
+import Html5QrcodePlugin from "./Html5QrcodePlugin";
+import "./../../styles/scanner.css";
+import { postTraking } from "../../services/envios.services";
+import { ToastContainer, toast } from "react-toastify";
+import { useOutletContext } from "react-router-dom";
 
 export default function Escaner() {
-  const [tipoTracking, setTipoTracking] = useState();
-  const [usuario, setUsuario] = useOutletContext();
-  const [scannerInstance, setScannerInstance] = useState(null);
+  const [tipoTracking, setTipoTracking] = useState(null);
+  const [usuario] = useOutletContext();
+
+  const scannerRef = useRef(null);
 
   useEffect(() => {
     if (!usuario || !usuario.sucursal) {
@@ -17,9 +18,8 @@ export default function Escaner() {
   }, [usuario]);
 
   const onNewScanResult = async (decodedText, decodedResult) => {
-    if (scannerInstance) {
-      await scannerInstance.pause();
-    }
+    // Aquí puedes pausar el escáner si quieres
+    // pero como no tenemos acceso directo a instancia, omitimos pause/resume
 
     const id = usuario.id;
     const result = await postTraking(decodedText, id, tipoTracking);
@@ -27,14 +27,8 @@ export default function Escaner() {
     if (!result) {
       mostrarError("No se ha encontrado el paquete con ese código.");
     } else {
-      mostarExito("Paquete escaneado con éxito.");
+      mostrarExito("Paquete escaneado con éxito.");
     }
-
-    setTimeout(() => {
-      if (scannerInstance) {
-        scannerInstance.resume().catch(err => console.error("Error al reanudar escáner:", err));
-      }
-    }, 1000);
   };
 
   const mostrarError = (mensaje) => {
@@ -49,7 +43,7 @@ export default function Escaner() {
     });
   };
 
-  const mostarExito = (mensaje) => {
+  const mostrarExito = (mensaje) => {
     toast.success(mensaje, {
       position: "top-right",
       autoClose: 3000,
@@ -67,12 +61,27 @@ export default function Escaner() {
 
   return (
     <div className="body-scanner">
-      <div className='botones-entregas'>
-        <button className={tipoTracking === 2 ? 'selected' : ''} onClick={() => handleTipoTracking(2)}>No recogido</button>
-        <button className={tipoTracking === 3 ? 'selected' : ''} onClick={() => handleTipoTracking(3)}>Entregado</button>
+      <div className="botones-entregas">
+        <button
+          className={tipoTracking === 2 ? "selected" : ""}
+          onClick={() => handleTipoTracking(2)}
+        >
+          No recogido
+        </button>
+        <button
+          className={tipoTracking === 3 ? "selected" : ""}
+          onClick={() => handleTipoTracking(3)}
+        >
+          Entregado
+        </button>
       </div>
-      <div className='boton-transito'>
-        <button className={tipoTracking === 1 ? 'selected' : ''} onClick={() => handleTipoTracking(1)}>Transito</button>
+      <div className="boton-transito">
+        <button
+          className={tipoTracking === 1 ? "selected" : ""}
+          onClick={() => handleTipoTracking(1)}
+        >
+          Transito
+        </button>
       </div>
 
       <div className="scanner">
@@ -84,16 +93,15 @@ export default function Escaner() {
               aspectRatio={1.7777}
               disableFlip={true}
               qrCodeSuccessCallback={onNewScanResult}
-              onScannerReady={(scanner) => {
-                setScannerInstance(scanner);
-              }}
               qrCodeErrorCallback={(errorMessage) => {
-                console.error("11 Error del escáner (detalles):", errorMessage);
-                mostrarError(`Error del escáner: ${errorMessage}`);
+                console.error("Error del escáner:", errorMessage);
+                // Solo mostrar error si quieres, evitar spam de errores continuos
               }}
             />
           </section>
-        ) : null}
+        ) : (
+          <p>Por favor selecciona un tipo de tracking para activar el escáner</p>
+        )}
       </div>
 
       <ToastContainer />
