@@ -32,11 +32,11 @@ export default function Nav({ usuario, setUsuario }) {
                 {usuario?.sucursal ? <Link  to="/admin">Inicio</Link> : <Link to="/">Inicio</Link>}
                 {usuario?.sucursal && <Link className="no_movil" to="/admin/escaner">Escaner</Link>}
                 {usuario?.sucursal && <Link className="no_movil" to="/admin/nuevo">Nuevo envio</Link>}
+                {!usuario?.sucursal && <Link className="no_movil" to="/admin/escaner">Escaner pruebas</Link>}
             </div>
 
             <div className="nav-user">
-                {console.log(usuario)}
-                {!usuario ? <Link to="/usuario">Usuarios</Link> : <h2 className="no_movil">{usuario?.nombre},{usuario?.apellidos}</h2>}
+                {!usuario ? <Link to="/usuario">Usuarios</Link> : <h2>{usuario?.nombre},{usuario?.apellidos}</h2>}
                 {usuario && <button onClick={logout} aria-label="Cerrar sesión"><img src="cerrarSesion.svg" alt="Cerrar sesión" /></button>}
             </div>
 
