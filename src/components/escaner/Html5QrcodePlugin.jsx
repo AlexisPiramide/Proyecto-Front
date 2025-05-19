@@ -1,54 +1,64 @@
-import { Html5QrcodeScanner } from 'html5-qrcode';
-import { useEffect } from 'react';
+import { Html5Qrcode } from "html5-qrcode";
+import { useEffect, useRef } from "react";
 
 const qrcodeRegionId = "html5qr-code-full-region";
 
-// Creates the configuration object for Html5QrcodeScanner.
-const createConfig = (props) => {
-    let config = {};
-    if (props.fps) {
-        config.fps = props.fps;
-    }
-    if (props.qrbox) {
-        config.qrbox = props.qrbox;
-    }
-    if (props.aspectRatio) {
-        config.aspectRatio = props.aspectRatio;
-    }
-    if (props.disableFlip !== undefined) {
-        config.disableFlip = props.disableFlip;
-    }
-    return config;
-};
+const Html5QrcodePlugin = ({
+  qrCodeSuccessCallback,
+  qrCodeErrorCallback,
+  onScannerReady,
+  fps = 10,
+  qrbox = 250,
+  aspectRatio = 1.7777, // 16:9 ratio (recomendado)
+  disableFlip = true,
+}) => {
+  const html5QrCodeRef = useRef(null);
 
-const Html5QrcodePlugin = (props) => {
+  useEffect(() => {
+    const html5QrCode = new Html5Qrcode(qrcodeRegionId);
+    html5QrCodeRef.current = html5QrCode;
 
-    useEffect(() => {
-        
-        // when component mounts
-        const config = createConfig(props);
-        const verbose = props.verbose === true;
+    const config = {
+      fps,
+      qrbox,
+      aspectRatio,
+      disableFlip,
+    };
 
-        // Suceess callback is required.
-        if (!(props.qrCodeSuccessCallback)) {
-            throw "qrCodeSuccessCallback is required callback.";
-        }
-
-        const html5QrcodeScanner = new Html5QrcodeScanner(qrcodeRegionId, config, verbose);
-        
-        html5QrcodeScanner.render(props.qrCodeSuccessCallback, props.qrCodeErrorCallback);
-
-        // cleanup function when component will unmount
-        return () => {
-            html5QrcodeScanner.clear().catch(error => {
-                console.error("Failed to clear html5QrcodeScanner. ", error);
+    // Intenta obtener la cámara por defecto
+    Html5Qrcode.getCameras()
+      .then((devices) => {
+        if (devices && devices.length) {
+          const cameraId = devices[0].id;
+          html5QrCode
+            .start(
+              cameraId,
+              config,
+              qrCodeSuccessCallback,
+              qrCodeErrorCallback
+            )
+            .then(() => {
+              if (onScannerReady) {
+                onScannerReady(html5QrCode);
+              }
+            })
+            .catch((err) => {
+              qrCodeErrorCallback(`Fallo al iniciar cámara: ${err}`);
             });
-        };
-    }, [props]);
+        } else {
+          qrCodeErrorCallback("No se encontraron cámaras disponibles.");
+        }
+      })
+      .catch((err) => {
+        qrCodeErrorCallback(`Error al obtener cámaras: ${err}`);
+      });
 
-    return (
-        <div id={qrcodeRegionId} />
-    );
+    return () => {
+      html5QrCode.stop().catch((err) => console.error("Error al detener cámara:", err));
+    };
+  }, []);
+
+  return <div id={qrcodeRegionId} />;
 };
 
 export default Html5QrcodePlugin;
