@@ -4,7 +4,7 @@ import {getPaquete} from "../../services/paquetes.services";
 import { ToastContainer, toast } from 'react-toastify';
 import "./../../styles/home.css"
 import Idea from "../../../pruebas/idea";
-export default function Home() {
+export default function Inicio() {
     const navigate = useNavigate();
 
     const [buscador, setBuscador] = useState("");

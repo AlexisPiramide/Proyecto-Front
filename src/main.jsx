@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Scanner from "./components/escaner/Scanner";
 import CrearPaquete from "./components/paquetes/CrearPaquete";
 import Admin from "./components/inicio/Admin";
-import Home from "./components/inicio/Home.jsx";
+import Inicio from "./components/inicio/Inicio.jsx";
 import RegistroExterno from "./components/usuario/RegistroExterno";
 
 const router = createBrowserRouter([
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <App />,
 		children: [
-			{ path: "", element: <Home /> },
+			{ path: "", element: <Inicio /> },
 			{ path: "usuario", element: <ZonaSesiones /> },
 			{ path: "envio", element: <PaginaEnvio /> }
 		],
