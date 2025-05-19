@@ -1,9 +1,11 @@
 nav {
     display: flex;
+
     width: 100%;
     height: 10vh;
     background-color: var(--primary-color);
     align-items: center;
+    justify-content: space-around;
 }
 
 .logo-nav {
@@ -81,7 +83,24 @@ nav {
 }
 
 @media screen and (max-width: 768px) {
-    .no_movil{
+    nav {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .nav-user {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .no_movil {
         display: none;
     }
 }

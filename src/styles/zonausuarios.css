@@ -209,3 +209,63 @@ form {
         }
     }
 }
+@media (max-width: 768px) {
+    .zona-sesiones {
+        flex-direction: column;
+        min-width: auto;
+        height: auto;
+        padding: 1em;
+
+        & .div-formulario,
+        & .diseño-embellecimiento {
+            width: 100%;
+            align-items: center;
+
+            & form {
+                width: 100%;
+            }
+
+            & .embellezedor {
+                width: 100%;
+            }
+        }
+
+        & .diseño-embellecimiento img {
+            display: none;
+        }
+    }
+
+    .registro,
+    .login {
+        width: 90%;
+        height: auto;
+        padding: 1em;
+        margin-bottom: 1em;
+    }
+
+    .perfil-usuario {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+
+        & .uno,
+        & .dos {
+            width: 100%;
+        }
+
+        & .direcciones .btn-añadir-direccion {
+            width: 90%;
+        }
+
+        & .direcciones .direccion-guarda {
+            width: 90%;
+        }
+    }
+
+    .label-sesiones {
+        flex-direction: row;
+
+        & input {
+            width: 100%;
+        }
+    }
+}

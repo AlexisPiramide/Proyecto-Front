@@ -82,10 +82,14 @@ export default function Inicio() {
                     <h2 className="titulo-anuncio">Placeholder Anuncio 1</h2>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt-ewgNomB7qqJH9Hn5VxQsnOgH_rRb2u9Q&s" alt="Anuncio 1" />
                 </div>
+                <div>
+
+                </div>
                 <div className="anuncio">
                     <h2 className="titulo-anuncio">Placeholder Anuncio 2</h2>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt-ewgNomB7qqJH9Hn5VxQsnOgH_rRb2u9Q&s" alt="Anuncio 2" />
                 </div>
+                <div></div>
             </div>
             <ToastContainer/>
         </div>

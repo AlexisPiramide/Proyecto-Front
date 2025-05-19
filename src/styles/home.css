@@ -91,3 +91,15 @@
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
+
+@media (max-width: 600px) {
+    .historial {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    body{
+        overflow: auto;
+    }
+
+}
