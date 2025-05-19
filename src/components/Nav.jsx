@@ -33,7 +33,8 @@ export default function Nav({ usuario, setUsuario }) {
             </div>
 
             <div className="nav-user">
-                {usuario && !usuario.sucursal ? <Link to="/usuario">Usuarios</Link> : <h2 className="no_movil">{usuario?.nombre},{usuario?.apellidos}</h2>}
+                {console.log(usuario)}
+                {!usuario ? <Link to="/usuario">Usuarios</Link> : <h2 className="no_movil">{usuario?.nombre},{usuario?.apellidos}</h2>}
                 {usuario && <button onClick={logout} aria-label="Cerrar sesión"><img src="cerrarSesion.svg" alt="Cerrar sesión" /></button>}
             </div>
 
