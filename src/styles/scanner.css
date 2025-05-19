@@ -81,6 +81,9 @@ button.selected {
     text-align: center;
     width: 50%;
     height: 100%;
+    min-height: 300px;
+    
+      
 }
 
 /* Scanner camera section */
@@ -93,9 +96,10 @@ button.selected {
 
 /* QR code scanner region */
 #html5qr-code-full-region {
-    border: none !important;
-    background: transparent !important;
     width: 100% !important;
+    height: 100% !important; /* <- Asegura que tenga altura */
+    min-height: 300px; /* <- Esto es clave */
+    display: block !important;
 }
 
 /* Hide unnecessary elements */

@@ -88,7 +88,7 @@ export default function Escaner() {
                 setScannerInstance(scanner);
               }}
               qrCodeErrorCallback={(errorMessage) => {
-                console.error("Error del escáner (detalles):", errorMessage);
+                console.error("11 Error del escáner (detalles):", errorMessage);
                 mostrarError(`Error del escáner: ${errorMessage}`);
               }}
             />
