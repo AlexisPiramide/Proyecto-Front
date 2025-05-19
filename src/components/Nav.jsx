@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
 
-import "./../styles/nav.css";
+import "./../styles/navbar.css";
 import { useEffect } from "react";
 
 export default function Nav({ usuario, setUsuario }) {
