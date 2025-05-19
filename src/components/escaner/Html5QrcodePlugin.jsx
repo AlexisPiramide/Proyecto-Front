@@ -1,17 +1,16 @@
-import { Html5Qrcode } from "html5-qrcode";
 import { useEffect, useRef } from "react";
-
-const qrcodeRegionId = "html5qr-code-full-region";
+import { Html5Qrcode } from "html5-qrcode";
 
 const Html5QrcodePlugin = ({
+  fps = 10,
+  qrbox = 250,
+  aspectRatio = 1.0,
+  disableFlip = false,
   qrCodeSuccessCallback,
   qrCodeErrorCallback,
   onScannerReady,
-  fps = 10,
-  qrbox = 250,
-  aspectRatio = 1.7777, // 16:9 ratio (recomendado)
-  disableFlip = true,
 }) => {
+  const qrcodeRegionId = "html5qr-code-full-region";
   const html5QrCodeRef = useRef(null);
 
   useEffect(() => {
@@ -25,26 +24,30 @@ const Html5QrcodePlugin = ({
       disableFlip,
     };
 
-    // Intenta obtener la cámara por defecto
     Html5Qrcode.getCameras()
       .then((devices) => {
         if (devices && devices.length) {
           const cameraId = devices[0].id;
-          html5QrCode
-            .start(
-              cameraId,
-              config,
-              qrCodeSuccessCallback,
-              qrCodeErrorCallback
-            )
-            .then(() => {
-              if (onScannerReady) {
-                onScannerReady(html5QrCode);
-              }
-            })
-            .catch((err) => {
-              qrCodeErrorCallback(`Fallo al iniciar cámara: ${err}`);
-            });
+
+          // Add a small delay to ensure the DOM is fully rendered
+          setTimeout(() => {
+            html5QrCode
+              .start(
+                cameraId,
+                config,
+                qrCodeSuccessCallback,
+                qrCodeErrorCallback
+              )
+              .then(() => {
+                if (onScannerReady) {
+                  onScannerReady(html5QrCode);
+                }
+              })
+              .catch((err) => {
+                console.error("Error starting QR code scanner:", err);
+                qrCodeErrorCallback(`Fallo al iniciar cámara: ${err}`);
+              });
+          }, 300); // delay in ms — helps ensure video element is ready
         } else {
           qrCodeErrorCallback("No se encontraron cámaras disponibles.");
         }
@@ -54,7 +57,15 @@ const Html5QrcodePlugin = ({
       });
 
     return () => {
-      html5QrCode.stop().catch((err) => console.error("Error al detener cámara:", err));
+      // Stop the scanner when the component unmounts
+      if (html5QrCodeRef.current) {
+        html5QrCodeRef.current
+          .stop()
+          .then(() => {
+            html5QrCodeRef.current.clear();
+          })
+          .catch((err) => console.error("Error al detener cámara:", err));
+      }
     };
   }, []);
 
