@@ -63,11 +63,11 @@ export default function Nav({ usuario, setUsuario }) {
             <div className="nav-links">
                 {usuario?.sucursal ? <Link  to="/admin">Inicio</Link> : <Link to="/">Inicio</Link>}
                 {usuario?.sucursal && <Link className="no_movil" to="/admin/escaner">Escaner</Link>}
-                {usuario?.sucursal && <Link className="no_movil" to="/admin/nuevo">Nuevo envio</Link>}
-                {!usuario?.sucursal && <Link className="no_movil" to="/escaner">Escaner pruebas</Link>}
-                
+                {usuario?.sucursal && <Link className="no_movil" to="/admin/nuevo">Nuevo envio</Link>}                
             </div>
+
             <button className="usuario-pruebas" onClick={() => setUsuarioLocalStorage()}>Usuario Pruebas</button>
+            
             <div className="nav-user">
                 {!usuario ? <Link to="/usuario">Usuarios</Link> : <h2>{usuario?.nombre},{usuario?.apellidos}</h2>}
                 {usuario && <button onClick={logout} aria-label="Cerrar sesión"><img src="cerrarSesion.svg" alt="Cerrar sesión" /></button>}
