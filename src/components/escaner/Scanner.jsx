@@ -79,7 +79,7 @@ export default function Escaner() {
 
                 {tipoTracking ? (
                     <section className="scanner-camera">
-                        <Html5QrcodePlugin fps={10} qrbox={250} disableFlip={true} qrCodeSuccessCallback={onNewScanResult} onScannerReady={(scanner) => setScannerInstance(scanner)} />
+                        <Html5QrcodePlugin fps={10} qrbox={250} disableFlip={true} qrCodeSuccessCallback={onNewScanResult} onScannerReady={(scanner) => setScannerInstance(scanner)} qrCodeErrorCallback={(errorMessage) => { console.error("Error del escáner:", errorMessage); mostrarError("No se pudo iniciar el escáner. Verifica el permiso de la cámara o recarga la página.");}}/>
                     </section>
                 ) : null}
             </div>
