@@ -20,7 +20,8 @@ const router = createBrowserRouter([
 		children: [
 			{ path: "", element: <Inicio /> },
 			{ path: "usuario", element: <ZonaSesiones /> },
-			{ path: "envio", element: <PaginaEnvio /> }
+			{ path: "envio", element: <PaginaEnvio /> },
+			{ path: "escaner", element: <Scanner /> },
 		],
 	},
 	{
