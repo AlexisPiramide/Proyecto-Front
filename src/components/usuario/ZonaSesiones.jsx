@@ -19,7 +19,7 @@ export default function ZonaSesiones() {
             {!usuario ?
                 <div className="zona-sesiones">
                     <div className="div-formulario">
-                        <div className="embellezedor"><img src="./public/cerrar.svg" /><img src="./public/minimizar.svg" /></div>
+                        <div className="embellezedor"><img src="./cerrar.svg" /><img src="./minimizar.svg" /></div>
                         {usuario ? "" : (tipo ? <Registro setUsuario={setUsuario} /> : <Login setUsuario={setUsuario} />)}
                     </div>
                     <div className="diseño-embellecimiento">
