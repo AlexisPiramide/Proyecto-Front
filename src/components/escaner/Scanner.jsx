@@ -94,7 +94,7 @@ export default function Escaner() {
               disableFlip={true}
               qrCodeSuccessCallback={onNewScanResult}
               qrCodeErrorCallback={(errorMessage) => {
-                console.error("Error del escáner:", errorMessage);
+                //console.error("Error del escáner:", errorMessage);
                 // Solo mostrar error si quieres, evitar spam de errores continuos
               }}
             />
