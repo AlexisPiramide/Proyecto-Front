@@ -69,7 +69,8 @@ export default function Nav({ usuario, setUsuario }) {
             <button className="usuario-pruebas" onClick={() => setUsuarioLocalStorage()}>Usuario Pruebas</button>
             
             <div className="nav-user">
-                {!usuario ? <Link to="/usuario">Usuarios</Link> : <h2>{usuario?.nombre},{usuario?.apellidos}</h2>}
+                {!usuario ? <Link to="/usuario">Usuarios</Link> : !usuario?.sucursal ? <Link to="/usuario">{usuario?.nombre}, {usuario?.apellidos}</Link> : <h2>{usuario?.nombre}, {usuario?.apellidos}</h2>}
+                
                 {usuario && <button onClick={logout} aria-label="Cerrar sesión"><img src="cerrarSesion.svg" alt="Cerrar sesión" /></button>}
             </div>
 
