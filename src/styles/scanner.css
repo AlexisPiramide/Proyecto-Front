@@ -1,5 +1,4 @@
 /* Full page layout */
-
 .scanner-camera {
     width: 100%;
     max-width: 400px;
@@ -9,8 +8,6 @@
     width: 100%;
     min-height: 300px;
 }
-
-
 
 .body-scanner {
     position: relative;
@@ -33,24 +30,24 @@ button.selected {
     justify-content: center;
     align-items: flex-end;
     gap: 10px;
+}
 
-    && button {
-        width: 50%;
-        height: 40%;
-        font-size: 16px;
-        font-weight: bold;
-        color: #0056b3;
-        background-color: white;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        border: 2px solid #0056b3;
-    }
+.body-scanner .botones-entregas button {
+    width: 50%;
+    height: 40%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0056b3;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 2px solid #0056b3;
+}
 
-    && button:hover {
-        background-color: #0056b3;
-        color: white;
-    }
+.body-scanner .botones-entregas button:hover {
+    background-color: #0056b3;
+    color: white;
 }
 
 .body-scanner .boton-transito {
@@ -58,24 +55,24 @@ button.selected {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+}
 
-    && button {
-        width: 50%;
-        height: 85%;
-        font-size: 16px;
-        font-weight: bold;
-        color: #0056b3;
-        background-color: white;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        border: 2px solid #0056b3;
-    }
+.body-scanner .boton-transito button {
+    width: 50%;
+    height: 85%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0056b3;
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 2px solid #0056b3;
+}
 
-    && button:hover {
-        background-color: #0056b3;
-        color: white;
-    }
+.body-scanner .boton-transito button:hover {
+    background-color: #0056b3;
+    color: white;
 }
 
 .scanner {
@@ -114,7 +111,6 @@ button.selected {
     min-height: 300px;
     /* <- Esto es clave */
     display: block !important;
-
 }
 
 /* Hide unnecessary elements */
@@ -148,7 +144,6 @@ button.selected {
     z-index: 9999;
 }
 
-
 @media (max-width: 768px) {
 
     html,
@@ -174,7 +169,6 @@ button.selected {
         overflow: hidden;
     }
 
-
     .body-scanner {
         height: 100vh;
         min-height: 100vh;
@@ -190,19 +184,19 @@ button.selected {
         justify-content: center;
         align-items: center;
         gap: 10px;
+    }
 
-        && button {
-            width: 45%;
-            height: 100px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #0056b3;
-            background-color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border: 2px solid #0056b3;
-        }
+    .body-scanner .botones-entregas button {
+        width: 45%;
+        height: 100px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #0056b3;
+        background-color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border: 2px solid #0056b3;
     }
 
     .body-scanner .boton-transito {
@@ -212,19 +206,19 @@ button.selected {
         align-items: center;
         gap: 10px;
         padding-bottom: 20px;
+    }
 
-        && button {
-            width: 50%;
-            height: 100px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #0056b3;
-            background-color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border: 2px solid #0056b3;
-        }
+    .body-scanner .boton-transito button {
+        width: 50%;
+        height: 100px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #0056b3;
+        background-color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        border: 2px solid #0056b3;
     }
 
     .scanner {

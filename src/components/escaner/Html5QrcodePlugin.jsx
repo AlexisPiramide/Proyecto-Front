@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 
 const qrcodeRegionId = "html5qr-code-full-region";
 
+// Helper to build config from props
 const createConfig = (props) => {
   let config = {};
   if (props.fps) config.fps = props.fps;
@@ -14,40 +15,47 @@ const createConfig = (props) => {
 
 const Html5QrcodePlugin = (props) => {
   const html5QrcodeScannerRef = useRef(null);
+  const isStartedRef = useRef(false); // ✅ Track if scanner actually started
 
   useEffect(() => {
     const config = createConfig(props);
+
     if (!props.qrCodeSuccessCallback) {
       throw new Error("qrCodeSuccessCallback is required callback.");
     }
 
-    // Crear instancia con el div id
     const html5QrCode = new Html5Qrcode(qrcodeRegionId);
-
     html5QrcodeScannerRef.current = html5QrCode;
 
-    // Empezar escaneo con cámara por defecto (puedes especificar cámara)
+    // Try starting the scanner
     html5QrCode
       .start(
-        { facingMode: "environment" }, // cámara trasera
+        { facingMode: "environment" }, // Use rear camera
         config,
         props.qrCodeSuccessCallback,
         props.qrCodeErrorCallback
       )
+      .then(() => {
+        isStartedRef.current = true; // ✅ Mark as started
+      })
       .catch((err) => {
         console.error("Error iniciando escáner:", err);
-        if (props.qrCodeErrorCallback) props.qrCodeErrorCallback(err);
+        
+        // ✅ Optional: Alert user (or use a toast)
+        alert("No se pudo acceder a la cámara. Verifica los permisos o conecta una cámara.");
+
+        if (props.qrCodeErrorCallback) {
+          props.qrCodeErrorCallback(err);
+        }
       });
 
+    // Cleanup on unmount
     return () => {
-      // Cleanup: parar escaneo y liberar cámara
-      if (html5QrCode) {
+      if (html5QrCode && isStartedRef.current) {
         html5QrCode
           .stop()
           .then(() => html5QrCode.clear())
-          .catch((err) =>
-            console.warn("Error deteniendo escáner:", err)
-          );
+          .catch((err) => console.warn("Error deteniendo escáner:", err));
       }
     };
   }, [props]);
@@ -61,4 +69,3 @@ const Html5QrcodePlugin = (props) => {
 };
 
 export default Html5QrcodePlugin;
-  

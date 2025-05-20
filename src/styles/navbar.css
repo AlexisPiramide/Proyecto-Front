@@ -25,14 +25,16 @@ nav {
     margin-left: 5%;
     width: 70%;
 
-    && a {
+    
+}
+
+.nav-links a {
         text-decoration: none;
         color: var(--darker-background-color);
         font-size: 1.3rem;
         font-weight: bold;
         font-family: var(--front-nav);
     }
-}
 
 .nav-user {
     display: flex;
