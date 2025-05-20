@@ -100,17 +100,7 @@ export default function Escaner() {
             <div className="scanner">
                 {tipoTracking ? (
                     <section className="scanner-camera">
-                        <Html5QrcodePlugin
-                            fps={10}
-                            qrbox={250}
-                            aspectRatio={1.7777}
-                            disableFlip={true}
-                            qrCodeSuccessCallback={onNewScanResult}
-                            qrCodeErrorCallback={(errorMessage) => {
-                                //console.error("Error del escáner:", errorMessage);
-                                // Solo mostrar error si quieres, evitar spam de errores continuos
-                            }}
-                        />
+                        <Html5QrcodePlugin fps={10} qrbox={250} aspectRatio={1.7777} disableFlip={true} qrCodeSuccessCallback={onNewScanResult} />
                     </section>
                 ) : (
                     <p>Por favor selecciona un tipo de tracking para activar el escáner</p>

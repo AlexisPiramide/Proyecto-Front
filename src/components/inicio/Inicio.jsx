@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import {getPaquete} from "../../services/paquetes.services";
 import { ToastContainer, toast } from 'react-toastify';
 import "./../../styles/home.css"
-import Idea from "../../../pruebas/idea";
 export default function Inicio() {
     const navigate = useNavigate();
 
@@ -76,7 +75,6 @@ export default function Inicio() {
                 )
                 }
             </div>
-            {/*<Idea/>*/}
             <div className="anuncios">
                 <div className="anuncio">
                     <h2 className="titulo-anuncio">Placeholder Anuncio 1</h2>
