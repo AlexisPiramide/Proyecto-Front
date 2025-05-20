@@ -23,7 +23,7 @@ export default function Escaner() {
         if (isScanning) return;
 
         setIsScanning(true);  // bloquear nuevas lecturas
-
+        mostrarExito("Escaneando...");
         const id = usuario.id;
         const result = await postTraking(decodedText, id, tipoTracking);
 

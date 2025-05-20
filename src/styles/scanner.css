@@ -170,13 +170,9 @@ button.selected {
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
         text-align: center;
         width: 100%;
-        /* changed from 80% to 100% */
         max-width: 400px;
-        /* limits growth on wider screens */
         height: 40%;
         overflow: hidden;
-        margin: 0 auto;
-        /* ensures it's centered */
     }
 
 
