@@ -19,21 +19,26 @@ export default function Escaner() {
     }, [usuario]);
 
     const onNewScanResult = async (decodedText, decodedResult) => {
-        // Si ya estamos procesando un scan, ignoramos nuevos resultados
+
         if (isScanning) return;
 
-        setIsScanning(true);  // bloquear nuevas lecturas
+        setIsScanning(true);
         mostrarExito("Escaneando...");
         const id = usuario.id;
-        const result = await postTraking(decodedText, id, tipoTracking);
 
+        try {
+            const result = await postTraking(decodedText, id, tipoTracking);
         if (!result) {
             mostrarError("No se ha encontrado el paquete con ese código.");
         } else {
             mostrarExito("Paquete escaneado con éxito.");
         }
 
-        // Después de 5 segundos desbloqueamos para permitir un nuevo scan
+        } catch (error) {
+            console.error("Error al escanear el código:", error);
+            mostrarError("Error al escanear el código. Inténtalo de nuevo.");
+        }
+     
         setTimeout(() => {
             setIsScanning(false);
         }, 5000);
