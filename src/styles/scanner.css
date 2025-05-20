@@ -4,13 +4,13 @@
     width: 100%;
     max-width: 400px;
     margin: auto;
-  }
-  
-  #html5qr-code-full-region {
+}
+
+#html5qr-code-full-region {
     width: 100%;
     min-height: 300px;
-  }
-  
+}
+
 
 
 .body-scanner {
@@ -28,14 +28,14 @@ button.selected {
     border: 2px solid #0056b3 !important;
 }
 
-.body-scanner .botones-entregas{
+.body-scanner .botones-entregas {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
     gap: 10px;
- 
-    && button{
+
+    && button {
         width: 50%;
         height: 40%;
         font-size: 16px;
@@ -48,19 +48,19 @@ button.selected {
         border: 2px solid #0056b3;
     }
 
-    && button:hover{
+    && button:hover {
         background-color: #0056b3;
-        color: white;   
+        color: white;
     }
 }
 
-.body-scanner .boton-transito{
+.body-scanner .boton-transito {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
 
-    && button{
+    && button {
         width: 50%;
         height: 85%;
         font-size: 16px;
@@ -73,15 +73,17 @@ button.selected {
         border: 2px solid #0056b3;
     }
 
-    && button:hover{
+    && button:hover {
         background-color: #0056b3;
-        color: white;   
+        color: white;
     }
 }
 
 .scanner {
-    grid-column: 1 / -1; /* spans all columns */
-    grid-row: 2 / 3; /* middle row */
+    grid-column: 1 / -1;
+    /* spans all columns */
+    grid-row: 2 / 3;
+    /* middle row */
     justify-self: center;
     align-self: center;
     display: flex;
@@ -95,8 +97,6 @@ button.selected {
     width: 50%;
     height: 100%;
     min-height: 300px;
-    
-      
 }
 
 /* Scanner camera section */
@@ -110,14 +110,17 @@ button.selected {
 /* QR code scanner region */
 #html5qr-code-full-region {
     width: 100% !important;
-    height: 100% !important; /* <- Asegura que tenga altura */
-    min-height: 300px; /* <- Esto es clave */
+    height: 100% !important;
+    /* <- Asegura que tenga altura */
+    min-height: 300px;
+    /* <- Esto es clave */
     display: block !important;
+
 }
 
 /* Hide unnecessary elements */
 #html5qr-code-full-region__header_message,
-#html5qr-code-full-region__dashboard_section_csr > span,
+#html5qr-code-full-region__dashboard_section_csr>span,
 #html5-qrcode-button-camera-start {
     display: none !important;
 }
@@ -148,12 +151,33 @@ button.selected {
 
 
 @media (max-width: 768px) {
-    html, body {
+
+    html,
+    body {
         overflow: hidden;
         height: 100%;
     }
 
-    .body-scanner{
+    .scanner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* add this */
+        align-self: center;
+        /* already present, keep it */
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 80%;
+        height: 40%;
+        overflow: hidden;
+    }
+
+
+    .body-scanner {
         height: 100vh;
         min-height: 100vh;
         display: flex;
@@ -161,7 +185,7 @@ button.selected {
         overflow: hidden;
     }
 
-    .body-scanner .botones-entregas{
+    .body-scanner .botones-entregas {
         padding-top: 20px;
         display: flex;
         flex-direction: row;
@@ -169,7 +193,7 @@ button.selected {
         align-items: center;
         gap: 10px;
 
-        && button{
+        && button {
             width: 45%;
             height: 100px;
             font-size: 16px;
@@ -183,7 +207,7 @@ button.selected {
         }
     }
 
-    .body-scanner .boton-transito{
+    .body-scanner .boton-transito {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -191,7 +215,7 @@ button.selected {
         gap: 10px;
         padding-bottom: 20px;
 
-        && button{
+        && button {
             width: 50%;
             height: 100px;
             font-size: 16px;
