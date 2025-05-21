@@ -7,10 +7,11 @@ export default function FormDirecciones({ usuario, setDireccion,direcciones }) {
     const [provincia, setProvincia] = useState("");
     const [calle, setCalle] = useState("");
     const [numero, setNumero] = useState("");
+    const [id, setId] = useState("");
     const [nuevaDireccion, setNuevaDireccion] = useState(false);
     useEffect(() => {
         clearForm("");
-        setDireccion({ cp: "", localidad: "", provincia: "", calle: "", numero: "" });
+        setDireccion({id:"", cp: "", localidad: "", provincia: "", calle: "", numero: "" });
     }, [usuario]);
 
     useEffect(() => {
@@ -31,8 +32,8 @@ export default function FormDirecciones({ usuario, setDireccion,direcciones }) {
     }, [codigoPostal]);
 
     useEffect(() => {
-        setDireccion({ codigoPostal, localidad, provincia, calle, numero });
-    }, [codigoPostal, localidad, provincia, calle, numero, setDireccion]);
+        setDireccion({ id,codigoPostal, localidad, provincia, calle, numero });
+    }, [id,codigoPostal, localidad, provincia, calle, numero, setDireccion]);
 
     const clearForm = () => {
         setCodigoPostal("");
@@ -62,6 +63,7 @@ export default function FormDirecciones({ usuario, setDireccion,direcciones }) {
             {direcciones.length > 0 && !nuevaDireccion ? 
             direcciones.map((direccion, index) => (
                 <button key={index} type="button" onClick={() => {
+                    setId(direccion.id);
                     setCodigoPostal(direccion.codigoPostal);
                     setLocalidad(direccion.localidad);
                     setProvincia(direccion.provincia);

@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
-import FormDestinatario from "./FormDestinatario";
-import FormDirecciones from "./FormDirecciones";
-import FormRemitente from "./FormRemitente";
-import { getDimensiones } from "../../services/dimensiones.services";
-import { comprobarDatos } from "../../services/usuarios.services";
-import Dimension from "./Dimension";
-import { imprimir } from "./../../utils/imprimirPaquete.jsx";
-import { postPaquete, calcularPrecio } from "../../services/paquetes.services";
 import { useOutletContext } from "react-router-dom";
-import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH } from "../../services/const";
+import { ToastContainer } from "react-toastify";
 
-import './../../styles/paquetes.css'
-import { ToastContainer } from 'react-toastify';
+import FormDirecciones from "./FormDirecciones";
+import FormularioUsuario from "./FormUsuario";
+import Dimension from "./Dimension";
+
+import { getDimensiones } from "../../services/dimensiones.services";
+
+import { postPaquete, calcularPrecio } from "../../services/paquetes.services";
+import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH,PATERN_CORREO } from "../../services/const";
+
+import { imprimir } from "../../utils/imprimirPaquete";
+
+import "./../../styles/paquetes.css";
 
 export default function CrearPaquete() {
 
     const [usuario, setUsuario] = useOutletContext();
 
     useEffect(() => {
-        if (!usuario || !usuario.sucursal) {
+        if (!usuario || !usuario.usuario.sucursal) {
             window.location.href = "/";
         }
     }, [usuario]);
@@ -36,6 +38,7 @@ export default function CrearPaquete() {
 
     const [peso, setPeso] = useState(0);
     const [precio, setPrecio] = useState(0);
+    
 
     useEffect(() => {
         fetchDimensiones()
@@ -45,22 +48,9 @@ export default function CrearPaquete() {
         obtenerPrecio();
     }, [peso]);
 
-    useEffect(() => {
-        comprobar(destinatario);
-    }, [destinatario]);
-
-    useEffect(() => {
-        comprobar(remitente);
-    }, [remitente]);
-
-    const comprobar = async (usuario) => {
-        if (usuario.nombre && usuario.apellidos && (usuario.telefono || usuario.correo)) {
-            return result = await comprobarDatos(usuario.nombre, usuario.apellidos, usuario.telefono, usuario.correo);
-        }
-    }
     
     const obtenerPrecio = async () => {
-        const preciodb = await calcularPrecio(dimension.id, peso);
+        const preciodb = await calcularPrecio(dimension.nombre, peso);
         setPrecio(preciodb)
     }
 
@@ -68,8 +58,9 @@ export default function CrearPaquete() {
     const handleSubmit = async () => {
         const datos = {
             dimensiones: dimension?.id,
-            remitente: ID_PATTERN.test(destinatario.id) ? destinatario.id : { nombre: destinatario.nombre, apellidos: destinatario.apellidos, correo: destinatario.correo, telefono: destinatario.telefono },
+            remitente: ID_PATTERN.test(remitente.id) ? remitente.id : { nombre: remitente.nombre, apellidos: remitente.apellidos, correo: remitente.correo, telefono: remitente.telefono },
             direccion_remitente: {
+                id: direccionRemitente.id,
                 calle: direccionRemitente.calle,
                 numero: direccionRemitente.numero,
                 codigoPostal: direccionRemitente.codigoPostal,
@@ -79,6 +70,7 @@ export default function CrearPaquete() {
             },
             destinatario: ID_PATTERN.test(destinatario.id) ? destinatario.id : { nombre: destinatario.nombre, apellidos: destinatario.apellidos },
             direccion_destinatario: {
+                id: direccionDestinatario.id,
                 calle: direccionDestinatario.calle,
                 numero: direccionDestinatario.numero,
                 codigoPostal: direccionDestinatario.codigoPostal,
@@ -88,9 +80,12 @@ export default function CrearPaquete() {
             },
             peso: peso
         };
+        console.log(datos, "datos paquete");
         const result = await postPaquete(datos);
         console.log(result, "resultado peticion");
+       
         if (result) {
+            console.log("imprimir");
             imprimir(result);
         } else {
             mostrarError("Error al crear el paquete, revise los datos introducidos.");
@@ -119,23 +114,17 @@ export default function CrearPaquete() {
                 {dimensiones.map(d => (<Dimension key={d.id} dimension={d} setDimension={setDimension} selectedDimension={dimension} />))}
             </div>
             <div className="forms-envio">
-                {(dimension && dimension.nombre != null) ? <FormDestinatario setDestinatario={setDestinatario} setDireccionesDestinatario={setDireccionesDestinatario} /> : <form></form>}
-                {(destinatario && (destinatario.nombre?.length >= MIN_NAME_LENGTH && destinatario.apellidos?.length >= MIN_NAME_LENGTH) || (destinatario && ID_PATTERN.test(destinatario.id))) ? <FormDirecciones usuario={destinatario} setDireccion={setDireccionDestinatario} direcciones={direccionesDestinatario} /> : <form></form>}
-                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormRemitente setRemitente={setRemitente} setDireccionesRemitente={setDireccionesRemitente} /> : <form></form>}
+                {(dimension && dimension.nombre != null) ? <FormularioUsuario setDatosUsuario={setDestinatario} setDirecciones={setDireccionesDestinatario} tipo={"destinatario"}/> : <form></form>}
+                {(destinatario && (destinatario.nombre?.length >= MIN_NAME_LENGTH && destinatario.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(destinatario.correo)) || (destinatario && ID_PATTERN.test(destinatario.id))) ? <FormDirecciones usuario={destinatario} setDireccion={setDireccionDestinatario} direcciones={direccionesDestinatario} /> : <form></form>}
+                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormularioUsuario setDatosUsuario={setRemitente} setDirecciones={setDireccionesRemitente} /> : <form></form>}
 
-                {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
-                
-                {(direccionRemitente && direccionRemitente.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionRemitente.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? 
+                {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(destinatario.correo)) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} tipo={"remitente"} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
                 <form>
                     <label>Peso</label><input type="text" name="peso" onChange={(e) => setPeso(e.target.value)} placeholder="Peso" />
                     <label>Precio</label><input type="text" name="precio" value={precio} disabled placeholder="Precio" />
                 </form>
-                :
-                <form></form> 
-                }
-                
                 <div className="boton-tramitar-contenedor">
-                    {(remitente && ID_PATTERN.test(remitente.id)) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button className="tramitar" disabled>Tramitar</button>}
+                    {(remitente && ID_PATTERN.test(remitente.id)) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
                 </div>
             </div>
             <ToastContainer />

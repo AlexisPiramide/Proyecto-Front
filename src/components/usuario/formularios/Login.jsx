@@ -4,8 +4,9 @@ import { toast } from 'react-toastify';
 import "./../../../styles/toast.css"
 import 'react-toastify/dist/ReactToastify.css';
 import { login } from '../../../services/usuarios.services';
+import { useNavigate } from "react-router";
 export default function Login({setUsuario}) {
-
+    const navigate = useNavigate();
     const [datosFormulario, setDatosFormulario] = useState({
         correo: "",
         password: ""
@@ -54,9 +55,20 @@ export default function Login({setUsuario}) {
     const submitLogin = async (e) => {
         e.preventDefault(); 
         if (validarPaso()) { 
-            const result = await login(datosFormulario.correo, datosFormulario.password);
-            setUsuario(result);
-            localStorage.setItem("usuario", JSON.stringify(result));
+            try {
+                const result = await login(datosFormulario.correo, datosFormulario.password);
+                setUsuario(result);
+                localStorage.setItem("usuario", JSON.stringify(result));
+                navigate("/");
+            } catch (error) {
+                console.error("Error en el login:", error);
+                if (error?.response?.data?.mensaje) {
+                    mostrarError(error.response.data.mensaje);
+                } else {
+                    mostrarError("Error al iniciar sesión. Contraseña o correo incorrectos.");
+                }
+            }
+           
         } 
     }
 

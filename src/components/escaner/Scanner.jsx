@@ -13,7 +13,7 @@ export default function Escaner() {
     const scannerRef = useRef(null);
 
     useEffect(() => {
-        if (!usuario || !usuario.sucursal) {
+        if (!usuario || !usuario.usuario.sucursal) {
             window.location.href = "/";
         }
     }, [usuario]);

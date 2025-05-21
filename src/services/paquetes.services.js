@@ -20,9 +20,14 @@ async function getPaquetesUsuario(id) {
 
 
 async function postPaquete(datos){
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const headers = {'Content-Type': 'application/json'};
+    headers['Authorization'] = 'Bearer ' + usuario.token;
+
     const data = await fetch(URL+'paquetes', {
         method: 'POST',
-        body: JSON.stringify(datos)
+        body: JSON.stringify(datos),
+        headers: headers
     })
 
     if (!data.ok) {
@@ -64,6 +69,8 @@ async function generateBarcode(id) {
 }
 
 async function calcularPrecio(tamaño, peso) {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const headers = {'Authorization': 'Bearer ' + usuario.token};
     const response = await fetch(URL + `paquetes/precio/${tamaño}/${peso}`, {
         method: 'GET',
         headers: headers,

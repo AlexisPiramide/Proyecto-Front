@@ -44,11 +44,18 @@ const registro = async (datosFormulario) => {
 
 const comprobarUsuario = async (id) => {
     try {
+       
+
+        const token = JSON.parse(localStorage.getItem('usuario')).token;
+        const header= {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+        console.log("header", header);
         const data = await fetch(URL + `usuarios/${id}`, {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: header
+
         })
         if (data.ok) {
             const json = await data.json();
@@ -60,17 +67,17 @@ const comprobarUsuario = async (id) => {
     }
 }
 
-const comprobarDatos = async (nombre, apellidos, telefono, correo) => {
+const comprobarDatos = async (datos) => {
     const data = await fetch(URL + "usuarios/existe", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            nombre: nombre,
-            apellidos: apellidos,
-            telefono: telefono,
-            correo: correo
+            "nombre": datos.nombre,
+            "apellidos": datos.apellidos,
+            "telefono": datos.telefono,
+            "correo": datos.correo
         })
     })
     if (data.ok) {

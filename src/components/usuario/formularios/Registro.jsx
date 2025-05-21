@@ -4,8 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import InputFormulario from "./InputFormulario";
 import "./../../../styles/toast.css"
 import { registro } from "../../../services/usuarios.services";
+import { useNavigate } from "react-router";
 export default function Registro({setUsuario}) {
-    
+    const navigate= useNavigate();
     const [next, setNext] = useState(0);
     const [datosFormulario, setDatosFormulario] = useState({
         nombre: "",
@@ -84,10 +85,21 @@ export default function Registro({setUsuario}) {
     const submitRegistro =async (e) => {
         e.preventDefault(); 
         if (validarPaso()) { 
+            try {
+                const result = await registro(datosFormulario);
+                setUsuario(result);
+                localStorage.setItem("usuario", JSON.stringify(result));
+                navigate("/");
+            } catch (error) {
+                console.error("Error en el login:", error);
+                if (error?.response?.data?.mensaje) {
+                    mostrarError(error.response.data.mensaje);
+                } else {
+                    mostrarError("Error al registrarse. Por favor, inténtalo de nuevo.");
+                }
+            
+            }
 
-            const result = await registro(datosFormulario);
-            setUsuario(result);
-            localStorage.setItem("usuario", JSON.stringify(result));
         } 
     };
 

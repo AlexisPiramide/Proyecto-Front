@@ -6,7 +6,7 @@ export default function Admin() {
     const [usuario, setUsuario] = useOutletContext();
 
     useEffect(() => {
-        if (!usuario || !usuario.sucursal) {
+        if (!usuario || !usuario.usuario.sucursal) {
             window.location.href = "/";
         }
     }, [usuario]);
