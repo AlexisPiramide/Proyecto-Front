@@ -11,10 +11,14 @@ export default function Envio() {
 
     const [tracking, setTracking] = useState([]);
     const remitente = paquete.remitente;
-    const direccionremitente = remitente.direccion;
+    const direccion_remitente = paquete.direccion_destinatario;
+
+    const destinatario = paquete.destinatario;
+    const direccion_destinatario = paquete.direccion_destinatario;
 
     const fetchTracking = async () => {
         const response = await getTraking(paquete.id);
+        console.log(response);
         setTracking(response);
     }
 
@@ -24,29 +28,28 @@ export default function Envio() {
 
     return (
         <div className="paquete">
-            <h1>Paquete - {paquete.id}</h1>
             <div className="informacion">
-                <h2>Informacion Basica</h2>
                 <div className="datos-remitente">
                     <h3>Datos del remitente</h3>
-                    <p className="remitente" id="id">{remitente.id}</p>
-                    <p className="remitente" id="remitente">{remitente.nombre}</p>
-                    <p className="direccion" id="direccion">
-                        {direccionremitente.calle} {direccionremitente.numero}, {direccionremitente.codigoPostal}, {direccionremitente.localidad}, 
-                        {direccionremitente.provincia}, {direccionremitente.pais}
+                    <p className="remitente-paquete" id="id">{remitente.id}</p>
+                    <p className="remitente-paquete" id="remitente">{remitente.nombre}</p>
+                    <p className="direccion-paquete" id="direccion">
+                        {direccion_remitente.calle} {direccion_remitente.numero}, {direccion_remitente.codigoPostal}, {direccion_remitente.localidad}, 
+                        {direccion_remitente.provincia}, {direccion_remitente.pais}
                     </p>
                 </div>
                 <div className="datos-destinatario">
                     <h3>Datos del destinatario</h3>
-                    <p className="destinatario" id="id">{paquete.destinatario.id}</p>
-                    <p className="destinatario" id="destinatario">{paquete.destinatario.nombre}</p>
-                    <p className="direccion" id="direccion">
-                        {paquete.direccion.calle} {paquete.direccion.numero}, {paquete.direccion.codigoPostal}, {paquete.direccion.localidad}, 
-                        {paquete.direccion.provincia}, {paquete.direccion.pais}
+                    <p className="destinatario-paquete" id="id">{destinatario.id}</p>
+                    <p className="destinatario-paquete" id="destinatario">{destinatario.nombre}</p>
+                    <p className="direccion-paquete" id="direccion">
+                        {direccion_destinatario.calle} {direccion_destinatario.numero}, {direccion_destinatario.codigoPostal}, {direccion_destinatario.localidad}, 
+                        {direccion_destinatario.provincia}, {direccion_destinatario.pais}
                     </p>
             </div>
-            <Tracking datos={tracking} /> 
+       
         </div>
+        <Tracking datos={tracking}  />
     </div>
     );
 }

@@ -8,9 +8,9 @@ export default function BotonDireccion({ direccion, onClick }) {
 
     return (
         <div className="direccion-boton" onClick={handleClick}>
-            <p>{direccion.calle} {direccion.numero}</p>
-            <p>{direccion.ciudad}, {direccion.provincia}</p>
-            <p>{direccion.codigoPostal}</p>
+            <p>Calle: {direccion.calle} {direccion.numero}</p>
+            <p>{direccion.localidad}, {direccion.provincia}, {direccion.pais}</p>
+            <p>CP: {direccion.codigoPostal}</p>
         </div>
     );
 }

@@ -17,7 +17,6 @@ async function getDireccionesUsuario(id) {
         }
 
         const data = await response.json();
-        console.log("Direcciones del usuario:", data);
         return data;
 
     } catch (error) {
@@ -27,12 +26,16 @@ async function getDireccionesUsuario(id) {
 }
 
 async function postDireccion(direccion) {
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
     const headers = {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${usuario.token}`
     };
 
     try {
-        const response = await fetch(URL + `direcciones`, {
+        const response = await fetch(URL + `direcciones/${usuario.usuario.id}`, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(direccion)
@@ -43,7 +46,6 @@ async function postDireccion(direccion) {
         }
 
         const data = await response.json();
-        console.log("Dirección guardada:", data);
         return data;
 
     } catch (error) {
@@ -64,7 +66,6 @@ async function obtenerLocalidadProvincia(codigoPostal) {
         let localidad = data.places[0]["place name"];
         let provincia = data.places[0]["state"];
 
-        console.log(`Localidad: ${localidad}, Provincia: ${provincia}`);
         return { localidad, provincia };
     } catch (error) {
         console.error("Error:", error.message);
@@ -89,7 +90,6 @@ async function updateDireccion(id, direccion) {
         }
 
         const data = await response.json();
-        console.log("Dirección actualizada:", data);
         return data;
 
     } catch (error) {
@@ -97,5 +97,30 @@ async function updateDireccion(id, direccion) {
         throw error;
     }
 }
+async function eliminarDireccion(id) {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-export { obtenerLocalidadProvincia,postDireccion, getDireccionesUsuario, updateDireccion };
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${usuario.token}`
+    };
+
+    try {
+        const response = await fetch(URL + `direcciones/${id}`, {
+            method: 'DELETE',
+            headers: headers
+        });
+
+        if (!response.ok) {
+            throw new Error("Error al eliminar la dirección");
+        }
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error("Error en eliminarDireccion:", error);
+        throw error;
+    }
+}
+
+export { obtenerLocalidadProvincia,postDireccion, getDireccionesUsuario, updateDireccion,eliminarDireccion };

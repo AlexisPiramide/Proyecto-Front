@@ -1,28 +1,102 @@
-.envio {
-    display: flex;
+.paquete {
+  height: 90vh;
+  background-color: #f7f9fc;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.paquete h1 {
+  font-size: 2rem;
+  padding-top: 1rem;
+  margin: 0;
+}
+
+.paquete .informacion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  gap: 2rem;
+}
+
+.informacion > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5rem;
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.informacion h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.informacion p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.paquete .tracking {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contenedor-datos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width:90%;
+  padding: 1.5rem;
+  border-radius: 25px;
+  border: 5px solid rgb(255, 0, 0);
+  background-color: #fff;
+}
+
+.contenedor-datos .titulo {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.contenedor-datos .estado {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.contenedor-datos .fecha {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .paquete {
     flex-direction: column;
-    height: 100vh; /* Full viewport height */
-    padding: 1rem;
-    box-sizing: border-box;
-}
+    height: auto;
+  }
 
-.informacion {
-    flex-shrink: 0; /* Don't allow shrinking */
-    margin-bottom: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 1rem;
-}
+  .paquete .informacion,
+  .paquete .tracking {
+    width: 100%;
+  }
 
-.informacion > h2 {
-    grid-column: span 2; /* Span across both columns */
-    margin-bottom: 0.5rem;
+  .informacion > div {
+    max-width: 100%;
+  }
 }
-
-.datos-remitente,
-.datos-destinatario {
-    background: #ffffff;
-    padding: 1rem;
-    border-radius: 8px;
-}
-

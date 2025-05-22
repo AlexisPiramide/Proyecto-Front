@@ -21,7 +21,6 @@ const router = createBrowserRouter([
 			{ path: "", element: <Inicio /> },
 			{ path: "usuario", element: <ZonaSesiones /> },
 			{ path: "envio", element: <PaginaEnvio /> },
-			{ path: "escaner", element: <Scanner /> },
 		],
 	},
 	{
