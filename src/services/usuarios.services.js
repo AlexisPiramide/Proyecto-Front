@@ -44,7 +44,6 @@ const registro = async (datosFormulario) => {
 
 const comprobarUsuario = async (id) => {
     try {
-       
 
         const token = JSON.parse(localStorage.getItem('usuario')).token;
         const header= {
@@ -68,23 +67,31 @@ const comprobarUsuario = async (id) => {
 }
 
 const comprobarDatos = async (datos) => {
-    const data = await fetch(URL + "usuarios/existe", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "nombre": datos.nombre,
-            "apellidos": datos.apellidos,
-            "telefono": datos.telefono,
-            "correo": datos.correo
+    try {
+        const data = await fetch(URL + "usuarios/existe", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "nombre": datos.nombre,
+                "apellidos": datos.apellidos,
+                "telefono": datos.telefono,
+                "correo": datos.correo
+            })
         })
-    })
-    if (data.ok) {
-        const json = await data.json();
-        return json;
-    } else {
-        throw new Error('Error al comprobar datos');
+        if (data.ok) {
+            const json = await data.json();
+            return json;
+        } else {
+            throw data;
+        }
+    } catch (error) {
+        if(error.status === 404){
+            throw new Error('No existe el usuario');
+        }else{
+            throw new Error('Error al comprobar datos');
+        }
     }
 }
 

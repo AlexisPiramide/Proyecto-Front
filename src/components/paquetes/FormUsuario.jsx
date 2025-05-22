@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { comprobarUsuario, comprobarDatos } from "../../services/usuarios.services"
 import { getDireccionesUsuario } from "../../services/direcciones.services"
 import { toast } from 'react-toastify'
@@ -19,6 +19,10 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
         correo: "",
         telefono: "",
     });
+
+    useEffect(() => {
+        console.log("Datos del formulario:", datosForm);
+    }, [datosForm]);
 
     const mostrarError = (mensaje) => {
         toast.error(mensaje, {
@@ -99,6 +103,7 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
         const correoValido = updatedForm.correo && PATERN_CORREO.test(updatedForm.correo)
         const telefonoValido = updatedForm.telefono.length === 9
 
+    
         if ((nombreValido && apellidosValido) && (correoValido || telefonoValido)) {
             setMostrarBotonComprobar(true)
         } else {
@@ -119,14 +124,14 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
         const telefonoValido = datosForm.telefono.length === 9
 
         if ((nombreValido && apellidosValido) && (correoValido || telefonoValido)) {
-            const response = await comprobarDatos(datosForm)
-            if (response && response.existe && response.existe.id) {
+            try {
+                const response = await comprobarDatos(datosForm)
                 mostrarResultado("Se ha encontrado un usuario que coincide", true)
                 alternarUsoId()
                 await usarUsuarioPorId(response.existe.id)
                 return true
-            } else {
-                mostrarResultado("No se ha encontrado ninguna coincidencia", false)
+            } catch (error) {
+                mostrarError(error.message, false);
                 return false
             }
         }
@@ -146,13 +151,7 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
             </button>
 
             {mostrarBotonComprobar && (
-                <button
-                    type="button"
-                    className="fixed-button-comprobar"
-                    onClick={validacion}
-                >
-                    Comprobar Si Existe
-                </button>
+                <button type="button" className="fixed-button-comprobar" onClick={validacion} > Comprobar Si Existe </button>
             )}
 
             {usarId ? (

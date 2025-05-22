@@ -148,7 +148,10 @@
     cursor: pointer;
 
     &:hover {
-        background-color: darken(var(--primary-color), 10%);
+        background-color: white;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+
     }
 }
 

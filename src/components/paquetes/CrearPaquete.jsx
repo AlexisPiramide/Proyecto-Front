@@ -8,7 +8,7 @@ import Dimension from "./Dimension";
 
 import { getDimensiones } from "../../services/dimensiones.services";
 
-import { postPaquete, calcularPrecio } from "../../services/paquetes.services";
+import { postPaquete, calcularPrecio, generateBarcode } from "../../services/paquetes.services";
 import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH,PATERN_CORREO } from "../../services/const";
 
 import { imprimir } from "../../utils/imprimirPaquete";
@@ -48,6 +48,12 @@ export default function CrearPaquete() {
         obtenerPrecio();
     }, [peso]);
 
+    useEffect(() => {
+        console.log("Datos del remitente:", remitente);
+        if((remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(remitente.correo)) || (remitente && ID_PATTERN.test(remitente.id))))
+            console.log("Remitente válido");
+        else console.log("Remitente inválido");
+    }, [remitente]);
     
     const obtenerPrecio = async () => {
         const preciodb = await calcularPrecio(dimension.nombre, peso);
@@ -86,7 +92,9 @@ export default function CrearPaquete() {
        
         if (result) {
             console.log("imprimir");
-            imprimir(result);
+            const barcode = await generateBarcode(result.id);
+            const barcodeUrl = URL.createObjectURL(barcode);
+            imprimir(result, barcodeUrl);
         } else {
             mostrarError("Error al crear el paquete, revise los datos introducidos.");
         }
@@ -116,15 +124,15 @@ export default function CrearPaquete() {
             <div className="forms-envio">
                 {(dimension && dimension.nombre != null) ? <FormularioUsuario setDatosUsuario={setDestinatario} setDirecciones={setDireccionesDestinatario} tipo={"destinatario"}/> : <form></form>}
                 {(destinatario && (destinatario.nombre?.length >= MIN_NAME_LENGTH && destinatario.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(destinatario.correo)) || (destinatario && ID_PATTERN.test(destinatario.id))) ? <FormDirecciones usuario={destinatario} setDireccion={setDireccionDestinatario} direcciones={direccionesDestinatario} /> : <form></form>}
-                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormularioUsuario setDatosUsuario={setRemitente} setDirecciones={setDireccionesRemitente} /> : <form></form>}
-
-                {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(destinatario.correo)) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} tipo={"remitente"} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
+                {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormularioUsuario setDatosUsuario={setRemitente} setDirecciones={setDireccionesRemitente} tipo={"remitente"} /> : <form></form>}
+                
+                {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(remitente.correo)) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
                 <form>
                     <label>Peso</label><input type="text" name="peso" onChange={(e) => setPeso(e.target.value)} placeholder="Peso" />
                     <label>Precio</label><input type="text" name="precio" value={precio} disabled placeholder="Precio" />
                 </form>
                 <div className="boton-tramitar-contenedor">
-                    {(remitente && ID_PATTERN.test(remitente.id)) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
+                    {(dimension && destinatario && direccionDestinatario && remitente && direccionRemitente && peso && precio ) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
                 </div>
             </div>
             <ToastContainer />

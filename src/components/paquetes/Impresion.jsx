@@ -1,9 +1,9 @@
 import React from "react";
 import "./../../styles/impresion.css";
 
-export default function impresion({paquete}){
+export default function impresion({paquete,barcode}){
 
-    const {remitente, destinatario, dimensiones, peso,codigo} = paquete;
+    const {remitente, destinatario, dimensiones, peso} = paquete;
 
     return (
         <div className="content">
@@ -26,7 +26,7 @@ export default function impresion({paquete}){
         <div className="hrdiv"></div>
         <div className="qr-logo">
             <div className="codigo">
-            <img src={codigo} alt="QR Code" />
+            <img src={barcode} alt="QR Code" />
             </div>
             <div className="datos">
             <label>Dimensiones</label>
