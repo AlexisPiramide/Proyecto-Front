@@ -11,8 +11,7 @@ import CrearPaquete from "./components/paquetes/CrearPaquete";
 import Admin from "./components/inicio/Admin";
 import Inicio from "./components/inicio/Inicio.jsx";
 import RegistroExterno from "./components/usuario/RegistroExterno";
-import register from "./registerServiceWorker"; // <-- Import service worker
-
+import * as register from './registerServiceWorker';
 const router = createBrowserRouter([
 	{
 		path: "/",
