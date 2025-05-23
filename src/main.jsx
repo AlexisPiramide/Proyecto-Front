@@ -50,18 +50,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 	</React.StrictMode>
 );
 
-// Register the service worker
-register();
-
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/sw.js")
-      .then((registration) => {
-        console.log("✅ SW registrado con éxito:", registration);
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('✅ Service Worker registrado:', registration);
       })
-      .catch((err) => {
-        console.error("❌ Error al registrar SW:", err);
+      .catch(error => {
+        console.error('❌ Falló registro SW:', error);
       });
   });
 }
