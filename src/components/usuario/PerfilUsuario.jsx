@@ -216,7 +216,7 @@ export default function PerfilUsuario() {
                                             <h3>Direccion: {direccion.calle}, {direccion.numero}</h3>
                                             <p>Codigo Postal: {direccion.codigoPostal}</p>
                                             <p> {direccion.localidad} {direccion.provincia}, {direccion.pais}</p>
-                                            <button className="boton-eliminar" onClick={(e) => { eliminar(e, direccion) }}>Eliminar</button>
+                                            {/*<button className="boton-eliminar" onClick={(e) => { eliminar(e, direccion) }}>Eliminar</button>*/}
                                         </div>
                                     ))}
                                 </>)
