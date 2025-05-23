@@ -18,12 +18,11 @@ export default function Tracking({ datos }) {
                         <h3 className="titulo">Tracking - {item.id}</h3>
                         <p className="estado">{item.estado}</p>
                         <p className="fecha">{fecha}</p>
-                        {/**
-                                <p className="tracking" id="direccion">
-                                    {item.direccion.calle} {item.direccion.numero}, {item.direccion.codigoPostal}, {item.direccion.localidad},
-                                    {item.direccion.provincia}, {item.direccion.pais}
-                                </p>
-                            */}
+                        <p className="tracking" id="direccion">
+                            {item.direccion.calle} {item.direccion.numero}, {item.direccion.codigoPostal}, {item.direccion.localidad},
+                            {item.direccion.provincia}, {item.direccion.pais}
+                        </p>
+                        
                     </div>
                 );
             })}

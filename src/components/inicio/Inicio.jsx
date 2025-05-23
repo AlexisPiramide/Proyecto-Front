@@ -1,45 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useNavigate } from 'react-router-dom';
 import {getPaquete} from "../../services/paquetes.services";
 import { ToastContainer, toast } from 'react-toastify';
+import LeafletMap from "./../leaftlet";
+
 import "./../../styles/home.css"
 export default function Inicio() {
     const navigate = useNavigate();
-
+    const [latitud, setLatitud] = useState(null);
+    const [longitud, setLongitud] = useState(null);
     const [buscador, setBuscador] = useState("");
-    const [historialPaquetes, setHistorialPaquetes] = useState([]);
 
     const handleBuscar = async () => {
         const paquete = await getPaquete(buscador);
         if (!paquete) {
             mostrarError("No se ha encontrado el paquete con ese código.");
         }else{
-            if (!historialPaquetes.includes(paquete.codigo)) {
-                if (historialPaquetes.length < 10) {
-                    const nuevoHistorial = [...historialPaquetes, paquete.codigo];
-                    setHistorialPaquetes(nuevoHistorial);
-                    localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
-                }else{
-                    const nuevoHistorial = historialPaquetes.filter(cod => cod !== historialPaquetes[0]).concat(paquete.codigo);
-                    setHistorialPaquetes(nuevoHistorial);
-                    localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
-                }
-              
-            }else{
-                const nuevoHistorial = historialPaquetes.filter(cod => cod !== paquete.codigo).concat(paquete.codigo);
-                setHistorialPaquetes(nuevoHistorial);
-                localStorage.setItem("historial", JSON.stringify(nuevoHistorial));
-            }
             navigate('/envio',{state:{paquete:paquete}});
         }
     };
-
-    useEffect(() => {
-        const historial = JSON.parse(localStorage.getItem("historial"));
-        if (historial) {
-            setHistorialPaquetes(historial);
-        }
-    }, []);
 
     const mostrarError = (mensaje) => {
         if (mensaje) {
@@ -55,36 +34,42 @@ export default function Inicio() {
             });
         }
     };
+    useEffect(() => {
+        getGeolocation();
+    }, []);
+
+    const getGeolocation = () => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setLatitud(latitude);
+                    setLongitud(longitude);
+                },
+                (error) => {
+                    console.error("Error al obtener la geolocalización:", error);
+                }
+            );
+        } else {
+            console.error("La geolocalización no está soportada en este navegador.");
+        }
+    }
 
     return (
-        <div>
+        <div className="home">
             <div className="buscador-codigo">
                 <h1 className="titulo-home">Bienvenido a la página de inicio</h1>
                 <input type="text" id="input" onChange={(e) => setBuscador(e.target.value)} placeholder="Buscar paquete" />
                 <button type="button" onClick={handleBuscar}>Buscar</button>
             </div>
-            <div className="historial">
-                {historialPaquetes.length > 0 ? (
-                    <>
-                        {historialPaquetes.map((paquete, index) => (
-                            <button key={index} className="paquete-item" onClick={()=>{console.log(paquete)}}>{paquete}</button>
-                        ))}
-                    </>
-                ) : (
-                    <></>
-                )
-                }
-            </div>
             <div className="anuncios">
                 <div className="anuncio">
-                    <h2 className="titulo-anuncio">Placeholder Anuncio 1</h2>
+                    <h2 className="titulo-anuncio">Gestiona tu cuenta para buscar los paquetes</h2>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt-ewgNomB7qqJH9Hn5VxQsnOgH_rRb2u9Q&s" alt="Anuncio 1" />
                 </div>
-                <div></div>
-                <div></div>
                 <div className="anuncio">
-                    <h2 className="titulo-anuncio">Placeholder Anuncio 2</h2>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt-ewgNomB7qqJH9Hn5VxQsnOgH_rRb2u9Q&s" alt="Anuncio 2" />
+                    <h2 className="titulo-anuncio">Encuentranos por toda España</h2>
+                    <LeafletMap latitud={latitud} longitud={longitud}/>
                 </div>
 
             </div>

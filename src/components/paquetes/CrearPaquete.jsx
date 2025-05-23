@@ -115,11 +115,13 @@ export default function CrearPaquete() {
         }
     };
 
+    const sortedDimensions = dimensiones.sort((a, b) => a.peso - b.peso);
+
 
     return (
         <>
             <div className="dimensiones">
-                {dimensiones.map(d => (<Dimension key={d.id} dimension={d} setDimension={setDimension} selectedDimension={dimension} />))}
+                {sortedDimensions.map(d => (<Dimension key={d.id} dimension={d} setDimension={setDimension} selectedDimension={dimension} />))}
             </div>
             <div className="forms-envio">
                 {(dimension && dimension.nombre != null) ? <FormularioUsuario setDatosUsuario={setDestinatario} setDirecciones={setDireccionesDestinatario} tipo={"destinatario"}/> : <form></form>}

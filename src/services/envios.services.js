@@ -9,13 +9,13 @@ const getTraking = async (id) => {
     return response.json();
 };
 
-const postTraking = async (id,usuario, tipo) => {
+const postTraking = async (id,usuario, tipo,address) => {
     const response = await fetch(URL+"envios/tracking/"+usuario, {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
         },
-        body: JSON.stringify({id:id, tipo:tipo}),
+        body: JSON.stringify({id:id, tipo:tipo, direccion:address}),
     });
     return response.json();
 };

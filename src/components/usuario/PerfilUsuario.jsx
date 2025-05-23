@@ -165,7 +165,7 @@ export default function PerfilUsuario() {
         <div className="perfil-usuario">
             <aside>
                 <div className="aside-contenido">
-                    <img src="" />
+                    <img src="avatar.png" />
                     <h1>{usuario.usuario.nombre} {usuario.usuario.apellidos}</h1>
                     <p>{usuario.usuario.correo}</p>
                     <p>+34 {telefonoFormateado(usuario.usuario.telefono)} </p>
@@ -180,7 +180,7 @@ export default function PerfilUsuario() {
                 {tipo ? <h2>Pedidos</h2> : <h2>Direcciones</h2>}
                 <div className="contenido">
                     {tipo ? (
-                        (
+                        pedidos.length !== 0 ? (
                             pedidos.map((pedido, index) => (
                                 <div key={index} className="pedido">
                                     {(pedido.destinatario.nombre == usuario.nombre) ?
@@ -200,6 +200,10 @@ export default function PerfilUsuario() {
                                     <button onClick={() => handlePedidoMirar(pedido.id)}>Ver detalles</button>
                                 </div>
                             ))
+                        ) : (
+                            <div className="sin-pedidos">
+                                <h3>No tienes pedidos</h3>
+                            </div>
                         )
                     ) : (
                         <>

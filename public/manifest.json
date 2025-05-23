@@ -1,0 +1,28 @@
+{
+    "theme_color": "#003da8",
+    "background_color": "#003da8",
+    "icons": [
+        {
+            "purpose": "maskable",
+            "sizes": "512x512",
+            "src": "icon512_maskable.png",
+            "type": "image/png"
+        },
+        {
+            "purpose": "any",
+            "sizes": "512x512",
+            "src": "icon512_rounded.png",
+            "type": "image/png"
+        }
+    ],
+    "orientation": "any",
+    "display": "standalone",
+    "dir": "auto",
+    "lang": "es-ES",
+    "name": "El camino del Paquete",
+    "short_name": "Paqueteria Camino",
+    "start_url": "https://front.daw.alexis.cpiffpiramide.com/",
+    "scope": "https://front.daw.alexis.cpiffpiramide.com/",
+    "description": "Proyecto DAW II Alexis Torres",
+    "id": "https://front.daw.alexis.cpiffpiramide.com/"
+}

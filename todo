@@ -11,30 +11,31 @@
         - [X] Dimensiones
         - [X] Usuarios
             - [ ] Pendiente Registro de trabajadores por admins
-        - [ ] Paquetes
-        - [ ] Envios
+        - [X] Paquetes
+        - [X] Envios
         - [X] Direcciones
-    - [ ] Creación componentes
-        - [ ] Usuarios.
+    - [X] Creación componentes
+        - [X] Usuarios.
             - [X] Formularios Sesion
             - [\] Perfil Usuario
-        - [ ] Envios.
+        - [X] Envios.
             - [X] Barra Busqueda por ID
-            - [ ] Pagina General de Paquete
+            - [X] Pagina General de Paquete
                 - [X] Extructura Basica
-                - [ ] Visualizacion Tracking
-        - [ ] Paquetes
+                - [X] Visualizacion Tracking
+        - [X] Paquetes
             - [X] Estructura Basica
-            - [\] Formularios
+            - [X] Formularios
             - [X] Comporbaciones
                 - [X] Usuario por ID
                 - [X] Usuario por datos
+        
     # Generación Impresión pegatina Paquete
     - [X] Página html diseñada para ser imprimida con los datos del Back (QR o Código de barras, información básica ...)
     # Creacion de la PWA (Progressive Web App) 
     - [ ] Crear PAW para Android
         - [ ] Crear un icono para la app
-        - [ ] Crear un Web App Manifest
+        - [ ]   
         - [ ] Configuar PWA
         - [ ] Asegurarse de que la app se puede descargar por navegador
     - [ ]  Crear un APK

@@ -3,11 +3,11 @@ import { getTraking } from '../../services/envios.services';
 import Tracking from "./Tracking";
 
 import "./../../styles/envio.css"
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function Envio() {
     const location = useLocation();
-    const paquete = location.state.paquete; 
+    const paquete = location.state.paquete;
 
     const [tracking, setTracking] = useState([]);
     const remitente = paquete.remitente;
@@ -34,7 +34,7 @@ export default function Envio() {
                     <p className="remitente-paquete" id="id">{remitente.id}</p>
                     <p className="remitente-paquete" id="remitente">{remitente.nombre}</p>
                     <p className="direccion-paquete" id="direccion">
-                        {direccion_remitente.calle} {direccion_remitente.numero}, {direccion_remitente.codigoPostal}, {direccion_remitente.localidad}, 
+                        {direccion_remitente.calle} {direccion_remitente.numero}, {direccion_remitente.codigoPostal}, {direccion_remitente.localidad},
                         {direccion_remitente.provincia}, {direccion_remitente.pais}
                     </p>
                 </div>
@@ -43,13 +43,13 @@ export default function Envio() {
                     <p className="destinatario-paquete" id="id">{destinatario.id}</p>
                     <p className="destinatario-paquete" id="destinatario">{destinatario.nombre}</p>
                     <p className="direccion-paquete" id="direccion">
-                        {direccion_destinatario.calle} {direccion_destinatario.numero}, {direccion_destinatario.codigoPostal}, {direccion_destinatario.localidad}, 
+                        {direccion_destinatario.calle} {direccion_destinatario.numero}, {direccion_destinatario.codigoPostal}, {direccion_destinatario.localidad},
                         {direccion_destinatario.provincia}, {direccion_destinatario.pais}
                     </p>
+                </div>
+
             </div>
-       
+            <Tracking datos={tracking} />
         </div>
-        <Tracking datos={tracking}  />
-    </div>
     );
 }
