@@ -10,6 +10,7 @@ export default defineConfig({
         name: 'Your App Name',
         short_name: 'App',
         start_url: '/',
+        scope: '/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#317EFB',
@@ -26,10 +27,10 @@ export default defineConfig({
           },
         ],
       },
-      registerType: 'autoUpdate', // automatically updates service worker
+      registerType: 'autoUpdate',
     }),
   ],
   build: {
-    chunkSizeWarningLimit: 1600
-  }
+    chunkSizeWarningLimit: 1600,
+  },
 })
