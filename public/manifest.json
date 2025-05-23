@@ -21,8 +21,8 @@
     "lang": "es-ES",
     "name": "El camino del Paquete",
     "short_name": "Paqueteria Camino",
-    "start_url": "https://front.daw.alexis.cpiffpiramide.com/",
-    "scope": "https://front.daw.alexis.cpiffpiramide.com/",
+    "start_url": "/",
+    "scope": "/",
+    "id": "/",
     "description": "Proyecto DAW II Alexis Torres",
-    "id": "https://front.daw.alexis.cpiffpiramide.com/"
 }
