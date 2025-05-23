@@ -6,33 +6,29 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-        "theme_color": "#003da8",
-        "background_color": "#003da8",
-        "icons": [
-          {
-            "purpose": "maskable",
-            "sizes": "512x512",
-            "src": "icon512_maskable.png",
-            "type": "image/png"
-          },
-          {
-            "purpose": "any",
-            "sizes": "512x512",
-            "src": "icon512_rounded.png",
-            "type": "image/png"
-          }
-        ],
-        "orientation": "any",
-        "display": "standalone",
-        "dir": "auto",
-        "lang": "es-ES",
-        "name": "El camino del Paquete",
-        "short_name": "Paqueteria Camino",
-        "start_url": "/",
-        "scope": "/",
-        "id": "/",
-        "description": "Proyecto DAW II Alexis Torres"
-      }),
+      "name": "El camino del Paquete",
+      "short_name": "Paqueteria",
+      "start_url": "/",
+      "scope": "/",
+      "display": "standalone",
+      "background_color": "#003da8",
+      "theme_color": "#003da8",
+      "icons": [
+        {
+          "src": "/icons/icon512_maskable.png",
+          "type": "image/png",
+          "sizes": "512x512",
+          "purpose": "maskable"
+        },
+        {
+          "src": "/icons/icon512_rounded.png",
+          "type": "image/png",
+          "sizes": "512x512",
+          "purpose": "any"
+        }
+      ]
+    }
+    ),
   ],
   build: {
     chunkSizeWarningLimit: 1600,

@@ -1,11 +1,11 @@
 import { Workbox } from "workbox-window";
 
 const register = () => {
-  if (navigator?.serviceWorker) {
-    const wb = new Workbox(`/service-worker.js`);
+  if ("serviceWorker" in navigator) {
+    const wb = new Workbox("/service-worker.js");
 
     const checkForUpdate = () => {
-      const isUpdate = window.confirm("New Update Available. Click OK to update");
+      const isUpdate = window.confirm("New update available. Click OK to update");
       if (isUpdate) {
         wb.messageSkipWaiting();
       }
