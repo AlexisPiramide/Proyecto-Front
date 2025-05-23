@@ -2,16 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./components/App";
-import "./styles/main.css"
+import "./styles/main.css";
 import ZonaSesiones from "./components/usuario/ZonaSesiones";
 import PaginaEnvio from "./components/envios/PaginaEnvio";
-
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 import Scanner from "./components/escaner/Scanner";
 import CrearPaquete from "./components/paquetes/CrearPaquete";
 import Admin from "./components/inicio/Admin";
 import Inicio from "./components/inicio/Inicio.jsx";
 import RegistroExterno from "./components/usuario/RegistroExterno";
+import register from "./registerServiceWorker"; // <-- Import service worker
 
 const router = createBrowserRouter([
 	{
@@ -50,3 +50,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 		<RouterProvider router={router} />
 	</React.StrictMode>
 );
+
+// Register the service worker
+register();
