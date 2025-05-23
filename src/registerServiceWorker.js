@@ -1,7 +1,6 @@
 import { Workbox } from "workbox-window";
 
 const register = () => {
-  if (process.env.NODE_ENV !== "production") return;
   if (navigator?.serviceWorker) {
     const wb = new Workbox(`/service-worker.js`);
 
