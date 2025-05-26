@@ -22,7 +22,6 @@ export default function PerfilUsuario() {
 
     const fetchDimensiones = async () => {
         const data = await getDimensiones(usuario.usuario.id);
-        console.log(data);
         setDimensiones(data);
     }
 
@@ -60,7 +59,6 @@ export default function PerfilUsuario() {
 
     const fetchPedidos = async () => {
         const data = await getPaquetesUsuario(usuario.usuario.id);
-        console.log(data);
         setPedidos(data);
     };
 
@@ -138,9 +136,7 @@ export default function PerfilUsuario() {
     }
 
     const handlePedidoMirar = async(pedidoId) => {
-        console.log(pedidoId);
         const paquete = await getPaquete(pedidoId);
-        console.log(paquete);
         if (paquete) {
             const historialActualizado = [...historialPaquetes, paquete.id];
             setHistorialPaquetes(historialActualizado);
@@ -157,6 +153,8 @@ export default function PerfilUsuario() {
         if (telefono) {
             const telefonoSinEspacios = telefono.replace(/\s+/g, '');
             return telefonoSinEspacios.replace(/(\d{3})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4');
+        }else{
+            return 'XXX-XX-XX-XX'
         }
         return '';
     }
@@ -173,11 +171,11 @@ export default function PerfilUsuario() {
 
                 <div className="botones-aside">
                     <button className={"aside-direccion " + (!tipo ? "seleccionada" : "")} onClick={() => { setTipo(false) }} >Direcciones</button>
-                    <button className={"aside-direccion " + (tipo ? "seleccionada" : "")} onClick={() => { setTipo(true) }}>Pedidos</button>
+                    <button className={"aside-direccion " + (tipo ? "seleccionada" : "")} onClick={() => { setTipo(true) }}>Paquetes</button>
                 </div>
             </aside>
             <main>
-                {tipo ? <h2>Pedidos</h2> : <h2>Direcciones</h2>}
+                {tipo ? <h2>Paquetes</h2> : <h2>Direcciones</h2>}
                 <div className="contenido">
                     {tipo ? (
                         pedidos.length !== 0 ? (
@@ -202,7 +200,7 @@ export default function PerfilUsuario() {
                             ))
                         ) : (
                             <div className="sin-pedidos">
-                                <h3>No tienes pedidos</h3>
+                                <h3>No tienes ningun paquete</h3>
                             </div>
                         )
                     ) : (

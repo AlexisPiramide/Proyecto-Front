@@ -20,10 +20,6 @@ export default function FormularioUsuario({ setDatosUsuario, setDirecciones, tip
         telefono: "",
     });
 
-    useEffect(() => {
-        console.log("Datos del formulario:", datosForm);
-    }, [datosForm]);
-
     const mostrarError = (mensaje) => {
         toast.error(mensaje, {
             position: "top-right",

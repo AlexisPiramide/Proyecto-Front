@@ -12,10 +12,6 @@ export default function Nav({ usuario, setUsuario }) {
     };
 
     useEffect(() => {
-        console.log("Usuario en Nav:", usuario);
-    }, [usuario]);
-
-    useEffect(() => {
         if(!usuario) getLocalStorage();
     }, []);
 

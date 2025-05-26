@@ -18,7 +18,6 @@ export default function Envio() {
 
     const fetchTracking = async () => {
         const response = await getTraking(paquete.id);
-        console.log(response);
         setTracking(response);
     }
 

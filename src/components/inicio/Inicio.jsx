@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import {getPaquete} from "../../services/paquetes.services";
 import { ToastContainer, toast } from 'react-toastify';
@@ -65,10 +65,10 @@ export default function Inicio() {
             <div className="anuncios">
                 <div className="anuncio">
                     <h2 className="titulo-anuncio">Gestiona tu cuenta para buscar los paquetes</h2>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt-ewgNomB7qqJH9Hn5VxQsnOgH_rRb2u9Q&s" alt="Anuncio 1" />
+                    <img src="./anuncio.jpg" alt="Anuncio 1" onClick={()=>{navigate("/usuario")}}/>
                 </div>
                 <div className="anuncio">
-                    <h2 className="titulo-anuncio">Encuentranos por toda España</h2>
+                    <h2 className="titulo-anuncio mapa">Encuentranos por toda España</h2>
                     <LeafletMap latitud={latitud} longitud={longitud}/>
                 </div>
 

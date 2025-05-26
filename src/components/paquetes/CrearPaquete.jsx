@@ -46,16 +46,14 @@ export default function CrearPaquete() {
 
     useEffect(() => {
         obtenerPrecio();
-    }, [peso]);
-
-    useEffect(() => {
-        console.log("Datos del remitente:", remitente);
-        if((remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(remitente.correo)) || (remitente && ID_PATTERN.test(remitente.id))))
-            console.log("Remitente válido");
-        else console.log("Remitente inválido");
-    }, [remitente]);
+    }, [peso,dimension]);
     
     const obtenerPrecio = async () => {
+        if (!dimension || !peso) {
+            setPrecio(0);
+            return;
+        }
+
         const preciodb = await calcularPrecio(dimension.nombre, peso);
         setPrecio(preciodb)
     }
@@ -86,12 +84,10 @@ export default function CrearPaquete() {
             },
             peso: peso
         };
-        console.log(datos, "datos paquete");
+
         const result = await postPaquete(datos);
-        console.log(result, "resultado peticion");
        
         if (result) {
-            console.log("imprimir");
             const barcode = await generateBarcode(result.id);
             const barcodeUrl = URL.createObjectURL(barcode);
             imprimir(result, barcodeUrl);

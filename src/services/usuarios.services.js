@@ -10,7 +10,6 @@ const login = async (correo, password) => {
     })
     if (data.ok) {
         const json = await data.json();
-        console.log(json);
         return json;
     } else {
         throw new Error('Usuario o contraseña incorrectos');
@@ -50,7 +49,6 @@ const comprobarUsuario = async (id) => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
-        console.log("header", header);
         const data = await fetch(URL + `usuarios/${id}`, {
             method: 'GET',
             headers: header

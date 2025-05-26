@@ -1,6 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useEffect } from 'react';
 import L from 'leaflet';
 
 
@@ -17,10 +16,15 @@ export default function LeafletMap({ latitud, longitud }) {
         iconSize: [50, 81],
     });
 
+    const DefaultIcon = L.icon({
+        iconUrl: './pin-svgrepo-com.svg',
+        iconSize: [50, 81],
+    });
+
     return (
         <MapContainer center={position} zoom={6} scrollWheelZoom={false} style={{ height: '100vh', width: '100%' }} >
             <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={position}>
+            <Marker position={position} icon={DefaultIcon}>
                 <Popup>
                     Tu ubicación actual <br />
                 </Popup>

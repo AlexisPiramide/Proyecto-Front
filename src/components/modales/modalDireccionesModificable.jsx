@@ -14,7 +14,6 @@ const ModalDirecciones = ({ direction, onClose,visualizador,post}) => {
     const postD = async () => {
         const result = await post(direccionForm);
         if (result) {
-            console.log("Dirección guardada:", result);
             postDireccion(result);
         } else {
             console.error("Error al guardar la dirección");
@@ -24,7 +23,6 @@ const ModalDirecciones = ({ direction, onClose,visualizador,post}) => {
     const updateD = async () => {
         const result = await updateDireccion(direccionForm.id, direccionForm);
         if (result) {
-            console.log("Dirección actualizada:", result);
             setDireccionForm(result);
         } else {
             console.error("Error al actualizar la dirección");
