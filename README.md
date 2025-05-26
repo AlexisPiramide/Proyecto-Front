@@ -45,7 +45,6 @@ Este repositorio contiene el frontend desarrollado para el Trabajo de Fin de Gra
 - `react` — Librería principal de UI  
 - `react-dom` — Renderizado en el DOM  
 - `react-router-dom` — Ruteo de la aplicación  
-- `dotenv` — Variables de entorno  
 
 ### Escaner
 
@@ -78,14 +77,9 @@ git clone https://github.com/AlexisPiramide/frontend-tfg.git .
 # Instala las dependencias
 npm install
 
-# Copia el archivo de entorno de ejemplo
-cp .env.example .env
 
 # Ejecutar en modo desarrollo
 npm run dev
-
-# Ejecutar tests
-npm run test
 
 # Construir para producción
 npm run build
