@@ -278,3 +278,78 @@ main .contenido{
     border-radius: 5px;
 }
 /*------------------------------------------------*/
+
+.formulario-informacion {
+    height: 95%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: 80%;
+
+    border-radius: 10px;
+
+}
+
+form > .pack{
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.formulario-informacion h2 {
+    font-size: 1.2rem;
+    color: #222;
+    margin-bottom: 1rem;
+    margin-top: 0;
+    font-weight: 600;
+}
+
+.formulario-informacion label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.3rem;
+    margin-top: 0.7rem;
+    display: block;
+}
+
+.formulario-informacion input {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--tertiary-color);
+    color: #000;
+    border: 1px solid #333;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.formulario-informacion button[type="submit"] {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.9rem;
+    background-color: var(--secondary-color);
+    color: #000;
+    border: 1px solid #333;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.formulario-informacion button[type="submit"]:hover {
+    background-color: #ccc;
+}
+
+.pack-contraseña,
+.pack-telefono,
+.pack-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}

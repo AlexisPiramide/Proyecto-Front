@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {getPaquete} from "../../services/paquetes.services";
+import { getPaquete } from "../../services/paquetes.services";
 import { ToastContainer, toast } from 'react-toastify';
 import LeafletMap from "./../leaftlet";
 
@@ -15,9 +15,9 @@ export default function Inicio() {
         const paquete = await getPaquete(buscador);
         if (!paquete) {
             mostrarError("No se ha encontrado el paquete con ese código.");
-        }else{
-            navigate('/envio',{state:{paquete:paquete}});
-        }
+        } else {
+            navigate('/envio', { state: { paquete: paquete } });
+        };
     };
 
     const mostrarError = (mensaje) => {
@@ -39,19 +39,29 @@ export default function Inicio() {
     }, []);
 
     const getGeolocation = () => {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    setLatitud(latitude);
-                    setLongitud(longitude);
-                },
-                (error) => {
-                    console.error("Error al obtener la geolocalización:", error);
-                }
-            );
+        const geoLocalStorage = sessionStorage.getItem("geoLocalizacion");
+
+        if (geoLocalStorage) {
+            const { latitud, longitud } = JSON.parse(geoLocalStorage);
+            setLatitud(latitud);
+            setLongitud(longitud);
+            console.log("Geolocalización obtenida del almacenamiento de sesión:", latitud, longitud);
         } else {
-            console.error("La geolocalización no está soportada en este navegador.");
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        setLatitud(latitude);
+                        setLongitud(longitude);
+                        sessionStorage.setItem("geoLocalizacion", JSON.stringify({ latitud: latitude, longitud: longitude }));
+                    },
+                    (error) => {
+                        console.error("Error al obtener la geolocalización:", error);
+                    }
+                );
+            } else {
+                console.error("La geolocalización no está soportada en este navegador.");
+            }
         }
     }
 
@@ -65,15 +75,15 @@ export default function Inicio() {
             <div className="anuncios">
                 <div className="anuncio">
                     <h2 className="titulo-anuncio">Gestiona tu cuenta para buscar los paquetes</h2>
-                    <img src="./anuncio.jpg" alt="Anuncio 1" onClick={()=>{navigate("/usuario")}}/>
+                    <img src="./anuncio.jpg" alt="Anuncio 1" onClick={() => { navigate("/usuario") }} />
                 </div>
                 <div className="anuncio">
                     <h2 className="titulo-anuncio mapa">Encuentranos por toda España</h2>
-                    <LeafletMap latitud={latitud} longitud={longitud}/>
+                    <LeafletMap latitud={latitud} longitud={longitud} />
                 </div>
 
             </div>
-            <ToastContainer/>
+            <ToastContainer />
         </div>
     );
 }

@@ -2,27 +2,26 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+import {sucursales} from './../services/const';
+
 
 export default function LeafletMap({ latitud, longitud }) {
     const position = [latitud || 40.4165, longitud || -3.70256];
-    const sucursales = [
-        { id: 1, nombre: "Sucursal Madrid", latitud: 40.4165, longitud: -3.70256 },
-        { id: 2, nombre: "Sucursal Barcelona", latitud: 41.3874, longitud: 2.1686 },
-        { id: 3, nombre: "Sucursal Mallorca", latitud: 39.5696, longitud: 2.6502 },
-    ];
 
     const redIcon = new L.Icon({
-        iconUrl: './icono-sucursal.svg',
-        iconSize: [50, 81],
+        iconUrl: './pin-sucursal.svg',
+        iconSize: [50, 50],
+        iconAnchor: [25, 50],
     });
 
     const DefaultIcon = L.icon({
-        iconUrl: './pin-svgrepo-com.svg',
-        iconSize: [50, 81],
+        iconUrl: './pin-usuario.svg',
+        iconSize: [50, 50],
+        iconAnchor: [25, 50],
     });
 
     return (
-        <MapContainer center={position} zoom={6} scrollWheelZoom={false} style={{ height: '100vh', width: '100%' }} >
+        <MapContainer center={position} zoom={6} scrollWheelZoom={true} style={{ height: '100vh', width: '100%' }} >
             <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={position} icon={DefaultIcon}>
                 <Popup>

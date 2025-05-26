@@ -111,6 +111,34 @@ const registroExterno = async (id) => {
     }
 }
 
+const modificarUsuario = async (datosFormulario) => {
+    const token = JSON.parse(localStorage.getItem('usuario')).token;
+    
+    const header= {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+    }
+    console.log("datosFormulario", datosFormulario);
+    const data = await fetch(URL + "usuarios/actualizar", {
+        method: 'PUT',
+        headers: header,
+        body: JSON.stringify({"datos" : {
+            nombre: datosFormulario.nombre,
+            apellidos: datosFormulario.apellidos,
+            contraseña: datosFormulario.password,
+            telefono: datosFormulario.telefono
+        }})
+    });
+
+    if (data.ok) {
+        const json = await data.json();
+        return json;
+    } else {
+        throw new Error('Error al modificar usuario');
+    }
+
+}
+
 const isExterno = async (id) => {
     const data = await fetch(URL + "usuarios/isExterno/" + id, {
         method: 'GET',
@@ -126,4 +154,4 @@ const isExterno = async (id) => {
     }
 }
 
-export { login, registro, comprobarUsuario, comprobarDatos, registroExterno,isExterno };
+export { login, registro, comprobarUsuario, comprobarDatos, registroExterno,isExterno,modificarUsuario };

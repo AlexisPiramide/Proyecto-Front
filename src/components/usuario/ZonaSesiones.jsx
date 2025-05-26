@@ -1,14 +1,13 @@
-import { useNavigate, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import Login from "./formularios/Login";
 import Registro from "./formularios/Registro";
 import PerfilUsuario from "./PerfilUsuario";
 import "./../../styles/zonausuarios.css"
 import "./../../styles/extras/eightbit-btn.css"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 export default function ZonaSesiones() {
-    const navigate = useNavigate();
     const [usuario, setUsuario] = useOutletContext();
     const [tipo, setTipo] = useState(false);
 

@@ -97,9 +97,7 @@ export default function Registro({setUsuario}) {
                 } else {
                     mostrarError("Error al registrarse. Por favor, inténtalo de nuevo.");
                 }
-            
             }
-
         } 
     };
 
