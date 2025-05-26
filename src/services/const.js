@@ -1,5 +1,5 @@
-const URL = "http://localhost:8080/";
-//const URL = "https://back.alexis.daw.cpifppiramide.com/";
+//const URL = "http://localhost:8080/";
+const URL = "https://back.alexis.daw.cpifppiramide.com/";
 
 export const MIN_NAME_LENGTH = 3;
 export const ID_PATTERN = /^[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}$/;
