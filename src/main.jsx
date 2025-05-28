@@ -11,6 +11,7 @@ import CrearPaquete from "./components/paquetes/CrearPaquete";
 import Admin from "./components/inicio/Admin";
 import Inicio from "./components/inicio/Inicio.jsx";
 import RegistroExterno from "./components/usuario/RegistroExterno";
+import Intermedia from "./components/envios/Intermedia.jsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
 			{ path: "", element: <Inicio /> },
 			{ path: "usuario", element: <ZonaSesiones /> },
 			{ path: "envio", element: <PaginaEnvio /> },
+			{ path: ":id", element: <Intermedia /> },
 		],
 	},
 	{
