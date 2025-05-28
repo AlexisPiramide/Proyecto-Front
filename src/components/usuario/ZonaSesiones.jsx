@@ -16,11 +16,11 @@ export default function ZonaSesiones() {
             {!usuario ?
                 <div className="zona-sesiones">
                     <div className="div-formulario">
-                        <div className="embellezedor"><img src="./cerrar.svg" /><img src="./minimizar.svg" /></div>
+                        <div className="embellezedor"><img src="/cerrar.svg" /><img src="/minimizar.svg" /></div>
                         {usuario ? "" : (tipo ? <Registro setUsuario={setUsuario} /> : <Login setUsuario={setUsuario} />)}
                     </div>
                     <div className="diseño-embellecimiento">
-                        <img src="./delivery.jpg" alt="Logo" />
+                        <img src="/delivery.jpg" alt="Logo" />
                         <div className="texto">
                             {(tipo) ? <h2>¿Ya tienes cuenta? Inicia Sesion</h2> : <h2>¿No tienes cuenta? Registrate Aqui</h2>}
                             <button className="eightbit-btn" onClick={() => setTipo(!tipo)}>{tipo ? "Cambiar al Login" : "Cambiar al registro"}</button>

@@ -75,7 +75,7 @@ export default function Inicio() {
             <div className="anuncios">
                 <div className="anuncio">
                     <h2 className="titulo-anuncio">Gestiona tu cuenta para buscar los paquetes</h2>
-                    <img src="./anuncio.jpg" alt="Anuncio 1" onClick={() => { navigate("/usuario") }} />
+                    <img src="/anuncio.jpg" alt="Anuncio 1" onClick={() => { navigate("/usuario") }} />
                 </div>
                 <div className="anuncio">
                     <h2 className="titulo-anuncio mapa">Encuentranos por toda España</h2>

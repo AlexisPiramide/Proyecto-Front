@@ -194,7 +194,7 @@ export default function PerfilUsuario() {
         <div className="perfil-usuario">
             <aside>
                 <div className="aside-contenido">
-                    <img src="avatar.png" />
+                    <img src="/avatar.png" />
                     <h1>{usuario.usuario.nombre} {usuario.usuario.apellidos}</h1>
                     <p>{usuario.usuario.correo}</p>
                     <p>+34 {telefonoFormateado(usuario.usuario.telefono)}</p>

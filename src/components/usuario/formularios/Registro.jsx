@@ -127,8 +127,8 @@ export default function Registro({setUsuario}) {
                 </div>
             )}
             <div className="botones">
-                {(next !== 0)?<button type="button" className="eightbit-btn eightbit-btn--proceed" onClick={() => setNext(next - 1)}><img src="./volver-light.svg" /></button>:<button className="eightbit-btn eightbit-btn--reset" disabled><img src="./volver-light.svg" /></button>}
-                {(next !== 2)?<button type="button" className="eightbit-btn eightbit-btn--proceed" onClick={handleNext}><img src="./segir-light.svg"/></button>:<button className="eightbit-btn eightbit-btn--reset" disabled><img src="./segir-light.svg" /></button>}
+                {(next !== 0)?<button type="button" className="eightbit-btn eightbit-btn--proceed" onClick={() => setNext(next - 1)}><img src="/volver-light.svg" /></button>:<button className="eightbit-btn eightbit-btn--reset" disabled><img src="/volver-light.svg" /></button>}
+                {(next !== 2)?<button type="button" className="eightbit-btn eightbit-btn--proceed" onClick={handleNext}><img src="/segir-light.svg"/></button>:<button className="eightbit-btn eightbit-btn--reset" disabled><img src="/segir-light.svg" /></button>}
             </div>
             {next === 2 && <button type="submit" className="eightbit-btn" onClick={(e)=>submitRegistro(e)}>Registrarse</button>}
            

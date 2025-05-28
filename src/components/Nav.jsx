@@ -33,7 +33,7 @@ export default function Nav({ usuario, setUsuario }) {
 
     return (
         <nav>
-            <img className="logo-nav" src="./logo.png" alt="Logo" onClick={() => navigate("/")} />
+            <img className="logo-nav" src="/logo.png" alt="Logo" onClick={() => navigate("/")} />
 
             <div className="nav-links">
                 {currentUser?.sucursal ? <Link to="/admin">Inicio</Link> : <Link to="/">Inicio</Link>}
@@ -52,7 +52,7 @@ export default function Nav({ usuario, setUsuario }) {
 
                 {currentUser && (
                     <button onClick={logout} aria-label="Cerrar sesión">
-                        <img src="cerrarSesion.svg" alt="Cerrar sesión" />
+                        <img src="/cerrarSesion.svg" alt="Cerrar sesión" />
                     </button>
                 )}
             </div>
