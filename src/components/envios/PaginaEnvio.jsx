@@ -1,20 +1,15 @@
-import { useState, useEffect } from "react";
-import { getTraking } from '../../services/envios.services';
-import Tracking from "./Tracking";
+
 
 import "./../../styles/envio.css"
-import { useLocation } from 'react-router-dom';
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Tracking from "./Tracking"; // Asumo que tienes este componente
-import { getTraking } from "../api"; // Asegúrate de importar esta función
+import Tracking from "./Tracking"; 
+import { getTraking } from "../api";
 
 export default function Envio() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Validación previa
     if (!location.state || !location.state.paquete) {
         console.error("No se recibió el paquete. Redirigiendo...");
         useEffect(() => {
