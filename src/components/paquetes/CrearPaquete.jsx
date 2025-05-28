@@ -84,7 +84,6 @@ export default function CrearPaquete() {
             },
             peso: peso
         };
-
         const result = await postPaquete(datos);
        
         if (result) {

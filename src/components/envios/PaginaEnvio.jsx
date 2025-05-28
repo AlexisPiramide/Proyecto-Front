@@ -8,10 +8,11 @@ import { useLocation } from 'react-router-dom';
 export default function Envio() {
     const location = useLocation();
     const paquete = location.state.paquete;
-
+    console.log("Paquete recibido:", paquete.direccion_destinatario.calle);
+    console.log("Paquete recibido:", paquete.direccion_remitente.calle);
     const [tracking, setTracking] = useState([]);
     const remitente = paquete.remitente;
-    const direccion_remitente = paquete.direccion_destinatario;
+    const direccion_remitente = paquete.direccion_remitente;
 
     const destinatario = paquete.destinatario;
     const direccion_destinatario = paquete.direccion_destinatario;
