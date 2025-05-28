@@ -9,10 +9,8 @@ export default function Tracking({ datos }) {
         <div className="tracking">
             {datos && datos.map((item, index) => {
                 const color = rainbowColors[index];
-
-                // Convert item.fecha (timestamp) to a readable date
                 const fecha = new Date(item.fecha).toLocaleString();
-
+                
                 return (
                     <div className="contenedor-datos" style={{ border: `5px solid ${color}` }}>
                         <h3 className="titulo">Tracking - {item.id}</h3>

@@ -39,12 +39,10 @@ async function postPaquete(datos){
 
 
 async function getPaquete(id) {
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
-    const headers = {'Authorization': 'Bearer ' + usuario.token};
+    const headers = {'Content-Type': 'application/json'};
 
     const response = await fetch(URL + `paquetes/${id}`, {
         method: 'GET',
-        headers: headers,
     });
 
     if (!response.ok) {
