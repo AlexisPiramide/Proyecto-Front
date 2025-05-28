@@ -5,17 +5,28 @@ import Tracking from "./Tracking";
 import "./../../styles/envio.css"
 import { useLocation } from 'react-router-dom';
 
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Tracking from "./Tracking"; // Asumo que tienes este componente
+import { getTraking } from "../api"; // Asegúrate de importar esta función
+
 export default function Envio() {
     const location = useLocation();
-    const paquete = location.state.paquete;
+    const navigate = useNavigate();
 
+    // Validación previa
     if (!location.state || !location.state.paquete) {
         console.error("No se recibió el paquete. Redirigiendo...");
-        navigate("/");
+        useEffect(() => {
+            navigate("/");
+        }, []);
         return null;
     }
 
+    const paquete = location.state.paquete;
+
     const [tracking, setTracking] = useState([]);
+
     const remitente = paquete.remitente;
     const direccion_remitente = paquete.direccion_remitente;
 
@@ -25,7 +36,7 @@ export default function Envio() {
     const fetchTracking = async () => {
         const response = await getTraking(paquete.id);
         setTracking(response);
-    }
+    };
 
     useEffect(() => {
         fetchTracking();
@@ -52,7 +63,6 @@ export default function Envio() {
                         {direccion_destinatario.provincia}, {direccion_destinatario.pais}
                     </p>
                 </div>
-
             </div>
             <Tracking datos={tracking} />
         </div>
