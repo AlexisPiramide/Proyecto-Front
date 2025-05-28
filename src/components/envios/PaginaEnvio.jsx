@@ -1,10 +1,8 @@
-
-
 import "./../../styles/envio.css"
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Tracking from "./Tracking"; 
-import { getTraking } from "../api";
+import { getTraking } from "./../../services/envios.services"
 
 export default function Envio() {
     const location = useLocation();
