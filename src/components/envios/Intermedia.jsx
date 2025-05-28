@@ -11,7 +11,7 @@ export default function Intermedia() {
     const navigate = useNavigate();
 
     const handleBuscar = async () => {
-        const paquete = await getPaquete(buscador);
+        const paquete = await getPaquete(id);
         if (!paquete) {
             mostrarError("No se ha encontrado el paquete con ese código.");
         } else {
