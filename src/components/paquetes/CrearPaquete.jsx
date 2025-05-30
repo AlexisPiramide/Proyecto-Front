@@ -9,7 +9,7 @@ import Dimension from "./Dimension";
 import { getDimensiones } from "../../services/dimensiones.services";
 
 import { postPaquete, calcularPrecio, generateBarcode } from "../../services/paquetes.services";
-import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH,PATERN_CORREO } from "../../services/const";
+import { MIN_NAME_LENGTH, ID_PATTERN, POSTAL_CODE_LENGTH, MIN_ADDRESS_NUMBER_LENGTH, PATERN_CORREO } from "../../services/const";
 
 import { imprimir } from "../../utils/imprimirPaquete";
 
@@ -38,7 +38,7 @@ export default function CrearPaquete() {
 
     const [peso, setPeso] = useState(0);
     const [precio, setPrecio] = useState(0);
-    
+
 
     useEffect(() => {
         fetchDimensiones()
@@ -46,8 +46,8 @@ export default function CrearPaquete() {
 
     useEffect(() => {
         obtenerPrecio();
-    }, [peso,dimension]);
-    
+    }, [peso, dimension]);
+
     const obtenerPrecio = async () => {
         if (!dimension || !peso) {
             setPrecio(0);
@@ -85,7 +85,7 @@ export default function CrearPaquete() {
             peso: peso
         };
         const result = await postPaquete(datos);
-       
+
         if (result) {
             const barcode = await generateBarcode(result.id);
             const barcodeUrl = URL.createObjectURL(barcode);
@@ -110,6 +110,17 @@ export default function CrearPaquete() {
         }
     };
 
+    const clampPeso = (value)=> {
+        const minPeso = 0.1;
+        const maxPeso = dimension ? dimension.peso : Infinity;
+        let pesoNum = Number(value);
+        if (isNaN(pesoNum)) pesoNum = minPeso;
+        if (pesoNum < minPeso) pesoNum = minPeso;
+        if (pesoNum > maxPeso) pesoNum = maxPeso;
+        return pesoNum;
+    }
+
+
     const sortedDimensions = dimensiones.sort((a, b) => a.peso - b.peso);
 
 
@@ -119,17 +130,17 @@ export default function CrearPaquete() {
                 {sortedDimensions.map(d => (<Dimension key={d.id} dimension={d} setDimension={setDimension} selectedDimension={dimension} />))}
             </div>
             <div className="forms-envio">
-                {(dimension && dimension.nombre != null) ? <FormularioUsuario setDatosUsuario={setDestinatario} setDirecciones={setDireccionesDestinatario} tipo={"destinatario"}/> : <form></form>}
+                {(dimension && dimension.nombre != null) ? <FormularioUsuario setDatosUsuario={setDestinatario} setDirecciones={setDireccionesDestinatario} tipo={"destinatario"} /> : <form></form>}
                 {(destinatario && (destinatario.nombre?.length >= MIN_NAME_LENGTH && destinatario.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(destinatario.correo)) || (destinatario && ID_PATTERN.test(destinatario.id))) ? <FormDirecciones usuario={destinatario} setDireccion={setDireccionDestinatario} direcciones={direccionesDestinatario} /> : <form></form>}
                 {(direccionDestinatario && direccionDestinatario.codigoPostal?.length === POSTAL_CODE_LENGTH && direccionDestinatario.numero?.length >= MIN_ADDRESS_NUMBER_LENGTH) ? <FormularioUsuario setDatosUsuario={setRemitente} setDirecciones={setDireccionesRemitente} tipo={"remitente"} /> : <form></form>}
-                
+
                 {(remitente && (remitente.nombre?.length >= MIN_NAME_LENGTH && remitente.apellidos?.length >= MIN_NAME_LENGTH && PATERN_CORREO.test(remitente.correo)) || (remitente && ID_PATTERN.test(remitente.id))) ? <FormDirecciones usuario={remitente} setDireccion={setDireccionRemitente} direcciones={direccionesRemitente} /> : <form></form>}
                 <form>
-                    <label>Peso</label><input type="text" name="peso" onChange={(e) => setPeso(e.target.value)} placeholder="Peso" />
+                    <label>Peso</label><input type="number" name="peso" min={2} max={dimension ? dimension.peso : undefined} onChange={e => setPeso(clampPeso(e.target.value))} placeholder="Peso" />
                     <label>Precio</label><input type="text" name="precio" value={precio} disabled placeholder="Precio" />
                 </form>
                 <div className="boton-tramitar-contenedor">
-                    {(dimension && destinatario && direccionDestinatario && remitente && direccionRemitente && peso && precio ) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
+                    {(dimension && destinatario && direccionDestinatario && remitente && direccionRemitente && peso && precio) ? <button className="tramitar" onClick={handleSubmit}>Tramitar</button> : <button disabled>Tramitar</button>}
                 </div>
             </div>
             <ToastContainer />
