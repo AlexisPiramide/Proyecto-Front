@@ -56,8 +56,10 @@ export default function Escaner() {
         mostrarExito("Escaneando...");
         const id = usuario.id;
         //Se obtiene el tipo de tracking seleccionado bien
-        mostrarExito(decodedText,id,tipoTracking,address);
-        mostrarExito(address)
+        mostrarExito("tipoTracking", tipoTracking);
+        mostrarExito("address", address);
+        mostrarExito("usuario", id);
+        mostrarExito("decodedText", decodedText);
         try {
             const result = await postTraking(decodedText, id, tipoTracking, address);
 
