@@ -9,24 +9,25 @@ const getTraking = async (id) => {
     return response.json();
 };
 
-const postTraking = async (id,usuario, tipo,address) => {
-    const response = await fetch(URL+"envios/tracking/"+usuario, {
+const postTraking = async (id, usuario, tipo, address) => {
+    const response = await fetch(URL + "envios/tracking/" + usuario, {
         method: "POST",
         headers: {
-        "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify({id:id, tipo:tipo, direccion:address}),
+        body: JSON.stringify({ id: id, tipo: tipo, direccion: address }),
     });
 
+    const responseData = await response.json();
+
     if (!response.ok) {
-        throw new Error(`Error: ${errorData.message || "Unknown error"}`);
+        // Attempt to show detailed error message from server
+        throw new Error(responseData.message || responseData.error || "Unknown error");
     }
-    const errorData = await response.json();
-    if (errorData.error) {
-        throw new Error(errorData.error);
-    }
-    return response.json();
+
+    return responseData;
 };
+
 
 export {getTraking, postTraking};
 

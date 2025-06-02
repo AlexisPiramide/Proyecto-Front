@@ -57,7 +57,7 @@ export default function Escaner() {
         const id = usuario.id;
         //Se obtiene el tipo de tracking seleccionado bien
         try {
-            const result = await postTraking(decodedText, id, tipoTracking,address);
+            const result = await postTraking(decodedText, id, tipoTracking, address);
 
 
             if (!result) {
@@ -69,9 +69,9 @@ export default function Escaner() {
             }
         } catch (error) {
             console.error("Error al escanear el código:", error);
-            mostrarError("Error al escanear el código:",error)
-    
+            mostrarError("Error al escanear el código: " + error.message);
         }
+
 
         setTimeout(() => setIsScanning(false), 5000);
     };
