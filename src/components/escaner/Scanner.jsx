@@ -61,6 +61,8 @@ export default function Escaner() {
             if (!result) {
                 mostrarError("No se ha encontrado el paquete con ese código.");
             } else {
+                mostrarExito("Paquete encontrado: " + result.codigo);
+                mostrarExito("Paquete encontrado: " + result);
                 mostrarExito("Paquete escaneado con éxito.");
             }
         } catch (error) {
