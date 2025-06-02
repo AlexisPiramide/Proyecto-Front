@@ -18,15 +18,23 @@ const postTraking = async (id, usuario, tipo, address) => {
         body: JSON.stringify({ id: id, tipo: tipo, direccion: address }),
     });
 
-    const responseData = await response.json();
+    let responseText;
+    try {
+        responseText = await response.text(); // Use text to see full raw response
+        const responseData = JSON.parse(responseText);
 
-    if (!response.ok) {
-        // Attempt to show detailed error message from server
-        throw new Error(responseData.message || responseData.error || "Unknown error");
+        if (!response.ok) {
+            console.error("Server error response:", responseData);
+            throw new Error(responseData.message || responseData.error || "Unknown error");
+        }
+
+        return responseData;
+    } catch (parseError) {
+        console.error("Failed to parse response:", responseText);
+        throw new Error("Respuesta del servidor no válida o inesperada");
     }
-
-    return responseData;
 };
+
 
 
 export {getTraking, postTraking};
