@@ -69,7 +69,7 @@ export default function Escaner() {
             }
         } catch (error) {
             console.error("Error al escanear el código:", error);
-            mostrarError("Error al escanear el código:",result)
+            mostrarError("Error al escanear el código:",error)
     
         }
 
