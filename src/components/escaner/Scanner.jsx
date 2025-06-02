@@ -55,11 +55,11 @@ export default function Escaner() {
         setIsScanning(true);
         mostrarExito("Escaneando...");
         const id = usuario.id;
-        mostrarError("Escaneando código: " + decodedText);
+        //Se obtiene el tipo de tracking seleccionado bien
         try {
             const result = await postTraking(decodedText, id, tipoTracking,address);
 
-           
+
             if (!result) {
                 mostrarError("No se ha encontrado el paquete con ese código.");
             } else {
@@ -69,7 +69,7 @@ export default function Escaner() {
             }
         } catch (error) {
             console.error("Error al escanear el código:", error);
-            mostrarError(result)
+            mostrarError("Error al escanear el código:",result)
     
         }
 
