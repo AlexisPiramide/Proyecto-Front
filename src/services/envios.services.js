@@ -17,6 +17,17 @@ const postTraking = async (id,usuario, tipo,address) => {
         },
         body: JSON.stringify({id:id, tipo:tipo, direccion:address}),
     });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`Error: ${errorData.message || "Unknown error"}`);
+    }
+    if (response.status === 404) {
+        throw new Error("No se ha encontrado el paquete con ese código.");
+    }
+    if (response.status === 400) {
+        throw new Error("Error al escanear el código. Inténtalo de nuevo.");
+    }
     return response.json();
 };
 
