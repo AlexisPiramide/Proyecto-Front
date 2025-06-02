@@ -38,7 +38,7 @@ export default function impresion({ paquete, barcode }) {
                 </div>
                 <div className="datos">
                     <label>Dimensiones</label>
-                    <input name="dimensiones" id="dimensiones" disabled placeholder="Dimensiones" value={dimensiones || ''} />
+                    <input name="dimensiones" id="dimensiones" disabled placeholder="Dimensiones" value={dimensiones.nombre || ''} />
                     <label>Peso</label>
                     <input name="peso" id="peso" disabled placeholder="Nombre" value={peso || ''} />
                 </div>
