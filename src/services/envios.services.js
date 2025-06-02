@@ -19,7 +19,6 @@ const postTraking = async (id,usuario, tipo,address) => {
     });
 
     if (!response.ok) {
-        const errorData = await response.json();
         throw new Error(`Error: ${errorData.message || "Unknown error"}`);
     }
     if (response.status === 404) {

@@ -58,6 +58,8 @@ export default function Escaner() {
         mostrarError("Escaneando código: " + decodedText);
         try {
             const result = await postTraking(decodedText, id, tipoTracking,address);
+
+            mostrarError(result)
             if (!result) {
                 mostrarError("No se ha encontrado el paquete con ese código.");
             } else {
