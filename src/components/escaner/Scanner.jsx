@@ -55,7 +55,7 @@ export default function Escaner() {
         setIsScanning(true);
         mostrarExito("Escaneando...");
         const id = usuario.id;
-
+        mostrarError("Escaneando código: " + decodedText);
         try {
             const result = await postTraking(decodedText, id, tipoTracking,address);
             if (!result) {
