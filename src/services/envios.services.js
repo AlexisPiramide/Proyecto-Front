@@ -10,10 +10,13 @@ const getTraking = async (id) => {
 };
 
 const postTraking = async (id, usuario, tipo, address) => {
+    const token = localStorage.getItem("usuario").token;
+
     const response = await fetch(URL + "envios/tracking/" + usuario, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({ id: id, tipo: tipo, direccion: address }),
     });
