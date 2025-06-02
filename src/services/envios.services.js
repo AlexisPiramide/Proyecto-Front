@@ -9,36 +9,18 @@ const getTraking = async (id) => {
     return response.json();
 };
 
-const postTraking = async (id, usuario, tipo, address) => {
+const postTraking = async (id,usuario, tipo,address) => {
     const token = localStorage.getItem("usuario").token;
-
-    const response = await fetch(URL + "envios/tracking/" + usuario, {
+    const response = await fetch(URL+"envios/tracking/"+usuario, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify({ id: id, tipo: tipo, direccion: address }),
+        body: JSON.stringify({id:id, tipo:tipo, direccion:address}),
     });
-
-    let responseText;
-    try {
-        responseText = await response.text(); // Use text to see full raw response
-        const responseData = JSON.parse(responseText);
-
-        if (!response.ok) {
-            console.error("Server error response:", responseData);
-            throw new Error(responseData.message || responseData.error || "Unknown error");
-        }
-
-        return responseData;
-    } catch (parseError) {
-        console.error("Failed to parse response:", responseText);
-        throw new Error("Respuesta del servidor no válida o inesperada");
-    }
+    return response.json();
 };
-
-
 
 export {getTraking, postTraking};
 
