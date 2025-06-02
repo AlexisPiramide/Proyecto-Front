@@ -29,6 +29,10 @@ export default function Nav({ usuario, setUsuario }) {
         }
     };
 
+    const navigateAdmin = () => {
+        window.location.href = "https://sucursal.alexis.daw.cpifppiramide.com/";
+    }
+
     const currentUser = usuario?.usuario;
 
     return (
@@ -39,6 +43,7 @@ export default function Nav({ usuario, setUsuario }) {
                 {currentUser?.sucursal ? <Link to="/admin">Inicio</Link> : <Link to="/">Inicio</Link>}
                 {currentUser?.sucursal && <Link className="no_movil" to="/admin/escaner">Escaner</Link>}
                 {currentUser?.sucursal && <Link className="no_movil" to="/admin/nuevo">Nuevo envio</Link>}
+                {currentUser?.sucursal &&  <button className="no_movil" onClick={navigateAdmin}>Administración</button>}
             </div>
 
             <div className="nav-user">
