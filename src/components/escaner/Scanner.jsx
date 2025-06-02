@@ -55,20 +55,13 @@ export default function Escaner() {
         setIsScanning(true);
         mostrarExito("Escaneando...");
         const id = usuario.id;
-        //Se obtiene el tipo de tracking seleccionado bien
-        mostrarExito("tipoTracking", tipoTracking);
-        mostrarExito("address", address);
-        mostrarExito("usuario", id);
-        mostrarExito("decodedText", decodedText);
+
         try {
             const result = await postTraking(decodedText, id, tipoTracking, address);
-
 
             if (!result) {
                 mostrarError("No se ha encontrado el paquete con ese código.");
             } else {
-                mostrarExito("Paquete encontrado: " + result.codigo);
-                mostrarExito("Paquete encontrado: " + result);
                 mostrarExito("Paquete escaneado con éxito.");
             }
         } catch (error) {
