@@ -19,6 +19,11 @@ const postTraking = async (id,usuario, tipo,address) => {
         },
         body: JSON.stringify({id:id, tipo:tipo, direccion:address}),
     });
+
+    if (!response.ok) {
+        throw new Error("Error al enviar el tracking: " + response.statusText);
+    }
+
     return response.json();
 };
 
