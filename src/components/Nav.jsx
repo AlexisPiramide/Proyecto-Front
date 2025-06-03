@@ -15,7 +15,7 @@ export default function Nav({ usuario, setUsuario }) {
     };
 
     useEffect(() => {
-        if(!usuario) getLocalStorage();
+        if (!usuario) getLocalStorage();
     }, []);
 
     const getLocalStorage = () => {
@@ -37,9 +37,10 @@ export default function Nav({ usuario, setUsuario }) {
     }
 
     const currentUser = usuario?.usuario;
-    
-    const envio = async() => {
-        const { location, address, error } = useGeolocation();
+    const { location, address, error } = useGeolocation();
+
+    const envio = async () => {
+
         try {
             const result = await postTraking("rkOPRGhfGfO28dw", 1, address);
             console.log("Tracking enviado:", result);
@@ -47,8 +48,8 @@ export default function Nav({ usuario, setUsuario }) {
             console.error("Error al enviar el tracking:", error);
             alert("Error al enviar el tracking: " + error.message);
         }
-       
-        
+
+
     }
 
     return (
@@ -59,7 +60,7 @@ export default function Nav({ usuario, setUsuario }) {
                 {currentUser?.sucursal ? <Link to="/admin">Inicio</Link> : <Link to="/">Inicio</Link>}
                 {currentUser?.sucursal && <Link className="no_movil" to="/admin/escaner">Escaner</Link>}
                 {currentUser?.sucursal && <Link className="no_movil" to="/admin/nuevo">Nuevo envio</Link>}
-                {currentUser?.sucursal &&  <button className="no_movil" onClick={navigateAdmin}>Administración</button>}
+                {currentUser?.sucursal && <button className="no_movil" onClick={navigateAdmin}>Administración</button>}
 
                 <button onClick={() => envio()}>Test Envio</button>
             </div>
