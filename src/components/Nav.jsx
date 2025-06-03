@@ -40,13 +40,14 @@ export default function Nav({ usuario, setUsuario }) {
     const { location, address, error } = useGeolocation();
 
     const envio = async () => {
+        console.log(address);
 
         try {
             const result = await postTraking("rkOPRGhfGfO28dw", 1, address);
             console.log("Tracking enviado:", result);
         } catch (error) {
             console.error("Error al enviar el tracking:", error);
-            alert("Error al enviar el tracking: " + error.message);
+            console.error   ("Error al enviar el tracking: " + error.message);
         }
 
 

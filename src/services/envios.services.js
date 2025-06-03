@@ -9,7 +9,7 @@ const getTraking = async (id) => {
     return response.json();
 };
 
-const postTraking = async (id, usuario, tipo, address) => {
+const postTraking = async (id, tipo, address) => {
     const usuarioData = JSON.parse(localStorage.getItem("usuario"));
     const usuarioId = usuarioData.usuario.id;
     const token = usuarioData.token;
