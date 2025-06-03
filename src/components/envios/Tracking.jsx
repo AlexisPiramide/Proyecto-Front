@@ -12,11 +12,11 @@ export default function Tracking({ datos }) {
                 const fecha = new Date(item.fecha).toLocaleString();
                 
                 return (
-                    <div className="contenedor-datos" style={{ border: `5px solid ${color}` }}>
-                        <h3 className="titulo">Tracking - {item.id}</h3>
-                        <p className="estado">{item.estado}</p>
-                        <p className="fecha">{fecha}</p>
-                        <p className="tracking" id="direccion">
+                    <div className="contenedor-datos" style={{ borderBottom: `2px solid ${color}` }}>
+                        <h3 className="titulo" style={{ borderBottom: `1px solid ${color}` }}>Tracking - {item.id}</h3>
+                        <p className="estado" style={{ borderBottom: `1px solid ${color}` }}>{item.estado}</p>
+                        <p className="fecha" style={{ borderBottom: `1px solid ${color}` }}>{fecha}</p>
+                        <p className="direccion-tracking" id="direccion-tracking" style={{ borderBottom: `1px solid ${color}` }}>
                             {item.direccion.calle} {item.direccion.numero}, {item.direccion.codigoPostal}, {item.direccion.localidad},
                             {item.direccion.provincia}, {item.direccion.pais}
                         </p>

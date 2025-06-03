@@ -3,23 +3,16 @@
   background-color: #f7f9fc;
   display: flex;
   flex-direction: row;
-
-}
-
-.paquete h1 {
-  font-size: 2rem;
-  padding-top: 1rem;
-  margin: 0;
 }
 
 .paquete .informacion {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content:flex-start;
   align-items: center;
   height: 100%;
   width: 50%;
-  gap: 2rem;
+  padding-left: 2rem;
 }
 
 .informacion > div {
@@ -28,7 +21,7 @@
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  max-width: 400px;
+  
   padding: 1.5rem;
   border: 2px solid black;
   border-radius: 8px;
@@ -41,19 +34,29 @@
   font-size: 1.2rem;
 }
 
+.informacion h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
 .informacion p {
   margin-bottom: 0.5rem;
   font-size: 1rem;
   word-break: break-word;
 }
 
+
 .paquete .tracking {
+  padding-top: 1rem;
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.tracking .direccion-tracking {
+  background-color: #fff;
 }
 
 .contenedor-datos {
@@ -63,8 +66,6 @@
   align-items: flex-start;
   width:90%;
   padding: 1.5rem;
-  border-radius: 25px;
-  border: 5px solid rgb(255, 0, 0);
   background-color: #fff;
 }
 
@@ -82,6 +83,21 @@
 .contenedor-datos .fecha {
   font-size: 0.9rem;
   color: #555;
+}
+
+.contenedor-datos .descripcion {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.informacion_sin_sesion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  font-size:1.5rem;
 }
 
 /* Responsive Layout */
