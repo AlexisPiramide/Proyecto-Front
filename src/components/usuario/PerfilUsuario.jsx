@@ -286,7 +286,7 @@ export default function PerfilUsuario() {
                                 <label htmlFor="telefono">Nuevo Teléfono</label><input type="text" id="telefono" name="telefono" placeholder="Nuevo teléfono" value={formInfo.telefono} onChange={handleInfoChange} />
                             </div>
                         </form>
-                        <button type="submit" onClick={handleGuardarCambios}>Guardar Cambios</button>
+                        <button className="submit-button" type="submit" onClick={handleGuardarCambios}>Guardar Cambios</button>
                     </>
                 )}
             </main>
