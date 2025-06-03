@@ -1,25 +1,27 @@
 import URL from "./const"
 const getTraking = async (id) => {
-    const response = await fetch(URL+"envios/tracking/"+id, {
+    const response = await fetch(URL + "envios/tracking/" + id, {
         method: "GET",
         headers: {
-        "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
     });
     return response.json();
 };
 
-const postTraking = async (id,usuario, tipo,address) => {
-    const token = localStorage.getItem("usuario").token;
-    const response = await fetch(URL+"envios/tracking/"+usuario, {
+const postTraking = async (id, usuario, tipo, address) => {
+    const usuarioData = JSON.parse(localStorage.getItem("usuario"));
+    const usuarioId = usuarioData.usuario.id;
+    const token = usuarioData.token;
+    const response = await fetch(URL + "envios/tracking/" + usuarioId, {
         method: "POST",
         headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify({id:id, tipo:tipo, direccion:address}),
+        body: JSON.stringify({ id: id, tipo: tipo, direccion: address }),
     });
-    
+
 
     if (!response.ok) {
         const errorData = await response.json();
@@ -30,7 +32,6 @@ const postTraking = async (id,usuario, tipo,address) => {
     return response.json();
 };
 
-export {getTraking, postTraking};
+export { getTraking, postTraking };
 
 
- 
