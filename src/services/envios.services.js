@@ -22,8 +22,9 @@ const postTraking = async (id,usuario, tipo,address) => {
     
 
     if (!response.ok) {
-        console.log("Error al enviar el tracking:", response);
-        throw new Error("Error al enviar el tracking: " + response.statusText);
+        const errorData = await response.json();
+        console.log("Error al enviar el tracking:", errorData);
+        throw new Error("Error al enviar el tracking: " + (errorData.message || response.statusText));
     }
 
     return response.json();
