@@ -7,17 +7,17 @@
     - [X] Estructuramiento de la aplicación en función del backend (React Router).
 # Código
     # Conexion Front/Back
-    - [ ] Crear conexiones para cada endpoint de la API.
+    - [X] Crear conexiones para cada endpoint de la API.
         - [X] Dimensiones
         - [X] Usuarios
-            - [ ] Pendiente Registro de trabajadores por admins
+            - ~~[ ] Pendiente Registro de trabajadores por admins~~
         - [X] Paquetes
         - [X] Envios
         - [X] Direcciones
     - [X] Creación componentes
         - [X] Usuarios.
             - [X] Formularios Sesion
-            - [\] Perfil Usuario
+            - [X] Perfil Usuario
         - [X] Envios.
             - [X] Barra Busqueda por ID
             - [X] Pagina General de Paquete
@@ -32,13 +32,12 @@
         
     # Generación Impresión pegatina Paquete
     - [X] Página html diseñada para ser imprimida con los datos del Back (QR o Código de barras, información básica ...)
-    # Creacion de la PWA (Progressive Web App) 
-    - [ ] Crear PAW para Android
-        - [ ] Crear un icono para la app
-        - [ ]   
-        - [ ] Configuar PWA
-        - [ ] Asegurarse de que la app se puede descargar por navegador
-    - [ ]  Crear un APK
+    ~~# Creacion de la PWA (Progressive Web App)~~
+    - ~~[ ] Crear PAW para Android~~
+        - ~~[ ] Crear un icono para la app~~ 
+        - ~~[ ] Configuar PWA~~
+        - ~~[ ] Asegurarse de que la app se puede descargar por navegador~~
+    - ~~[ ]  Crear un APK~~
 # Investigación
     - [X] Forma de acceder a la cámara del Teléfono para escanear QR
     - [X] Transformar la página web en una APP (En vez de usar el app desde un navegador en el móvil)
