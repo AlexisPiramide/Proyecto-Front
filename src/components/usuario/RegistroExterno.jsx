@@ -4,6 +4,8 @@ import { isExterno, registroExterno } from "../../services/usuarios.services";
 import "./../../styles/registroexterno.css"
 import { ToastContainer } from 'react-toastify';
 export default function RegistroExterno() {
+    
+    
     const navigate = useNavigate();
     const { id } = useParams();
     const [comprobacion, setComprobacion] = useState(undefined);
@@ -13,6 +15,7 @@ export default function RegistroExterno() {
 
     useEffect(() => {
         comprobarRegistro();
+        console.log("ID de registro:", id);
     }, [id]);
 
     const comprobarRegistro = async () => {
