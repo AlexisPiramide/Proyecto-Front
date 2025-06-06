@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPaquete } from "../../services/paquetes.services";
-
+import "./../../styles/intermedia.css"
 
 
 export default function Intermedia() {
@@ -28,6 +28,10 @@ export default function Intermedia() {
     
     return (
         <div className="intermedia">
+            <h2>El paquete que buscas no existe, revisa el código de seguimiento y asegurate de que sea correcto.</h2> 
+            
+
+            <h3>Pulsa aqui para volver al inicio y poder intentarlo de nuevo</h3>
             <button onClick={() => navigate('/')}>Volver al inicio</button>
         </div>
     );

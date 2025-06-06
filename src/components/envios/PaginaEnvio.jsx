@@ -49,7 +49,19 @@ export default function Envio() {
         }
     }
 
+    const isNotUser = () => {
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        if (!usuario){
+            return true;
+        }
+        else return false;
+    }
+
+
     const isUser = checkIfuser();
+
+    const notUser = isNotUser();
 
     return (
         <div className="paquete">
@@ -68,7 +80,8 @@ export default function Envio() {
                     {direccion_destinatario.provincia}, {direccion_destinatario.pais}
                 </p>
             </div>
-            :<div className="informacion_sin_sesion">Inicia sesión para ver esta información</div>}
+            :
+            (notUser ? <div className="informacion_sin_sesion">Inicia sesión para ver esta información</div> : <div className="informacion_sin_sesion"> Esta informacion no te incumbe</div>)}
             <Tracking datos={tracking} />
         </div>
     );
