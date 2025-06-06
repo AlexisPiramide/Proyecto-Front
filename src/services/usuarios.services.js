@@ -140,7 +140,8 @@ const modificarUsuario = async (datosFormulario) => {
 }
 
 const isExterno = async (id) => {
-    const data = await fetch(URL + "usuarios/isExterno/" + id, {
+    try {
+        const data = await fetch(URL + "usuarios/isExterno/" + id, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -152,6 +153,12 @@ const isExterno = async (id) => {
     } else {
         throw new Error('Error al comprobar si es externo');
     }
+    } catch (error) {
+        if(error.status === 404) {
+            return false; // El usuario no existe
+        }
+    }
+   
 }
 
 export { login, registro, comprobarUsuario, comprobarDatos, registroExterno,isExterno,modificarUsuario };

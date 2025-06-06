@@ -15,7 +15,6 @@ export default function RegistroExterno() {
 
     useEffect(() => {
         comprobarRegistro();
-        console.log("ID de registro:", id);
     }, [id]);
 
     const comprobarRegistro = async () => {
