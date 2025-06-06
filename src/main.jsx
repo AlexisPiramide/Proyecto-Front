@@ -34,7 +34,7 @@ const router = createBrowserRouter([
 		],
 	},
 	{
-		path: "/y&$1m9x41/registroExterno/",
+		path: "/yx1241m9x41/registroExterno/",
 		element: <App />,
 		children: [
 			{ path: ":id", element: <RegistroExterno /> },

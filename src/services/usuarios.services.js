@@ -94,7 +94,7 @@ const comprobarDatos = async (datos) => {
 }
 
 const registroExterno = async (id) => {
-    const data = await fetch(URL + "usuarios/y&$1m9x41/registroExterno/" + { id }, {
+    const data = await fetch(URL + "usuarios/yx1241m9x41/registroExterno/" + { id }, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
