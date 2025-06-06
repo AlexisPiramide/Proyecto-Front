@@ -12,6 +12,7 @@ import Admin from "./components/inicio/Admin";
 import Inicio from "./components/inicio/Inicio.jsx";
 import RegistroExterno from "./components/usuario/RegistroExterno";
 import Intermedia from "./components/envios/Intermedia.jsx";
+import NotFoundPage from "./components/404.jsx";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "*",
-		element: <h1>404</h1>,
+		element: <NotFoundPage />,
 	},
 ]);
 
