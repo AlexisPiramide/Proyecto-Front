@@ -116,3 +116,62 @@
     max-width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .paquete {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .paquete .informacion,
+  .paquete .tracking {
+    width: 100%;
+    padding: 0;
+  }
+
+  .paquete .informacion {
+    padding-left: 0;
+    align-items: flex-start;
+  }
+
+  .informacion > div {
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .informacion h2,
+  .informacion h3 {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .informacion p {
+    font-size: 0.95rem;
+  }
+
+  .contenedor-datos {
+    padding: 1rem;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .contenedor-datos .titulo {
+    font-size: 1rem;
+  }
+
+  .contenedor-datos .fecha,
+  .contenedor-datos .descripcion,
+  .contenedor-datos .estado {
+    font-size: 0.9rem;
+  }
+
+  .informacion_sin_sesion {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem;
+    text-align: center;
+  }
+}

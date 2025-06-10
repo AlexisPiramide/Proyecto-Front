@@ -368,6 +368,63 @@ form > .pack{
     transition: background-color 0.2s;
     position: absolute;
     left: 60%;
-    bottom: 1rem; /* Add space from the bottom */
+    bottom: 1rem;
     transform: translateX(-50%);
+}
+
+
+
+
+@media (max-width: 768px) {
+    .perfil-usuario {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }   
+
+    aside {
+        width: 25%;
+        height: auto;
+        flex-direction: row;
+    }
+
+    aside img{
+        display: none;
+    }
+
+    aside .aside-contenido {
+        padding-top: 1em;
+        width: 100%;
+        align-items: center;
+    }
+
+    .aside-contenido h1 {
+        font-size: 1.2rem;
+    }
+
+    .aside-contenido p {
+        font-size: 0.8rem;
+    }
+
+    .botones-aside {
+        display: none;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    .pedido, .direccion {
+        width: 90%;
+        height: auto;
+    }
+
+    .formulario-informacion {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    form > .pack {
+        width: 100%;
+    }
 }

@@ -55,6 +55,26 @@ export default function PerfilUsuario() {
         }
     }, [codigoPostal]);
 
+    useEffect(() => {
+        const isMobile = window.innerWidth <= 768; // Puedes ajustar el ancho según el diseño
+        if (isMobile) {
+            setVistaSeleccionada("paquetes");
+        }
+    }, []);
+
+    const [esMovil, setEsMovil] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setEsMovil(window.innerWidth <= 768);
+        };
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
+
+
     const mostrarError = (mensaje) => {
         toast.error(mensaje, { position: "top-right", autoClose: 3000, hideProgressBar: true, closeOnClick: true, pauseOnHover: true, draggable: true, toastId: mensaje });
     };
@@ -121,72 +141,72 @@ export default function PerfilUsuario() {
     };
 
     const validarInformacion = () => {
-    const trimmedInfo = {
-        nombre: formInfo.nombre.trim(),
-        apellidos: formInfo.apellidos.trim(),
-        telefono: formInfo.telefono.trim(),
-        password: formInfo.password.trim(),
+        const trimmedInfo = {
+            nombre: formInfo.nombre.trim(),
+            apellidos: formInfo.apellidos.trim(),
+            telefono: formInfo.telefono.trim(),
+            password: formInfo.password.trim(),
+        };
+
+        const isChanged =
+            (trimmedInfo.nombre && trimmedInfo.nombre !== usuario.usuario.nombre) ||
+            (trimmedInfo.apellidos && trimmedInfo.apellidos !== usuario.usuario.apellidos) ||
+            (trimmedInfo.telefono && trimmedInfo.telefono !== usuario.usuario.telefono) ||
+            (trimmedInfo.password);
+
+        if (!isChanged) {
+            mostrarError("Debe modificar al menos un campo antes de guardar.");
+            return false;
+        }
+
+        if (trimmedInfo.nombre && trimmedInfo.nombre.length < 2) {
+            mostrarError("El nombre es demasiado corto");
+            return false;
+        }
+
+        if (trimmedInfo.apellidos && trimmedInfo.apellidos.length < 2) {
+            mostrarError("Los apellidos son demasiado cortos");
+            return false;
+        }
+
+        if (trimmedInfo.telefono && !/^\d{9,15}$/.test(trimmedInfo.telefono)) {
+            mostrarError("Número de teléfono inválido");
+            return false;
+        }
+
+        if (trimmedInfo.password) {
+            if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}/.test(trimmedInfo.password)) {
+                mostrarError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un carácter especial.");
+                return false;
+            }
+            if (formInfo.password !== formInfo.confirmPassword) {
+                mostrarError("Las contraseñas no coinciden");
+                return false;
+            }
+        }
+
+        return true;
     };
 
-    const isChanged = 
-        (trimmedInfo.nombre && trimmedInfo.nombre !== usuario.usuario.nombre) ||
-        (trimmedInfo.apellidos && trimmedInfo.apellidos !== usuario.usuario.apellidos) ||
-        (trimmedInfo.telefono && trimmedInfo.telefono !== usuario.usuario.telefono) ||
-        (trimmedInfo.password);
-
-    if (!isChanged) {
-        mostrarError("Debe modificar al menos un campo antes de guardar.");
-        return false;
-    }
-
-    if (trimmedInfo.nombre && trimmedInfo.nombre.length < 2) {
-        mostrarError("El nombre es demasiado corto");
-        return false;
-    }
-
-    if (trimmedInfo.apellidos && trimmedInfo.apellidos.length < 2) {
-        mostrarError("Los apellidos son demasiado cortos");
-        return false;
-    }
-
-    if (trimmedInfo.telefono && !/^\d{9,15}$/.test(trimmedInfo.telefono)) {
-        mostrarError("Número de teléfono inválido");
-        return false;
-    }
-
-    if (trimmedInfo.password) {
-        if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}/.test(trimmedInfo.password)) {
-            mostrarError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un carácter especial.");
-            return false;
-        }
-        if (formInfo.password !== formInfo.confirmPassword) {
-            mostrarError("Las contraseñas no coinciden");
-            return false;
-        }
-    }
-
-    return true;
-};
 
 
-
-    const handleGuardarCambios = async(e) => {
+    const handleGuardarCambios = async (e) => {
         e.preventDefault();
-        
+
         if (validarInformacion()) {
 
-            const result = await modificarUsuario(formInfo); 
+            const result = await modificarUsuario(formInfo);
             if (!result) {
                 mostrarError("Error al guardar los cambios");
                 return;
             }
-            else{
+            else {
                 mostrarResultado("Cambios guardados correctamente", true);
                 setUsuario(result);
                 localStorage.setItem("usuario", JSON.stringify(result));
                 navigate("/usuario");
             }
-          
+
         }
     };
 
@@ -199,11 +219,13 @@ export default function PerfilUsuario() {
                     <p>{usuario.usuario.correo}</p>
                     <p>+34 {telefonoFormateado(usuario.usuario.telefono)}</p>
                 </div>
-                <div className="botones-aside">
-                    <button className={"aside-direccion " + (vistaSeleccionada === "direcciones" ? "seleccionada" : "")} onClick={() => setVistaSeleccionada("direcciones")}>Direcciones</button>
-                    <button className={"aside-direccion " + (vistaSeleccionada === "paquetes" ? "seleccionada" : "")} onClick={() => setVistaSeleccionada("paquetes")}>Paquetes</button>
-                    <button className={"aside-direccion " + (vistaSeleccionada === "informacion" ? "seleccionada" : "")} onClick={() => setVistaSeleccionada("informacion")}>Cambiar informacion</button>
-                </div>
+                {!esMovil && (
+                    <div className="botones-aside">
+                        <button className={"aside-direccion " + (vistaSeleccionada === "direcciones" ? "seleccionada" : "")} onClick={() => setVistaSeleccionada("direcciones")}>Direcciones</button>
+                        <button className={"aside-direccion " + (vistaSeleccionada === "paquetes" ? "seleccionada" : "")} onClick={() => setVistaSeleccionada("paquetes")}>Paquetes</button>
+                        <button className={"aside-direccion " + (vistaSeleccionada === "informacion" ? "seleccionada" : "")} onClick={() => setVistaSeleccionada("informacion")}>Cambiar información</button>
+                    </div>
+                )}
             </aside>
             <main>
                 {vistaSeleccionada === "direcciones" && (
